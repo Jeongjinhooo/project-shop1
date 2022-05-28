@@ -1,0 +1,117 @@
+footer {
+  display: flex;
+  width: 100%;
+  height: 480px;
+  background-color: #151515;
+}
+
+footer #ft_inner {
+  width: 90%;
+  height: 310px;
+}
+
+footer #ft_inner #ft_sec01 {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+footer #ft_inner #ft_sec01_txt {
+  color: #b1b1b1;
+  font-size: 14px;
+  width: 745px;
+}
+
+footer #ft_inner #ft_sec01_txt span {
+  font-weight: 700;
+}
+
+footer #ft_inner #ft_sec01 #ft_menuright {
+  float: right;
+}
+
+footer #ft_inner #ft_sec01 #ft_menuright ul {
+  float: left;
+}
+
+footer #ft_inner #ft_sec01 #ft_menuright ul>li {
+  float: left;
+}
+
+footer #ft_inner #ft_sec01 #ft_menuright ul>li>a {
+  display: block;
+  font-size: 14px;
+  font-weight: 300;
+  color: #b1b1b1;
+  padding-left: 20px;
+}
+
+footer #ft_inner #ft_sec02 {
+  width: 100%;
+  height: 270px;
+  display: flex;
+  justify-content: space-between;
+}
+
+footer #ft_inner #ft_sec02 #ft_left {
+  width: 1000px;
+  height: 100%;
+}
+
+footer #ft_inner #ft_sec02 #ft_left #ft_number {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+footer #ft_inner #ft_sec02 #ft_left #ft_number>p {
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+footer #ft_inner #ft_sec02 #ft_left #ft_info {
+  margin-top: 30px;
+  color: #b1b1b1;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 23px;
+}
+
+footer #ft_inner #ft_sec02 #ft_left #ft_info span {
+  padding: 0px 6px;
+}
+
+footer #ft_inner #ft_sec02 #ft_left #ft_copy {
+  padding-top: 37px;
+  color: #b1b1b1;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+footer #ft_inner #ft_sec02 #ft_left #ft_sns ul {
+  margin-top: 30px;
+}
+
+footer #ft_inner #ft_sec02 #ft_left #ft_sns ul>li {
+  float: left;
+  padding-right: 15px;
+}
+
+footer #ft_inner #ft_sec02 #ft_right ul {
+  float: left;
+}
+
+footer #ft_inner #ft_sec02 #ft_right ul>li>a {
+  display: block;
+  font-size: 13px;
+  font-weight: 300;
+  color: #b1b1b1;
+  line-height: 2;
+  text-align: right;
+}
+
+footer #ft_inner #ft_sec02 #ft_right ul:first-child {
+  margin-right: 53px;
+}
