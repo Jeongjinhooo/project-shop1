@@ -1,0 +1,221 @@
+.btn {
+  color: #222;
+  width: 80px;
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+  padding: 8px;
+  border: 1px solid #d1d1d1;
+  border-radius: 2px;
+  font-family: "굴림", Gulim;
+  font-size: 12px;
+  font-weight: normal;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  color: #222;
+  background-color: #fff;
+  margin-left: 10px;
+}
+
+section {
+  width: 100vw;
+  height: 200vh;
+}
+
+section #sectioninner {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+}
+section #sectioninner #titleArea2 {
+  width: 100%;
+  min-height: 30px;
+  margin: 16px auto 30px;
+  padding: 14px 0 26px;
+  border-bottom: 3px solid #1a1a1a;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #sectioninner #titleArea2 h2 {
+  color: #1a1a1a;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: left;
+  line-height: 1;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section div > h3 {
+  padding: 50px 0 10px;
+  font-size: 16px;
+  color: #2e2e2e;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #sectioninner > p {
+  margin: -25px 0 10px;
+  color: #353535;
+  text-align: right;
+  font-size: 13px;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section div > p img {
+  vertical-align: middle;
+}
+
+section #sectioninner table {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-top: 3px solid #1a1a1a;
+  width: 100%;
+  /* height: 100%; */
+}
+
+section #sectioninner table tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+section #sectioninner table tbody th {
+  border: 0;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0 12px 18px;
+  background-color: #fafafa;
+  font-size: 14px;
+  color: #222;
+  line-height: 34px;
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+  width: 12%;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #sectioninner table tbody td {
+  border: 0;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0 12px 18px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #888;
+  line-height: 34px;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #sectioninner table tbody td input {
+  padding: 0 10px;
+  height: 34px;
+  line-height: 34px;
+  border: 1px solid #e3e3e3;
+  margin-right: 8px;
+}
+section #sectioninner table tbody td .input2 {
+  width: 480px;
+}
+
+section #sectioninner #titleArea3 {
+  font-size: 26px;
+  color: rgb(51, 51, 51);
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 26px;
+  padding-top: 60px;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #sectioninner #AllCheckbox {
+  border-top: 3px solid #1a1a1a;
+  padding: 15px 0 15px 18px;
+}
+
+section #sectioninner #AllCheckbox span {
+  display: inline-block;
+  position: relative;
+  margin: 0 8px 0 0;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+section #sectioninner #AllCheckbox p label {
+  font-weight: 600;
+  font-size: 16px;
+  color: #222;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #sectioninner #Linebox {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+section #sectioninner #Linebox div {
+  padding: 15px 0 15px 18px;
+  display: flex;
+}
+
+section #sectioninner #Linebox p {
+  height: 16px;
+  line-height: 16px;
+  float: left;
+  padding: 0;
+  width: 100%;
+}
+
+section #sectioninner #Linebox p input {
+  vertical-align: middle;
+  margin: 0 2px 0 0;
+}
+
+section #sectioninner #Linebox div p label {
+  display: inline-block;
+  margin: 0 0 0 -29px;
+  padding: 0 0 0 40px;
+  line-height: 16px;
+  color: #999;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+  font-size: 14px;
+  margin-right: 15px;
+}
+
+section #sectioninner #Linebox div p span {
+  float: right;
+  font-size: 14px;
+  color: #6f6f6f;
+  border-bottom: 1px solid #6f6f6f;
+  line-height: 20px;
+  font-weight: 300;
+  cursor: pointer;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #sectioninner #joinbtn {
+  padding: 30px 0 10px;
+}
+
+section #sectioninner #joinbtn a {
+  width: 200px !important;
+  height: 49px;
+  line-height: 49px;
+  background-color: #333;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+  display: block;
+  font-weight: 700;
+  padding: 0;
+  margin: 20px auto;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
