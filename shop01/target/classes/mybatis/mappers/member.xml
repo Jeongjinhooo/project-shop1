@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">
+	<resultMap id="memResult" type="memberVO">
+		<result property="userid" column="userid" />
+        <result property="userpwd" column="userpwd" />
+        <result property="username" column="username" />
+        <result property="useraddress" column="useraddress" />
+        <result property="email" column="email" />
+        <result property="tel" column="tel" />
+        <result property="birthDate" column="birthDate" />
+        <result property="regDate" column="regDate" />
+       
+	</resultMap> 
+
+
+	<insert id="insert" parameterType="memberVO">
+			INSERT INTO member (userid, userpw, username, useraddress, email, tel, birthDate, regDate)
+			VALUSE (#{userid}, #{userpw}, #{username}, #{address}, #{email}, #{tel}, #{birth}, SYSDATE)
+	</insert>
+
+   
+     
+
+</mapper>
