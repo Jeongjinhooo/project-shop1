@@ -16,11 +16,11 @@ public class MemberController {
 	@Inject
 	private MemberService memberService;
 	
-	@RequestMapping(value = "/insert", method = RequestMethod.GET)
-	public String insert() {
-		return "member/insert";
+	@RequestMapping(value = "/memberForm.do", method = RequestMethod.GET)
+	public String memberForm() {
+		return "/member/memberForm";
 	}
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/insert.do", method = RequestMethod.POST)
 	public void insert(MemberVO vo) {
 		
 		memberService.insert(vo);

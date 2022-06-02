@@ -17,12 +17,27 @@
 	</resultMap> 
 
 
-	<insert id="insert" parameterType="memberVO">
-			INSERT INTO member (userid, userpw, username, useraddress, email, tel, birthDate, regDate)
-			VALUSE (#{userid}, #{userpw}, #{username}, #{address}, #{email}, #{tel}, #{birth}, SYSDATE)
-	</insert>
-
-   
+     <insert id="insert"  parameterType="memberVO">
+  <![CDATA[
+    	insert into member(			 userid,
+				 					 userpw,
+                                     username,
+                                     useraddress,
+                                     email,
+                                     tel,
+                                     birthDate,
+                                     regDate)
+                                     
+							 values(#{userid},
+									#{userpw},
+									#{username},
+                                 	#{useraddress},
+                                    #{email},
+                                    #{tel},
+                                    #{birthDate},
+                                    #{regDate})
+   ]]>      
+  </insert>
      
 
 </mapper>

@@ -18,7 +18,7 @@ public class MemberDAOImpl implements MemberDAO{
 	 /* 여러 매퍼에서 동일한 sql문을 사용하더라도 기능충돌이 없게 해줌 */
 	@Override
 	public void insert(MemberVO vo) {
-		sqlSession.insert(NS+".insert", vo);
+		sqlSession.insert("insert", vo);
 	}
 }
 

@@ -10,25 +10,27 @@ public class MemberVO implements Serializable{
 	private String userid;
 	private String userpw;
 	private String username;
-	private String address;
+	private String useraddress;
 	private String email;
 	private int tel;
-	private String birth;
+	private String birthDate;
+	private String regDate;
 	
 	public MemberVO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public MemberVO(String userid, String userpw, String username, 
-           String address, String email, int tel, String birth) { 
+           String useradderss, String email, int tel, String birthDate, String regDate) { 
 		super();
 		this.userid = userid;
 		this.userpw = userpw;
 		this.username = username;
-		this.address = address;
+		this.useraddress = useraddress;
 		this.email = email;
 		this.tel = tel;
-		this.birth = birth;
+		this.birthDate = birthDate;
+		this.regDate = regDate;
 	}
 
     /* getters and setters */
@@ -56,12 +58,12 @@ public class MemberVO implements Serializable{
 		this.username = username;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getUseradderss() {
+		return useraddress;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setUseraddress(String useraddress) {
+		this.useraddress = useraddress;
 	}
 
 	public String getEmail() {
@@ -80,12 +82,20 @@ public class MemberVO implements Serializable{
 		this.tel = tel;
 	}
 
-	public String getBirth() {
-		return birth;
+	public String getBirthDate() {
+		return birthDate;
 	}
 
-	public void setBirth(String birth) {
-		this.birth = birth;
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+	
+	public String getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 
 	public static long getSerialversionuid() {
