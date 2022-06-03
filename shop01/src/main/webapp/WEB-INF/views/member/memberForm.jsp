@@ -19,6 +19,7 @@
     />
     
     <script defer src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+ 
    <style>
    header #h_sec02 #left_icon_menu ul .menu_btn a{background: url('${pageContext.request.contextPath}/resources/img/header/all_cate_icon.png') no-repeat;}
    </style>
@@ -137,7 +138,7 @@
                 <td>
                   <input type="text" name="userid" />
                   (영문소문자/숫자, 4~16자)
-                  <a href="" class="btn">ID 중복체크</a>
+                     <button id = "idCheck">ID 중복체크</button>
                 </td>
               </tr>
               <tr>

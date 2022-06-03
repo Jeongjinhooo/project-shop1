@@ -1,13 +1,7 @@
-.btn {
-  color: #222;
-  width: 80px;
-  height: 36px;
-  text-align: center;
-  line-height: 36px;
+section #sectioninner #idCheck {
   padding: 8px;
   border: 1px solid #d1d1d1;
   border-radius: 2px;
-  font-family: "굴림", Gulim;
   font-size: 12px;
   font-weight: normal;
   text-decoration: none;
@@ -16,11 +10,12 @@
   color: #222;
   background-color: #fff;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 section {
   width: 100vw;
-  height: 200vh;
+  height: 130vh;
 }
 
 section #sectioninner {

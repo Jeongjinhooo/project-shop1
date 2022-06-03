@@ -134,9 +134,9 @@
                   <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
                 </th>
                 <td>
-                  <input name="userid" type="text" value="${userInfo.userid}" readonly/>
+                  <input name="userid" type="text" value="${param.userid}" readonly/>
                   <!-- (영문소문자/숫자, 4~16자) -->
-  
+  			
                 </td>
               </tr>
               <tr>
@@ -145,26 +145,18 @@
                   <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
                 </th>
                 <td>
-                  <input name="userpw" type="password" value="${userInfo.userpw}" readonly/>
+                  <input name="userpw" type="password" value="${param.userpw}" readonly/>
                   <!-- (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자) -->
                 </td>
               </tr>
-              <tr>
-                <th>
-                  비밀번호 확인
-                  <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
-                </th>
-                <td>
-                  <input  name="userpw_confirm"type="password" value="${userInfo.userpw_confirm}" readonly/>
-                </td>
-              </tr>
+           
               <tr>
                 <th>
                   이름
                   <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
                 </th>
                 <td>
-                  <input  name="username" type="text" value="${userInfo.username" readonly />
+                  <input  name="username" type="text" value="${param.username}" readonly />
                 </td>
               </tr>
               <tr>
@@ -173,7 +165,7 @@
                   <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
                 </th>
                 <td>
-                  <input  name="useraddress" class="input2" type="text" value="${userInfo.useraddress}" readonly />
+                  <input  name="useraddress" class="input2" type="text" value="${param.useraddress}" readonly />
                 </td>
               </tr>
               <tr>
@@ -182,7 +174,7 @@
                   <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
                 </th>
                 <td>
-                  <input  name="email" class="input2" type="email" value="${userInfo.email}" readonly/>
+                  <input  name="email" class="input2" type="email" value="${param.email}" readonly/>
                 </td>
               </tr>
               <tr>
@@ -191,7 +183,7 @@
                   <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
                 </th>
                 <td>
-                  <input  name="tel" class="input2" type="tel" value="${userInfo.tel}" readonly/>
+                  <input  name="tel" class="input2" type="tel" value="${param.tel}" readonly/>
                 </td>
               </tr>
               <tr>
@@ -200,7 +192,7 @@
                   <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
                 </th>
                 <td>
-                  <input name="birthDate" class="input2" type="date"  value="${userInfo.birth}" readonly/>
+                  <input name="birthDate" class="input2" type="date"  value="${param.birthDate}" readonly/>
                 </td>
               </tr>
             </tbody>
