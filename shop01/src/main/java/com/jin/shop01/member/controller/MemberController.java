@@ -25,4 +25,9 @@ public class MemberController {
 		
 		memberService.insert(vo);
 	}
+	
+	@RequestMapping(value = "/loginForm.do", method = RequestMethod.GET)
+	public String loginForm() {
+		return "/member/loginForm";
+	}
 }

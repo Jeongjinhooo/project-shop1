@@ -96,7 +96,7 @@
                             <a href="#">
                                <img src="resources/img/header/top_my.png" alt="">
                                <ul class="toplogin"><a href=""></a>
-                                <li><a href="/board/login">로그인</a></li>
+                                <li><a href="${pageContext.request.contextPath}/member/loginForm.do"">로그인</a></li>
                                 <li><a href="${pageContext.request.contextPath}/member/memberForm.do">회원가입</a></li>
                                 <li><a href="">주문조회</a></li>
                                 <li><a href="">고객센터</a></li>
