@@ -121,7 +121,7 @@
           <div id="titleArea2">
             <h2>로그인</h2>
           </div>
-           <form action="">
+           <form action="${pageContext.request.contextPath}/member/login.do">
           <div id="login">
             <fieldset>
               <legend>회원로그인</legend>

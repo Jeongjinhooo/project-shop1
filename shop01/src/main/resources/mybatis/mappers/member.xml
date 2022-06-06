@@ -15,6 +15,11 @@
         <result property="regDate" column="regDate" />
        
 	</resultMap> 
+	
+	
+	<select id="login" resultType="com.jin.shop01.member.vo.MemberVO">
+		SELECT * FROM member WHERE userid = #{userid} AND userpw = #{userpw}
+	</select>
 
 
      <insert id="insert"  parameterType="memberVO">
@@ -38,6 +43,7 @@
                                     SYSDATE)
    ]]>      
   </insert>
-     
+  
 
+	
 </mapper>
