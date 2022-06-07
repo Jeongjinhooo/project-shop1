@@ -6,7 +6,7 @@
 <mapper namespace="mapper.member">
 	<resultMap id="memResult" type="memberVO">
 		<result property="userid" column="userid" />
-        <result property="userpwd" column="userpwd" />
+        <result property="userpw" column="userpw" />
         <result property="username" column="username" />
         <result property="useraddress" column="useraddress" />
         <result property="email" column="email" />
@@ -17,8 +17,12 @@
 	</resultMap> 
 	
 	
-	<select id="login" resultType="com.jin.shop01.member.vo.MemberVO">
-		SELECT * FROM member WHERE userid = #{userid} AND userpw = #{userpw}
+	<select id="login" resultType="memberVO"  parameterType="java.util.Map"  >
+	    <![CDATA[
+			select * from member 
+			 where userid=#{userid}
+			 and userpw=#{userpw}					 
+		]]>
 	</select>
 
 

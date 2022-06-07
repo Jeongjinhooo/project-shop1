@@ -121,17 +121,17 @@
           <div id="titleArea2">
             <h2>로그인</h2>
           </div>
-           <form action="${pageContext.request.contextPath}/member/login.do">
+           <form action="${pageContext.request.contextPath}/member/login.do" method="post">
           <div id="login">
             <fieldset>
               <legend>회원로그인</legend>
               <div class="login_title">ID</div>
               <label id="id_ePlaceholder" title="아이디">
-                <input type="text" placeholder="아이디" />
+                <input name="userid" type="text" placeholder="아이디" />
               </label>
               <div class="login_title">PASSWORD</div>
               <label id="password_ePlaceholder" title="비밀번호">
-                <input type="password" placeholder="비밀번호" />
+                <input name="userpw" type="password" placeholder="비밀번호" />
               </label>
               <div class="security">
                 <img src="${pageContext.request.contextPath}/resources/img/section/ico_access.gif" alt="보안접속" />
