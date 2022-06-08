@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <c:set var="contextPath"  value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,19 +25,35 @@
                <header>
             <div id="h_sec01" class="flex_center">
                 <div id="top_logo" class="flex_center">
-                    <a href="#">
+                    <a href="${pageContext.request.contextPath}/main.do">
                         <img src="resources/img/header/top_logo.png" alt="">
                     </a>
                 </div>
-                <ul>
-                    <li><a href="#">REVIEW</a></li>
-                    <li><a href="#">|</a></li>
-                    <li><a href="#">STORE</a></li>
-                    <li><a href="#">|</a></li>
-                    <li><a href="#">NOTICE</a></li>
-                    <li><a href="#">|</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
+              <ul>
+		   <c:choose>
+		     <c:when test="${isLogOn==true and not empty memberInfo }">
+			   <li><a href="${contextPath}/member/logout.do">로그아웃</a></li>
+			   <li><a href="#">|</a></li>
+			   <li><a href="${contextPath}/member.insert.do">마이페이지</a></li>
+			   <li><a href="#">|</a></li>
+			   <li><a href="#">장바구니</a></li>
+			   <li><a href="#">|</a></li>
+			   <li><a href="#">주문배송</a></li>
+			    <li><a href="#">|</a></li>
+			 </c:when>
+			 <c:otherwise>
+			   <li><a href="${contextPath}/member/loginForm.do">로그인</a></li>
+			   <li><a href="#">|</a></li>
+			        <li><a href="${pageContext.request.contextPath}/member/memberForm.do">회원가입</a></li>
+			   <li><a href="#">|</a></li>
+			 </c:otherwise>
+			</c:choose>
+			   <li><a href="#">고객센터</a></li>
+    <%-- 	  <c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
+	   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
+	    </c:if>  --%>
+			  
+		</ul>
             </div>
             <div id="h_sec02">
                 <div id="left_icon_menu">
@@ -95,12 +113,27 @@
                         <li id="loginmenu">
                             <a href="#">
                                <img src="resources/img/header/top_my.png" alt="">
-                               <ul class="toplogin"><a href=""></a>
-                                <li><a href="${pageContext.request.contextPath}/member/loginForm.do"">로그인</a></li>
+                               
+                               <%-- <ul class="toplogin">
+                               <c:choose> <!-- 로그인시 로그아웃 표시 -->
+                                <c:when test="${isLogOn==true and not empty memberInfo}">
+                                <li><a href="${contextPath}/member/logout.do">로그아웃</a></li>
+                                <li><a href="${contextPath}/member/insert.do">마이페이지</a></li>
+                                <li><a href="#">주문조회</a></li>
+                                <li><a href="#">고객센터</a></li>
+                                </c:when>
+                                 <c:otherwise> <!-- 로그아웃시 로그인 표시 -->
+                                      <li><a href="${pageContext.request.contextPath}/member/loginForm.do"">로그인</a></li>
                                 <li><a href="${pageContext.request.contextPath}/member/memberForm.do">회원가입</a></li>
                                 <li><a href="">주문조회</a></li>
                                 <li><a href="">고객센터</a></li>
-                            </ul>
+                                  </c:otherwise>
+                                  </c:choose>
+                                  <!-- 관리자로 로그인시 관리자 표시 -->
+                                  <c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
+	 		  	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
+								    </c:if> 
+                            </ul> --%>
                             </a>
                         </li>
                     </ul>

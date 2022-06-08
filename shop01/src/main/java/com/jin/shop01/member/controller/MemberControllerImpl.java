@@ -53,8 +53,16 @@ public class MemberControllerImpl implements MemberController{
 		return mav;
 	}
 	
-	
-	
+	@Override 
+	@RequestMapping(value="/logout.do" ,method = RequestMethod.GET)
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session=request.getSession();
+		session.setAttribute("isLogOn", false);
+		session.removeAttribute("memberInfo");
+		mav.setViewName("redirect:/main.do");
+		return mav;
+	}
 	
 	
 	

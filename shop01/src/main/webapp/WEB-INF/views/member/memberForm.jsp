@@ -31,18 +31,18 @@
       <header>
         <div id="h_sec01" class="flex_center">
           <div id="top_logo" class="flex_center">
-            <a href="#">
+            <a href="${pageContext.request.contextPath}/main.do">
               <img src="${pageContext.request.contextPath}/resources/img/header/top_logo.png" alt="" />
             </a>
           </div>
           <ul>
-            <li><a href="#">REVIEW</a></li>
+          			   <li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
             <li><a href="#">|</a></li>
-            <li><a href="#">STORE</a></li>
+        <li><a href="${pageContext.request.contextPath}/member/memberForm.do">회원가입</a></li>
             <li><a href="#">|</a></li>
-            <li><a href="#">NOTICE</a></li>
-            <li><a href="#">|</a></li>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="#">고객센터</a></li>
+  <!--           <li><a href="#">|</a></li>
+            <li><a href="#">FAQ</a></li> -->
           </ul>
         </div>
         <div id="h_sec02">
@@ -101,13 +101,13 @@
               <li id="loginmenu">
                 <a href="#">
                   <img src="${pageContext.request.contextPath}/resources/img/header/top_my.png" alt="" />
-                  <ul class="toplogin">
+                 <!--  <ul class="toplogin">
                     <a href=""></a>
                     <li><a href="">로그인</a></li>
                     <li><a href="">회원가입</a></li>
                     <li><a href="">주문조회</a></li>
                     <li><a href="">고객센터</a></li>
-                  </ul>
+                  </ul> -->
                 </a>
               </li>
             </ul>
