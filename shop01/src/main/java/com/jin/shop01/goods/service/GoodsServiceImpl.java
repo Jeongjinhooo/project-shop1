@@ -27,6 +27,15 @@ public class GoodsServiceImpl implements GoodsService{
 		
 		return goodsMap;
 	}
+	
+	public Map goodsDetail(String _goods_id) throws Exception {
+		Map goodsMap=new HashMap();
+		GoodsVO goodsVO = goodsDAO.selectGoodsDetail(_goods_id);
+		goodsMap.put("goodsVO", goodsVO);
+		List<ImageFileVO> imageList =goodsDAO.selectGoodsDetailImage(_goods_id);
+		goodsMap.put("imageList", imageList);
+		return goodsMap;
+	}
 
 
 }

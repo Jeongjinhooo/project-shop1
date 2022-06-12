@@ -1,0 +1,242 @@
+section {
+  position: relative;
+  width: 100%;
+  min-width: 1300px;
+  min-height: 690px;
+  margin: 0 auto;
+}
+
+section #detailarea {
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  width: 1300px;
+}
+
+/* 제품상세 왼쪽 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+section #detailarea #detailleft {
+  position: relative;
+  display: inline-block;
+  width: 820px;
+  /* text-align: center; */
+  border: 1px solid black;
+}
+
+section #detailarea #detailleft #bigimage {
+  width: 735px;
+  height: 882px;
+  border: 1px solid black;
+}
+
+section #detailarea #detailleft #bigimage a img {
+  max-width: 100%;
+  border: 1px solid #e1e1e1;
+  cursor: pointer;
+}
+
+section #detailarea #detailleft #detailgoods {
+  text-align: left;
+  position: relative;
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+section #detailarea #detailleft #detailgoods h3 {
+  padding: 0 0 0 50px;
+  font-size: 16px !important;
+  line-height: 50px !important;
+}
+
+section #detailarea #detailleft #detail_content {
+  /* border: 1px solid black; */
+  width: 100%;
+}
+
+section #detailarea #detailleft #detail_content img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* 제품상세 오른쪽 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+section #detailarea #detailright {
+  width: 390px;
+}
+
+section #detailarea #detailright #detail_table {
+  position: relative;
+  padding: 16px 0 15px;
+  margin: 0;
+  border-bottom: 0;
+  border-top: 3px solid #1a1a1a;
+}
+
+section #detailarea #detailright #detail_table #detailname {
+  margin-bottom: 10px;
+}
+
+section #detailarea #detailright #detail_table #detailname h2 {
+  display: block;
+  margin-bottom: 5px;
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #detailarea #detailright #detail_table #detailprice {
+  position: relative;
+  margin: 0px 0 20px;
+}
+
+section #detailarea #detailright #detail_table #detailprice span {
+  font-size: 20px;
+  color: #1a1a1a;
+  margin-right: 10px;
+  font-weight: 900;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #detailarea #detailright table {
+  width: 100%;
+  border: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 10px 0 0;
+  /* border: 1px solid black; */
+}
+
+section #detailarea #detailright table caption {
+  display: none;
+}
+
+section #detailarea #detailright table tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+section #detailarea #detailright table tbody tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+section #detailarea #detailright table tbody tr th {
+  font-weight: normal;
+  color: #353535;
+  width: 115px;
+  padding: 7px 0;
+  text-align: left;
+  vertical-align: middle;
+  border-top: 1px solid #e8e8e8;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #detailarea #detailright table tbody tr td {
+  padding: 10px 0;
+  border-top: 1px solid #e8e8e8;
+}
+
+section #detailarea #detailright table tbody tr td ul {
+  display: block;
+}
+section #detailarea #detailright table tbody tr td ul li {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin: 0 5px 3px 0;
+  vertical-align: top;
+  border: 1px solid #d7d7d7;
+  background: #fff;
+}
+
+section #detailarea #detailright table tbody tr td ul li a {
+  font-size: 12px;
+}
+
+section #detailarea #detailright table tbody tr td ul li a span {
+  display: inline-block;
+  padding: 6px 5px;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #detailarea #detailright table tbody tr td p {
+  color: #767479;
+  word-break: break-all;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+  font-size: 12px;
+}
+
+section #detailarea #detailright table tbody select {
+  width: 22px;
+  height: 23px;
+  padding: 0 0 0 5px;
+  line-height: 25px;
+  border: 1px solid #d4d8d9;
+  border-radius: 3px 0 0 3px;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #detailarea #detailright #totalprice {
+  margin: 5px 0 0;
+  padding: 20px 9px 0px;
+  border-top: 1px solid #9a9ba0;
+  color: #353535;
+  vertical-align: middle;
+  background: #fff;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+  font-size: 12px;
+}
+
+section #detailarea #detailright #totalprice span > strong > em {
+  font-style: normal;
+  font-size: 18px;
+}
+
+section #detailarea #detailright #detailbtn {
+  width: 390px;
+  overflow: hidden;
+  margin: 0px;
+  padding: 30px 0 10px;
+}
+
+section #detailarea #detailright #detailbtn #detailbtn_buy {
+  display: block;
+  width: 190px;
+  height: 44px;
+  font-size: 13px;
+  line-height: 44px;
+  text-align: center;
+  border: 1px solid #000;
+  float: left;
+  color: #fff;
+  background-color: #000;
+  font-size: 13px;
+  line-height: 44px;
+  text-align: center;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+  cursor: pointer;
+}
+
+section #detailarea #detailright #detailbtn #detailbtn_cart {
+  display: block;
+  width: 190px;
+  height: 44px;
+  font-size: 13px;
+  line-height: 44px;
+  text-align: center;
+  border: 1px solid #000;
+  float: right;
+  background-color: #fff;
+  font-size: 13px;
+  line-height: 44px;
+  text-align: center;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+  cursor: pointer;
+}

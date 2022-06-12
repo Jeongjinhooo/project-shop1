@@ -37,5 +37,22 @@
 	    ]]>
 	</select>
 	
+	<select id="selectGoodsDetail" resultMap="goodsResult"   parameterType="String"  >
+	    <![CDATA[
+		     select g.*,d.fileName from goods g, goods_detail_image d
+	        where g.goods_id=d.goods_id
+	        and d.filetype='new_image'
+	        and g.goods_id=#{goods_id}
+	        order by g.goods_id
+    	]]>
+	</select>
+	<select id="selectGoodsDetailImage" resultMap="imageResult"   parameterType="String"  >
+	    <![CDATA[
+		    	select * from  goods_detail_image 
+		    	where  fileType!='new_image'
+				and goods_id=#{goods_id}
+    	]]>
+	</select>
+	
 
 </mapper>

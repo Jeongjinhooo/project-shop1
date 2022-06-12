@@ -51,7 +51,7 @@ public class FileDownloadController {
 		File image=new File(filePath);
 		
 		if (image.exists()) { 
-			Thumbnails.of(image).size(121,154).outputFormat("png").toOutputStream(out);
+			Thumbnails.of(image).size(310,375).outputFormat("png").toOutputStream(out);
 		}
 		byte[] buffer = new byte[1024 * 8];
 		out.write(buffer);

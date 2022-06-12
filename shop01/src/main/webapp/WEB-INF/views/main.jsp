@@ -172,10 +172,9 @@
 	   <c:set  var="goods_count" value="${goods_count+1 }" />
 		<div class="m_box">
             <div class="tumnail">
-			<!-- <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
-			<img class="link"  src="${contextPath}/resources/image/1px.gif"> 
-			 </a>  -->
+			<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
 				<img src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.fileName}">
+				</a>
             </div>
 			<div class="name">${item.goods_name }</div>
 			<div class="price">
