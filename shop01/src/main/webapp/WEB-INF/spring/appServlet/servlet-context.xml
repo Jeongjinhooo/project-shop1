@@ -24,7 +24,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.jin.shop01" />
-	
+
 	
 	
 </beans:beans>

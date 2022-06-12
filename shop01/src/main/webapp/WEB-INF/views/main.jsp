@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <c:set var="contextPath"  value="${pageContext.request.contextPath}" />
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +35,7 @@
 		     <c:when test="${isLogOn==true and not empty memberInfo }">
 			   <li><a href="${contextPath}/member/logout.do">로그아웃</a></li>
 			   <li><a href="#">|</a></li>
-			   <li><a href="${contextPath}/member.insert.do">마이페이지</a></li>
+			   <li><a href="${contextPath}/member/mypage.do">마이페이지</a></li>
 			   <li><a href="#">|</a></li>
 			   <li><a href="#">장바구니</a></li>
 			   <li><a href="#">|</a></li>
@@ -166,112 +167,31 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="m_box">
-                        <div class="tumnail">
-                            <a href="">
-                                <img src="" alt="">
-                            </a>
-                        </div>
-                        <div class="description">
-                            <div>
-                                <div class="name"></div>
-                                <div class="price"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m_box">
-                         <div class="tumnail">
-                            <a href="">
-                                <img src="" alt="">
-                            </a>
-                        </div>
-                        <div class="description">
-                            <div>
-                                <div class="name"></div>
-                                <div class="price"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m_box">
-                         <div class="tumnail">
-                            <a href="">
-                                <img src="" alt="">
-                            </a>
-                        </div>
-                        <div class="description">
-                            <div>
-                                <div class="name"></div>
-                                <div class="price"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m_box">
-                         <div class="tumnail">
-                            <a href="">
-                                <img src="" alt="">
-                            </a>
-                        </div>
-                        <div class="description">
-                            <div>
-                                <div class="name"></div>
-                                <div class="price"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m_box">
-                         <div class="tumnail">
-                            <a href="">
-                                <img src="" alt="">
-                            </a>
-                        </div>
-                        <div class="description">
-                            <div>
-                                <div class="name"></div>
-                                <div class="price"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m_box">
-                         <div class="tumnail">
-                            <a href="">
-                                <img src="" alt="">
-                            </a>
-                        </div>
-                        <div class="description">
-                            <div>
-                                <div class="name"></div>
-                                <div class="price"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m_box">
-                         <div class="tumnail">
-                            <a href="">
-                                <img src="" alt="">
-                            </a>
-                        </div>
-                        <div class="description">
-                            <div>
-                                <div class="name"></div>
-                                <div class="price"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m_box">
-                         <div class="tumnail">
-                            <a href="">
-                                <img src="" alt="">
-                            </a>
-                        </div>
-                        <div class="description">
-                            <div>
-                                <div class="name"></div>
-                                <div class="price"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          
+          <c:forEach var="item" items="${goodsMap.TOP }">
+	   <c:set  var="goods_count" value="${goods_count+1 }" />
+		<div class="m_box">
+            <div class="tumnail">
+			<!-- <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
+			<img class="link"  src="${contextPath}/resources/image/1px.gif"> 
+			 </a>  -->
+				<img src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.fileName}">
             </div>
+			<div class="name">${item.goods_name }</div>
+			<div class="price">
+		  	   <fmt:formatNumber  value="${item.goods_price}" type="number" var="goods_price" />
+		          ${goods_price}원
+			</div>
+		</div>
+	   <c:if test="${goods_count==9}">
+         <div class="m_box">
+           <font size=20> <a href="#">more</a></font>
+         </div>
+     </c:if>
+  </c:forEach>
+                        </div>
+                    </div>          
+                </div>
         </section>
 
         

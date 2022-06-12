@@ -9,7 +9,6 @@ public interface MemberService {
 	public MemberVO login(Map  loginMap) throws Exception;
 	public void insert(MemberVO vo);
 	
-	
 }
 
 	

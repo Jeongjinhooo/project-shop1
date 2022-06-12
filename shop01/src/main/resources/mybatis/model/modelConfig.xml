@@ -11,6 +11,8 @@
 
 	<typeAliases>
 		<typeAlias type="com.jin.shop01.member.vo.MemberVO"  alias="memberVO" />
+		 <typeAlias type="com.jin.shop01.goods.vo.GoodsVO" alias="goodsVO" />
+		<typeAlias type="com.jin.shop01.goods.vo.ImageFileVO" alias="imageFileVO" />
 	</typeAliases>
 	
 	
