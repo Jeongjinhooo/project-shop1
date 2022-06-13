@@ -1,13 +1,15 @@
+<%@page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>project-shop1</title>
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/goodsDetail.css" />
-    <link rel="stylesheet" href="css/footer.css" />
+    <title>상세페이지</title>
+    
+    <link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/css/goodsDetail.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet" type="text/css">
     <!-- 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +17,12 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans+KR&display=swap"
       rel="stylesheet"
     />
-    <script defer src="js/script.js"></script>
+    
+    <script defer src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+ 
+   <style>
+   header #h_sec02 #left_icon_menu ul .menu_btn a{background: url('${pageContext.request.contextPath}/resources/img/header/all_cate_icon.png') no-repeat;}
+   </style>
   </head>
 
   <body style="overflow-x: hidden">
@@ -24,18 +31,18 @@
       <header>
         <div id="h_sec01" class="flex_center">
           <div id="top_logo" class="flex_center">
-            <a href="#">
-              <img src="img/header/top_logo.png" alt="" />
+            <a href="${pageContext.request.contextPath}/main.do">
+              <img src="${pageContext.request.contextPath}/resources/img/header/top_logo.png" alt="" />
             </a>
           </div>
           <ul>
-            <li><a href="#">REVIEW</a></li>
+          			   <li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
             <li><a href="#">|</a></li>
-            <li><a href="#">STORE</a></li>
+        <li><a href="${pageContext.request.contextPath}/member/memberForm.do">회원가입</a></li>
             <li><a href="#">|</a></li>
-            <li><a href="#">NOTICE</a></li>
-            <li><a href="#">|</a></li>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="#">고객센터</a></li>
+  <!--           <li><a href="#">|</a></li>
+            <li><a href="#">FAQ</a></li> -->
           </ul>
         </div>
         <div id="h_sec02">
@@ -43,7 +50,7 @@
             <ul>
               <li class="menu_btn"><a href="#"></a></li>
               <li>
-                <a href="#"><img src="img/header/top_search.png" alt="" /></a>
+                <a href="#"><img src="${pageContext.request.contextPath}/resources/img/header/top_search.png" alt="" /></a>
               </li>
             </ul>
           </div>
@@ -82,36 +89,25 @@
                 </ul>
               </li>
               <li>LOOKBOOK</li>
-              <li>EVENT</li>
             </ul>
           </div>
           <div id="right_icon_menu">
             <ul>
               <li>
                 <a href="#">
-                  <img src="img/header/top_cart.png" alt="" />
+                  <img src="${pageContext.request.contextPath}/resources/img/header/top_cart.png" alt="" />
                 </a>
               </li>
               <li id="loginmenu">
                 <a href="#">
-                  <img src="img/header/top_my.png" alt="" />
-                   <ul class="toplogin"><a href=""></a>
-                               <c:choose> <!-- 로그인시 로그아웃 표시 -->
-                                <c:when test="${isLogOn==true and not empty memberInfo }">
-                                <li><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
-                                <li><a href="${pageContext.request.contextPath}/member/insert.do">마이페이지</a></li>
-                                <li><a href="">주문조회</a></li>
-                                <li><a href="">고객센터</a></li>
-                                </c:when>
-                                 <c:otherwise> <!-- 로그아웃시 로그인 표시 -->
-                                      <li><a href="${pageContext.request.contextPath}/member/loginForm.do"">로그인</a></li>
-                                <li><a href="${pageContext.request.contextPath}/member/memberForm.do">회원가입</a></li>
-                                <li><a href="">주문조회</a></li>
-                                <li><a href="">고객센터</a></li>
-                                  </c:otherwise>
-                                  </c:choose>
-                                  <!-- 관리자로 로그인시 관리자 표시 -->
-                            </ul>
+                  <img src="${pageContext.request.contextPath}/resources/img/header/top_my.png" alt="" />
+                 <!--  <ul class="toplogin">
+                    <a href=""></a>
+                    <li><a href="">로그인</a></li>
+                    <li><a href="">회원가입</a></li>
+                    <li><a href="">주문조회</a></li>
+                    <li><a href="">고객센터</a></li>
+                  </ul> -->
                 </a>
               </li>
             </ul>
@@ -120,12 +116,12 @@
       </header>
 
       <!-- section ------------------------------------------------------->
-      <section>
+           <section>
        <div id="detailarea">
            <div id = "detailleft">
                <div id="bigimage">
                    <a href="">
-                       <img src="${contextPath}/thumbnails.do?goods_id=${goods.goods_id}&fileName=${goods.goods_fileName}" alt="">
+                       <img src="${contextPath}/thumbnails.do?goods_id=${goods.goods_id}&fileName=${goods.goods_fileName}">
                    </a>
                </div>
                <div id="detailgoods"><span></span>
@@ -136,7 +132,10 @@
                     </h3>
                </div>
                <div id="detail_content">
-                   <img src="/img/section/banner_brand_22.jpg" alt="">
+                   	<c:forEach var="image" items="${imageList }">
+					<img 
+						src="${contextPath}/download.do?goods_id=${goods.goods_id}&fileName=${image.fileName}">
+				</c:forEach>
                </div>
            </div>
            <div id="detailright">
@@ -145,7 +144,10 @@
                    <h2>${goods.goods_name}</h2>
                </div>
                <div id="detailprice">
-                   <span>KRW 89,900</span>
+                   <span>
+						<fmt:formatNumber  value="${item.goods_price}" type="number" var="goods_price" />
+		       		   ${goods_price}원
+					</span>
                </div>
                <table>
                    <caption>상품옵션</caption>
@@ -291,13 +293,13 @@
               <div id="ft_sns">
                 <ul>
                   <li>
-                    <a href="#"><img src="img/footer/ft_sns01.png" alt="" /></a>
+                    <a href="#"><img src="${pageContext.request.contextPath}/resources/img/footer/ft_sns01.png" alt="" /></a>
                   </li>
                   <li>
-                    <a href="#"><img src="img/footer/ft_sns02.png" alt="" /></a>
+                    <a href="#"><img src="${pageContext.request.contextPath}/resources/img/footer/ft_sns02.png" alt="" /></a>
                   </li>
                   <li>
-                    <a href="#"><img src="img/footer/ft_sns03.png" alt="" /></a>
+                    <a href="#"><img src="${pageContext.request.contextPath}/resources/img/footer/ft_sns03.png" alt="" /></a>
                   </li>
                 </ul>
               </div>

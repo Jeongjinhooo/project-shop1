@@ -15,7 +15,7 @@ section #detailarea {
   width: 1300px;
 }
 
-/* ì œí’ˆìƒì„¸ ì™¼ìª½ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* Á¦Ç°»ó¼¼ ¿ŞÂÊ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 section #detailarea #detailleft {
   position: relative;
   display: inline-block;
@@ -61,7 +61,7 @@ section #detailarea #detailleft #detail_content img {
   height: auto !important;
 }
 
-/* ì œí’ˆìƒì„¸ ì˜¤ë¥¸ìª½ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* Á¦Ç°»ó¼¼ ¿À¸¥ÂÊ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 section #detailarea #detailright {
   width: 390px;
 }

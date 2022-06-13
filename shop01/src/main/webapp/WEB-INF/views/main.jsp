@@ -176,7 +176,7 @@
 				<img src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.fileName}">
 				</a>
             </div>
-			<div class="name">${item.goods_name }</div>
+			<div class="name">${item.goods_name}</div>
 			<div class="price">
 		  	   <fmt:formatNumber  value="${item.goods_price}" type="number" var="goods_price" />
 		          ${goods_price}원
