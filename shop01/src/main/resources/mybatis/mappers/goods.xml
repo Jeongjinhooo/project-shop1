@@ -15,7 +15,7 @@
 		<result property="goods_status" column="goods_status" />
 	</resultMap>	
 
-	<resultMap id="imageResult" type="ImageFileVO">
+	<resultMap id="imageResult" type="imageFileVO">
 	   <result property="goods_id" column="goods_id" />
 	   <result property="fileName" column="fileName" />
 	   <result property="reg_id" column="reg_id" />
@@ -46,10 +46,11 @@
 	        order by g.goods_id
     	]]>
 	</select>
+	
 	<select id="selectGoodsDetailImage" resultMap="imageResult"   parameterType="String"  >
 	    <![CDATA[
 		    	select * from  goods_detail_image 
-		    	where  fileType!='new_image'
+		    	 where fileType = 'detail_image2'
 				and goods_id=#{goods_id}
     	]]>
 	</select>

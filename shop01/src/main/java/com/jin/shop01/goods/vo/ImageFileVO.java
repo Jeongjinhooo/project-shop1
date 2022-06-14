@@ -12,34 +12,21 @@ public class ImageFileVO {
 		super();
 	}
 
-
 	public int getGoods_id() {
 		return goods_id;
 	}
-
-
-
 
 	public void setGoods_id(int goods_id) {
 		this.goods_id = goods_id;
 	}
 
-
-
-
 	public int getImage_id() {
 		return image_id;
 	}
 
-
-
-
 	public void setImage_id(int image_id) {
 		this.image_id = image_id;
 	}
-
-
-
 
 	public String getFileName() {
 		return fileName;

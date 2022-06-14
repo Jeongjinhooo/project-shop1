@@ -1,4 +1,12 @@
-<%@page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8" 	isELIgnored="false"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<c:set var="goods"  value="${goodsMap.goodsVO}"  />
+<c:set var="imageList"  value="${goodsMap.imageList }"  />
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -121,7 +129,7 @@
            <div id = "detailleft">
                <div id="bigimage">
                    <a href="">
-                       <img src="${contextPath}/thumbnails.do?goods_id=${goods.goods_id}&fileName=${goods.goods_fileName}">
+                       <img src="${contextPath}/thumbnails.do?goods_id=${goods.goods_id}&fileName=${goods.fileName}">
                    </a>
                </div>
                <div id="detailgoods"><span></span>
@@ -145,8 +153,8 @@
                </div>
                <div id="detailprice">
                    <span>
-						<fmt:formatNumber  value="${item.goods_price}" type="number" var="goods_price" />
-		       		   ${goods_price}원
+						<fmt:formatNumber  value="${goods.goods_price}" type="number" var="goods_price" />
+		          ${goods.goods_price}원
 					</span>
                </div>
                <table>

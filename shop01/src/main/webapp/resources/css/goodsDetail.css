@@ -9,7 +9,7 @@ section {
 section #detailarea {
   margin: 0 auto;
   padding: 0;
-  border: 1px solid black;
+/*   border: 1px solid black; */
   display: flex;
   justify-content: center;
   width: 1300px;
@@ -21,18 +21,17 @@ section #detailarea #detailleft {
   display: inline-block;
   width: 820px;
   /* text-align: center; */
-  border: 1px solid black;
+/*   border: 1px solid black; */
 }
 
 section #detailarea #detailleft #bigimage {
   width: 735px;
   height: 882px;
-  border: 1px solid black;
 }
 
 section #detailarea #detailleft #bigimage a img {
   max-width: 100%;
-  border: 1px solid #e1e1e1;
+  width: 100%;
   cursor: pointer;
 }
 
