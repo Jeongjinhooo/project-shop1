@@ -9,5 +9,5 @@ import com.jin.shop01.member.vo.MemberVO;
 public interface MemberDAO {
 	
 	public MemberVO login(Map loginMap) throws DataAccessException;
-	void insert(MemberVO vo);
+	public void insertNewMember(MemberVO memberVO) throws DataAccessException;
 }

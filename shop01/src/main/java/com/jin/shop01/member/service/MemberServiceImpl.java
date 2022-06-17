@@ -2,8 +2,6 @@ package com.jin.shop01.member.service;
 
 import java.util.Map;
 
-import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +21,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public void insert(MemberVO vo) {
-		
-		memberDAO.insert(vo);
+	public void addMember(MemberVO memberVO) throws Exception{
+		memberDAO.insertNewMember(memberVO);
 	}
+	
 
 }

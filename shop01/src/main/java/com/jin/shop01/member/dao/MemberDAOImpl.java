@@ -23,13 +23,11 @@ public class MemberDAOImpl implements MemberDAO{
 	   return member;
 	}
 		
-	private final String NS = "mapper.member"; 
-	 /* 여러 매퍼에서 동일한 sql문을 사용하더라도 기능충돌이 없게 해줌 */
-
 	@Override
-	public void insert(MemberVO vo) {
-		sqlSession.insert("insert", vo);
+	public void insertNewMember(MemberVO memberVO) throws DataAccessException{
+		sqlSession.insert("mapper.member.insertNewMember",memberVO);
 	}
+
 }
 
 

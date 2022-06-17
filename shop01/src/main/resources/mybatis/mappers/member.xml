@@ -26,6 +26,8 @@
 	</select>
 
 
+
+
      <insert id="insert"  parameterType="memberVO">
   <![CDATA[
     	insert into member(			 userid,

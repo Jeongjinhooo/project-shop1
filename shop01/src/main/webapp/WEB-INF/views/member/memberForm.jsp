@@ -127,7 +127,7 @@
             <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" /> 필수입력사항
           </p>
           
-          <form action="${pageContext.request.contextPath}/member/insert.do" method="post">
+          <form action="${pageContext.request.contextPath}/member/addMember.do" method="post">
           <table>
             <tbody>
               <tr>
