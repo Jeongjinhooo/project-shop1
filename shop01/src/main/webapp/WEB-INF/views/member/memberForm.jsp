@@ -24,7 +24,38 @@
    header #h_sec02 #left_icon_menu ul .menu_btn a{background: url('${pageContext.request.contextPath}/resources/img/header/all_cate_icon.png') no-repeat;}
    </style>
   </head>
-
+  <script>
+function fn_overlapped(){
+    var _id=$("#_member_id").val();
+    if(_id==''){
+   	 alert("ID를 입력하세요");
+   	 return;
+    }
+    $.ajax({
+       type:"post",
+       async:false,  
+       url:"${contextPath}/member/overlapped.do",
+       dataType:"text",
+       data: {id:_id},
+       success:function (data,textStatus){
+          if(data=='false'){
+       	    alert("사용할 수 있는 ID입니다.");
+       	    $('#btnOverlapped').prop("disabled", true);
+       	    $('#_member_id').prop("disabled", true);
+       	    $('#member_id').val(_id);
+          }else{
+        	  alert("사용할 수 없는 ID입니다.");
+          }
+       },
+       error:function(data,textStatus){
+          alert("에러가 발생했습니다.");ㅣ
+       },
+       complete:function(data,textStatus){
+          //alert("작업을완료 했습니다");
+       }
+    });  //end ajax	 
+ }	
+</script>
   <body style="overflow-x: hidden">
     <div id="wrap">
       <!-- header--------------------------------------------------------- -->
