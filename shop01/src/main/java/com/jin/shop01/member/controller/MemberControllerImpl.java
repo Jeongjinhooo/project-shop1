@@ -96,15 +96,26 @@ public class MemberControllerImpl implements MemberController{
 		return resEntity;
 	}
 	
-
-
-	 
+	@Override
+	@RequestMapping(value="/overlapped.do" ,method = RequestMethod.POST)
+	public ResponseEntity overlapped(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) throws Exception{
+		ResponseEntity resEntity = null;
+		String result = memberService.overlapped(id);
+		resEntity =new ResponseEntity(result, HttpStatus.OK);
+		return resEntity;
+	}
 	
-	@RequestMapping(value = "/memberForm.do", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/loginForm.do", method = RequestMethod.GET)
 	public String loginForm() {
-		return "/member/memberForm";
+		return "/member/loginForm";
 	}
 
+
+	@RequestMapping(value = "/memberForm.do", method = RequestMethod.GET)
+	public String memberForm() {
+		return "/member/memberForm";
+	}
 	
 }
 

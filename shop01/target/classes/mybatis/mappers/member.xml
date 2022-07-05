@@ -28,7 +28,7 @@
 
 
 
-     <insert id="insert"  parameterType="memberVO">
+     <insert id="insertNewMember"  parameterType="memberVO">
   <![CDATA[
     	insert into member(			 userid,
 				 					 userpw,
@@ -50,6 +50,10 @@
    ]]>      
   </insert>
   
-
+	<select id="selectOverlappedID" parameterType="String" resultType="String">
+	   select decode(count(*),1, 'true', 0, 'false')
+	   from member
+	   where userid = #{id}
+	</select>
 	
 </mapper>

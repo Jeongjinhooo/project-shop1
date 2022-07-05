@@ -1,4 +1,8 @@
-<%@page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"
+	isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,10 +27,10 @@
    <style>
    header #h_sec02 #left_icon_menu ul .menu_btn a{background: url('${pageContext.request.contextPath}/resources/img/header/all_cate_icon.png') no-repeat;}
    </style>
-  </head>
-  <script>
+ <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script type="text/javascript">
 function fn_overlapped(){
-    var _id=$("#_member_id").val();
+    var _id=$("#_userid").val();
     if(_id==''){
    	 alert("ID를 입력하세요");
    	 return;
@@ -40,9 +44,9 @@ function fn_overlapped(){
        success:function (data,textStatus){
           if(data=='false'){
        	    alert("사용할 수 있는 ID입니다.");
-       	    $('#btnOverlapped').prop("disabled", true);
-       	    $('#_member_id').prop("disabled", true);
-       	    $('#member_id').val(_id);
+       	    $('#idCheck').prop("disabled", true);
+       	    $('#_userid').prop("disabled", true);
+       	    $('#userid').val(_id);
           }else{
         	  alert("사용할 수 없는 ID입니다.");
           }
@@ -56,6 +60,7 @@ function fn_overlapped(){
     });  //end ajax	 
  }	
 </script>
+</head>
   <body style="overflow-x: hidden">
     <div id="wrap">
       <!-- header--------------------------------------------------------- -->
@@ -167,9 +172,10 @@ function fn_overlapped(){
                   <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
                 </th>
                 <td>
-                  <input type="text" name="userid" />
+                  <input type="text" name="_userid" id="_userid" size="20"/>
+                  <input type="hidden" name="userid" id="userid"/>
                   (영문소문자/숫자, 4~16자)
-                     <button id = "idCheck">ID 중복체크</button>
+                  	<input type="button"  id="idCheck" value="ID 중복체크" onClick="fn_overlapped()" />
                 </td>
               </tr>
               <tr>
