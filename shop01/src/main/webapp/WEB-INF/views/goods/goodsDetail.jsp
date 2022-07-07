@@ -27,6 +27,96 @@
     />
     
     <script defer src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+ 	 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+ 
+ <script type="text/javascript">
+	function add_cart(goods_id) {
+		$.ajax({
+			type : "post",
+			async : false, //false인 경우 동기식으로 처리한다.
+			url : "${contextPath}/cart/addGoodsInCart.do",
+			data : {
+				goods_id:goods_id
+				
+			},
+			success : function(data, textStatus) {
+				//alert(data);
+			//	$('#message').append(data);
+				if(data.trim()=='add_success'){
+					imagePopup('open', '.layer01');	
+				}else if(data.trim()=='already_existed'){
+					alert("이미 카트에 등록된 상품입니다.");	
+				}
+				
+			},
+			error : function(data, textStatus) {
+				alert("에러가 발생했습니다."+data);
+			},
+			complete : function(data, textStatus) {
+				//alert("작업을완료 했습니다");
+			}
+		}); //end ajax	
+	}
+
+	function imagePopup(type) {
+		if (type == 'open') {
+			// 팝업창을 연다.
+			jQuery('#layer').attr('style', 'visibility:visible');
+
+			// 페이지를 가리기위한 레이어 영역의 높이를 페이지 전체의 높이와 같게 한다.
+			jQuery('#layer').height(jQuery(document).height());
+		}
+
+		else if (type == 'close') {
+
+			// 팝업창을 닫는다.
+			jQuery('#layer').attr('style', 'visibility:hidden');
+		}
+	}
+	
+function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
+	var _isLogOn=document.getElementById("isLogOn");
+	var isLogOn=_isLogOn.value;
+	
+	 if(isLogOn=="false" || isLogOn=='' ){
+		alert("로그인 후 주문이 가능합니다!!!");
+	} 
+	
+	
+		var total_price,final_total_price;
+		var order_goods_qty=document.getElementById("order_goods_qty");
+		
+		var formObj=document.createElement("form");
+		var i_goods_id = document.createElement("input"); 
+    var i_goods_title = document.createElement("input");
+    var i_goods_sales_price=document.createElement("input");
+    var i_fileName=document.createElement("input");
+    var i_order_goods_qty=document.createElement("input");
+    
+    i_goods_id.name="goods_id";
+    i_goods_title.name="goods_title";
+    i_goods_sales_price.name="goods_sales_price";
+    i_fileName.name="goods_fileName";
+    i_order_goods_qty.name="order_goods_qty";
+    
+    i_goods_id.value=goods_id;
+    i_order_goods_qty.value=order_goods_qty.value;
+    i_goods_title.value=goods_title;
+    i_goods_sales_price.value=goods_sales_price;
+    i_fileName.value=fileName;
+    
+    formObj.appendChild(i_goods_id);
+    formObj.appendChild(i_goods_title);
+    formObj.appendChild(i_goods_sales_price);
+    formObj.appendChild(i_fileName);
+    formObj.appendChild(i_order_goods_qty);
+
+    document.body.appendChild(formObj); 
+    formObj.method="post";
+    formObj.action="${contextPath}/order/orderEachGoods.do";
+    formObj.submit();
+	}	
+</script>
  
    <style>
    header #h_sec02 #left_icon_menu ul .menu_btn a{background: url('${pageContext.request.contextPath}/resources/img/header/all_cate_icon.png') no-repeat;}
@@ -252,7 +342,7 @@
                </div>
                   <div id="detailbtn">
                         <button id="detailbtn_buy">BUY NOW</button>
-                        <button id="detailbtn_cart">CART</button>
+                       	<a id="detailbtn_cart" href="javascript:add_cart('${goods.goods_id }')">CART</a>
                     </div>
             </div>
            </div>

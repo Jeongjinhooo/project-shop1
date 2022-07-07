@@ -1,0 +1,190 @@
+strong {
+  font-weight: bold;
+}
+
+.gLeft {
+  float: left;
+}
+
+.textcenter {
+  text-align: center;
+}
+
+.textleft {
+  text-align: left;
+}
+
+.pdleft10 {
+  padding-left: 10px;
+}
+
+.txt16 {
+  font-size: 16px;
+  letter-spacing: -1px;
+  font-weight: bolder;
+}
+
+.txt18 {
+  font-size: 18px;
+  letter-spacing: -1px;
+  font-weight: bolder;
+}
+
+.txt23 {
+  font-size: 23px;
+  letter-spacing: -1px;
+  font-weight: bolder;
+}
+
+.btnnormal {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 2px 8px;
+  border: 1px solid #d1d1d1;
+  border-radius: 2px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: normal;
+  text-decoration: none;
+  vertical-align: middle;
+  word-spacing: -0.5px;
+  letter-spacing: 0;
+  text-align: center;
+  white-space: nowrap;
+  color: #222;
+  background-color: #fff;
+}
+
+.btnSubmit {
+  background-color: #333;
+  color: #fff;
+  font-family: "NanumBarunGothic", sans-serif;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: normal;
+  text-decoration: none;
+  vertical-align: middle;
+  word-spacing: -0.5px;
+  letter-spacing: 0;
+  text-align: center;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.select {
+  width: 22px;
+  height: 23px;
+  padding: 0 0 0 5px;
+  line-height: 25px;
+  border: 1px solid #d4d8d9;
+  border-radius: 3px 0 0 3px;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+  margin-bottom: 5px;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+section {
+  width: 100vw;
+  height: 130vh;
+}
+
+section #sectioninner {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+}
+section #sectioninner #titleArea2 {
+  width: 100%;
+  min-height: 30px;
+  margin: 16px auto 30px;
+  padding: 14px 0 26px;
+  border-bottom: 3px solid #1a1a1a;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #sectioninner #titleArea2 h2 {
+  color: #1a1a1a;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: left;
+  line-height: 1;
+  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+section #sectioninner table {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-top: 3px solid #1a1a1a;
+  width: 100%;
+}
+
+section #sectioninner table caption {
+  display: none;
+}
+
+section #sectioninner table th {
+  padding: 20px 0;
+  border-left: 0;
+  border-bottom: 1px solid #e3e3e3;
+  color: #333;
+  font-size: 13px;
+  font-weight: 400;
+  vertical-align: middle;
+  background: #fff;
+}
+
+section #sectioninner table td {
+  padding: 20px 0;
+  font-size: 13px;
+  color: #333;
+  font-weight: 400;
+  background-color: #fff;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+section #sectioninner table tfoot tr {
+  text-align: right;
+}
+
+section #sectioninner table tbody .button a {
+  width: 90px;
+  margin: 1px 0;
+}
+
+section #sectioninner #totalpricetable > table > tbody > tr > td {
+  text-align: center;
+  border-bottom: none;
+}
+
+section #sectioninner #totalorder {
+  margin: 10px 0 40px;
+  display: flex;
+  justify-content: center;
+}
+
+section #sectioninner #totalorder a {
+  width: 120px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding: 10px 16px;
+  margin-right: 30px;
+}

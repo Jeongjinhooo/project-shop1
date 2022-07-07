@@ -238,4 +238,5 @@ section #detailarea #detailright #detailbtn #detailbtn_cart {
   text-align: center;
   font-family: "Montserrat", "Noto Sans KR", sans-serif;
   cursor: pointer;
+  color : black;
 }
