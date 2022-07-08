@@ -33,7 +33,7 @@
 
 	<select id="selectGoodsList" resultMap="goodsResult" parameterType="java.util.Map">
       <![CDATA[
-          select g.*,d.fileName from shopping_goods g, goods_detail_image d
+          select g.*,d.fileName from goods g, goods_detail_image d
           where g.goods_id=d.goods_id
           and d.filetype='new_image'
            and g.goods_id in
@@ -41,7 +41,7 @@
 		<foreach item="item" collection="list" open="(" separator="," close=")">
 			#{item.goods_id}
 		</foreach>
-		order by g.goods_creDate desc
+		order by g.goods_Date desc
 	</select>
 
 	<select id="selectCountInCart" resultType="String" parameterType="cartVO">
@@ -55,7 +55,7 @@
 
 	<insert id="insertGoodsInCart" parameterType="cartVO">
 	    <![CDATA[
-		    	insert into t_shopping_cart(cart_id,
+		    	insert into shopping_cart(cart_id,
 		    	                           goods_id,
 		    	                           userid)
 		        				 values(#{cart_id},
@@ -66,7 +66,7 @@
 
 	<update id="updateCartGoodsQty" parameterType="cartVO">
 	    <![CDATA[
-			update t_shopping_cart
+			update shopping_cart
 			       set cart_goods_qty=#{cart_goods_qty}
 		 	       where userid=#{userid}
 			        and goods_id=#{goods_id}

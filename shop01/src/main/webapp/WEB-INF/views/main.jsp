@@ -37,7 +37,7 @@
 			   <li><a href="#">|</a></li>
 			   <li><a href="${contextPath}/member/mypage.do">마이페이지</a></li>
 			   <li><a href="#">|</a></li>
-			   <li><a href="#">장바구니</a></li>
+			   <li><a href="${contextPath}/cart/myCartList.do">장바구니</a></li>
 			   <li><a href="#">|</a></li>
 			   <li><a href="#">주문배송</a></li>
 			    <li><a href="#">|</a></li>

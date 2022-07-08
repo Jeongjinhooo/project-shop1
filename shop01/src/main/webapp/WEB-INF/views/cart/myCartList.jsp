@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <c:set var="contextPath"  value="${pageContext.request.contextPath}" />
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,37 +10,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>장바구니</title>
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/myCartList.css" />
-    <link rel="stylesheet" href="css/footer.css" />
+    <link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/css/myCartList.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet" type="text/css">
     <!-- 폰트 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans+KR&display=swap"
-      rel="stylesheet"
-    />
-    <script defer src="js/script.js"></script>
-  </head>
-
-  <body style="overflow-x: hidden">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script defer src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+     <style>
+   header #h_sec02 #left_icon_menu ul .menu_btn a{background: url('${pageContext.request.contextPath}/resources/img/header/all_cate_icon.png') no-repeat;}
+   </style>
+</head>
+<body style="overflow-x: hidden">
     <div id="wrap">
-      <!-- header--------------------------------------------------------- -->
-      <header>
+        <!-- header--------------------------------------------------------- -->
+               <header>
         <div id="h_sec01" class="flex_center">
           <div id="top_logo" class="flex_center">
-            <a href="#">
-              <img src="img/header/top_logo.png" alt="" />
+            <a href="${pageContext.request.contextPath}/main.do">
+              <img src="${pageContext.request.contextPath}/resources/img/header/top_logo.png" alt="" />
             </a>
           </div>
           <ul>
-            <li><a href="#">REVIEW</a></li>
-            <li><a href="#">|</a></li>
-            <li><a href="#">STORE</a></li>
-            <li><a href="#">|</a></li>
-            <li><a href="#">NOTICE</a></li>
-            <li><a href="#">|</a></li>
-            <li><a href="#">FAQ</a></li>
+           <c:choose>
+		     <c:when test="${isLogOn==true and not empty memberInfo }">
+			   <li><a href="${contextPath}/member/logout.do">로그아웃</a></li>
+			   <li><a href="#">|</a></li>
+			   <li><a href="${contextPath}/member/mypage.do">마이페이지</a></li>
+			   <li><a href="#">|</a></li>
+			   <li><a href="${contextPath}/cart/myCartList.do">장바구니</a></li>
+			   <li><a href="#">|</a></li>
+			   <li><a href="#">주문배송</a></li>
+			    <li><a href="#">|</a></li>
+			 </c:when>
+			 <c:otherwise>
+			   <li><a href="${contextPath}/member/loginForm.do">로그인</a></li>
+			   <li><a href="#">|</a></li>
+			        <li><a href="${pageContext.request.contextPath}/member/memberForm.do">회원가입</a></li>
+			   <li><a href="#">|</a></li>
+			 </c:otherwise>
+			</c:choose>
+			   <li><a href="#">고객센터</a></li>
+    <%-- 	  <c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
+	   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
+	    </c:if>  --%>
+			  
           </ul>
         </div>
         <div id="h_sec02">
@@ -43,7 +63,7 @@
             <ul>
               <li class="menu_btn"><a href="#"></a></li>
               <li>
-                <a href="#"><img src="img/header/top_search.png" alt="" /></a>
+                <a href="#"><img src="${pageContext.request.contextPath}/resources/img/header/top_search.png" alt="" /></a>
               </li>
             </ul>
           </div>
@@ -88,25 +108,26 @@
             <ul>
               <li>
                 <a href="#">
-                  <img src="img/header/top_cart.png" alt="" />
+                  <img src="${pageContext.request.contextPath}/resources/img/header/top_cart.png" alt="" />
                 </a>
               </li>
               <li id="loginmenu">
                 <a href="#">
-                  <img src="img/header/top_my.png" alt="" />
-                  <ul class="toplogin">
+                  <img src="${pageContext.request.contextPath}/resources/img/header/top_my.png" alt="" />
+                 <!--  <ul class="toplogin">
                     <a href=""></a>
                     <li><a href="">로그인</a></li>
                     <li><a href="">회원가입</a></li>
                     <li><a href="">주문조회</a></li>
                     <li><a href="">고객센터</a></li>
-                  </ul>
+                  </ul> -->
                 </a>
               </li>
             </ul>
           </div>
         </div>
       </header>
+
 
       <!-- section ------------------------------------------------------->
       <section>
@@ -164,59 +185,77 @@
                 </tr>
               </tfoot>
               <tbody class="textcenter">
-                <tr>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>
-                    <a href="">
-                      <img src="" alt="" />
-                    </a>
-                  </td>
-                  <td class="textleft pdleft10">
-                    <strong>
-                      <a href="">상품명</a>
-                    </strong>
-                    <ul>
-                      <li>[옵션: BLACK/M]</li>
-                    </ul>
-                  </td>
-                  <td>
-                    <select style="width: 60px" class="select">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                    <a href="" class="btnnormal">변경</a>
-                  </td>
-                  <td>
-                    <div>
-                      <strong> KRW 69,000 </strong>
-                    </div>
-                  </td>
-                  <td>
-                    <span>-</span>
-                  </td>
-                  <td>
-                    <span>-</span>
-                  </td>
-                  <td>
-                    <div>
-                      기본배송
-                      <br />
-                    </div>
-                  </td>
-                  <td>무료</td>
-                  <td class="button">
-                    <a href="" class="btnSubmit">주문하기</a>
-                    <a href="" class="btnnormal">관심상품등록</a>
-                    <a href="" class="btnnormal">삭제</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <c:choose>
+				    <c:when test="${ empty myCartList }">
+				    <tr>
+				       <td colspan=8 class="fixed">
+				         <strong>장바구니에 상품이 없습니다.</strong>
+				       </td>
+				     </tr>
+				    </c:when>
+			        <c:otherwise>
+			 <tr>       
+               <form name="frm_order_all_cart">
+				      <c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
+				       <c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cart_goods_qty}" />
+				       <c:set var="cart_id" value="${myCartList[cnt.count-1].cart_id}" />
+					<td><input type="checkbox" name="checked_goods"  checked  value="${item.goods_id }"  onClick="calcGoodsPrice(${item.goods_sales_price },this)"></td>
+					<td class="goods_image">
+					<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
+						<img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}"  />
+					</a>
+					</td>
+					<td>
+						<h2>
+							<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_title }</a>
+						</h2>
+					</td>
+					<td class="price"><span>${item.goods_price }원</span></td>
+					<td>
+					   <strong>
+					      <fmt:formatNumber  value="${item.goods_sales_price*0.9}" type="number" var="discounted_price" />
+				            ${discounted_price}원(10%할인)
+				         </strong>
+					</td>
+					<td>
+					   <input type="text" id="cart_goods_qty" name="cart_goods_qty" size=3 value="${cart_goods_qty}"><br>
+						<a href="javascript:modify_cart_qty(${item.goods_id },${item.goods_sales_price*0.9 },${cnt.count-1 });" >
+						    <img width=25 alt=""  src="${contextPath}/resources/image/btn_modify_qty.jpg">
+						</a>
+					</td>
+					<td>
+					   <strong>
+					    <fmt:formatNumber  value="${item.goods_sales_price*0.9*cart_goods_qty}" type="number" var="total_sales_price" />
+				         ${total_sales_price}원
+					</strong> </td>
+					<td>
+					      <a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_title }','${item.goods_sales_price}','${item.goods_fileName}');">
+					       	<img width="75" alt=""  src="${contextPath}/resources/image/btn_order.jpg">
+							</a><br>
+					 	<a href="#"> 
+					 	   <img width="75" alt=""
+							src="${contextPath}/resources/image/btn_order_later.jpg">
+						</a><br> 
+						<a href="#"> 
+						   <img width="75" alt=""
+							src="${contextPath}/resources/image/btn_add_list.jpg">
+						</A><br> 
+						<a href="javascript:delete_cart_goods('${cart_id}');""> 
+						   <img width="75" alt=""
+							   src="${contextPath}/resources/image/btn_delete.jpg">
+					   </a>
+					</td>
+			</tr>
+				<c:set  var="totalGoodsPrice" value="${totalGoodsPrice+item.goods_sales_price*0.9*cart_goods_qty }" />
+				<c:set  var="totalGoodsNum" value="${totalGoodsNum+1 }" />
+			   </c:forEach>
+		    
+		</tbody>
+	</table>
+     	
+	<div class="clear"></div>
+	 </c:otherwise>
+	</c:choose> 
             <div id="totalpricetable">
               <table>
                 <caption>

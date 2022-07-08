@@ -57,7 +57,6 @@ public class CartControllerImpl extends BaseController implements CartController
 		cartVO.setUserid(userid);
 		//카트 등록전에 이미 등록된 제품인지 판별한다.
 		cartVO.setGoods_id(goods_id);
-		cartVO.setUserid(userid);
 		boolean isAreadyExisted=cartService.findCartGoods(cartVO);
 		System.out.println("isAreadyExisted:"+isAreadyExisted);
 		if(isAreadyExisted==true){

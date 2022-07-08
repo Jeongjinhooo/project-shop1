@@ -43,7 +43,7 @@
 				//alert(data);
 			//	$('#message').append(data);
 				if(data.trim()=='add_success'){
-					imagePopup('open', '.layer01');	
+					alert("장바구니에 담았습니다.");
 				}else if(data.trim()=='already_existed'){
 					alert("이미 카트에 등록된 상품입니다.");	
 				}
@@ -58,23 +58,8 @@
 		}); //end ajax	
 	}
 
-	function imagePopup(type) {
-		if (type == 'open') {
-			// 팝업창을 연다.
-			jQuery('#layer').attr('style', 'visibility:visible');
-
-			// 페이지를 가리기위한 레이어 영역의 높이를 페이지 전체의 높이와 같게 한다.
-			jQuery('#layer').height(jQuery(document).height());
-		}
-
-		else if (type == 'close') {
-
-			// 팝업창을 닫는다.
-			jQuery('#layer').attr('style', 'visibility:hidden');
-		}
-	}
 	
-function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
+/* function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 	var _isLogOn=document.getElementById("isLogOn");
 	var isLogOn=_isLogOn.value;
 	
@@ -115,7 +100,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
     formObj.method="post";
     formObj.action="${contextPath}/order/orderEachGoods.do";
     formObj.submit();
-	}	
+	}	 */
 </script>
  
    <style>
@@ -134,13 +119,29 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
             </a>
           </div>
           <ul>
-          			   <li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
-            <li><a href="#">|</a></li>
-        <li><a href="${pageContext.request.contextPath}/member/memberForm.do">회원가입</a></li>
-            <li><a href="#">|</a></li>
-            <li><a href="#">고객센터</a></li>
-  <!--           <li><a href="#">|</a></li>
-            <li><a href="#">FAQ</a></li> -->
+        <c:choose>
+		     <c:when test="${isLogOn==true and not empty memberInfo }">
+			   <li><a href="${contextPath}/member/logout.do">로그아웃</a></li>
+			   <li><a href="#">|</a></li>
+			   <li><a href="${contextPath}/member/mypage.do">마이페이지</a></li>
+			   <li><a href="#">|</a></li>
+			   <li><a href="${contextPath}/cart/myCartList.do">장바구니</a></li>
+			   <li><a href="#">|</a></li>
+			   <li><a href="#">주문배송</a></li>
+			    <li><a href="#">|</a></li>
+			 </c:when>
+			 <c:otherwise>
+			   <li><a href="${contextPath}/member/loginForm.do">로그인</a></li>
+			   <li><a href="#">|</a></li>
+			        <li><a href="${pageContext.request.contextPath}/member/memberForm.do">회원가입</a></li>
+			   <li><a href="#">|</a></li>
+			 </c:otherwise>
+			</c:choose>
+			   <li><a href="#">고객센터</a></li>
+    <%-- 	  <c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
+	   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
+	    </c:if>  --%>
+			  
           </ul>
         </div>
         <div id="h_sec02">
