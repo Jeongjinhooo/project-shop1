@@ -10,7 +10,7 @@ public class GoodsVO {
 	private String goods_des;
 	private Date   goods_date;
 	private String goods_status;
-	private String fileName;
+	private String goods_fileName;
 	private Date   goods_credate;
 	
 	public GoodsVO() {
@@ -81,19 +81,14 @@ public class GoodsVO {
 		this.goods_date = goods_date;
 	}
 
-	public String getFileName() {
-		return fileName;
+	public String getGoods_fileName() {
+		return goods_fileName;
 	}
 
-
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setGoods_fileName(String goods_fileName) {
+		this.goods_fileName = goods_fileName;
 	}
 
-
-
-	
 	public String getGoods_status() {
 		return goods_status;
 	}

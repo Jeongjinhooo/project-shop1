@@ -173,7 +173,7 @@
 		<div class="m_box">
             <div class="tumnail">
 			<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
-				<img src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.fileName}">
+				<img src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
 				</a>
             </div>
 			<div class="name">${item.goods_name}</div>

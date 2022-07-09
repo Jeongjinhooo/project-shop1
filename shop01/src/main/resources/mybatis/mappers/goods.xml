@@ -13,6 +13,7 @@
 		<result property="goods_des" column="goods_des" />		
 		<result property="goods_date" column="goods_date" />		
 		<result property="goods_status" column="goods_status" />
+		<result property="goods_fileName" column="fileName" />
 	</resultMap>	
 
 	<resultMap id="imageResult" type="imageFileVO">

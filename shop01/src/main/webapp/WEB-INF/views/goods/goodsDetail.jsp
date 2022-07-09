@@ -220,7 +220,7 @@
            <div id = "detailleft">
                <div id="bigimage">
                    <a href="">
-                       <img src="${contextPath}/thumbnails.do?goods_id=${goods.goods_id}&fileName=${goods.fileName}">
+                       <img src="${contextPath}/thumbnails.do?goods_id=${goods.goods_id}&fileName=${goods.goods_fileName}">
                    </a>
                </div>
                <div id="detailgoods"><span></span>
