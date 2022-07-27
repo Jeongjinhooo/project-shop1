@@ -387,8 +387,7 @@
                   <td>
                     <div>
                     <strong>
-					    <fmt:formatNumber  value="${item.goods_price*0.9*cart_goods_qty}" type="number" var="total_sales_price" />
-				         ${total_sales_price}원
+					   ${item.goods_price}원
 					</strong>
                     </div>
                   </td>
@@ -407,7 +406,7 @@
                   <td>무료</td>
                   <td class="button">
                   
-                    <a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_name }','${item.goods_fileName}')" class="brnnormal">주문하기</a>
+                    <a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_name }','${item.goods_fileName}')" class="btnnormal">주문하기</a>
                     <a href="#" class="btnnormal">관심상품등록</a>
                     <a href="javascript:delete_cart_goods('${cart_id}')" class="btnnormal">삭제</a>
                   </td>

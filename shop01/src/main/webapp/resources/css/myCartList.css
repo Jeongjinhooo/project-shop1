@@ -153,7 +153,8 @@ section #sectioninner table th {
 }
 
 section #sectioninner table td {
-  padding: 20px 0;
+  padding-top:20px;
+  padding-bottom:20px;
   font-size: 13px;
   color: #333;
   font-weight: 400;

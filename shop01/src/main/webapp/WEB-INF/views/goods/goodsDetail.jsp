@@ -31,13 +31,14 @@
  
  <script type="text/javascript">
 	function add_cart(goods_id) {
+		var cart_goods_qty = $("#cart_goods_qty option:selected").val();
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
-			url : "${contextPath}/cart/addGoodsInCart.do",
+			url : "${pageContext.request.contextPath}/cart/addGoodsInCart.do",
 			data : {
-				goods_id:goods_id
-				
+				goods_id:goods_id,
+				cart_goods_qty:cart_goods_qty
 			},
 			success : function(data, textStatus) {
 				//alert(data);
@@ -59,7 +60,7 @@
 	}
 
 	
-/* function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
+  /*  function fn_order_each_goods(goods_id,goods_name,goods_price,fileName){
 	var _isLogOn=document.getElementById("isLogOn");
 	var isLogOn=_isLogOn.value;
 	
@@ -71,36 +72,37 @@
 		var total_price,final_total_price;
 		var order_goods_qty=document.getElementById("order_goods_qty");
 		
-		var formObj=document.createElement("form");
-		var i_goods_id = document.createElement("input"); 
-    var i_goods_title = document.createElement("input");
-    var i_goods_sales_price=document.createElement("input");
+	var formObj=document.createElement("form");
+	var i_goods_id = document.createElement("input"); 
+    var i_goods_name = document.createElement("input");
+    var i_goods_price=document.createElement("input");
     var i_fileName=document.createElement("input");
     var i_order_goods_qty=document.createElement("input");
     
+    
     i_goods_id.name="goods_id";
-    i_goods_title.name="goods_title";
-    i_goods_sales_price.name="goods_sales_price";
+    i_goods_name.name="goods_name";
+    i_goods_price.name="goods_price";
     i_fileName.name="goods_fileName";
     i_order_goods_qty.name="order_goods_qty";
     
     i_goods_id.value=goods_id;
     i_order_goods_qty.value=order_goods_qty.value;
-    i_goods_title.value=goods_title;
-    i_goods_sales_price.value=goods_sales_price;
+    i_goods_name.value=goods_name;
+    i_goods_price.value=goods_price;
     i_fileName.value=fileName;
     
     formObj.appendChild(i_goods_id);
-    formObj.appendChild(i_goods_title);
-    formObj.appendChild(i_goods_sales_price);
+    formObj.appendChild(i_goods_name);
+    formObj.appendChild(i_goods_price);
     formObj.appendChild(i_fileName);
     formObj.appendChild(i_order_goods_qty);
 
     document.body.appendChild(formObj); 
     formObj.method="post";
-    formObj.action="${contextPath}/order/orderEachGoods.do";
+    formObj.action="${pageContext.request.contextPath}/order/orderEachGoods.do"; 
     formObj.submit();
-	}	 */
+	}	  */
 </script>
  
    <style>
@@ -121,17 +123,17 @@
           <ul>
         <c:choose>
 		     <c:when test="${isLogOn==true and not empty memberInfo }">
-			   <li><a href="${contextPath}/member/logout.do">로그아웃</a></li>
+			   <li><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 			   <li><a href="#">|</a></li>
-			   <li><a href="${contextPath}/member/mypage.do">마이페이지</a></li>
+			   <li><a href="${pageContext.request.contextPath}/member/mypage.do">마이페이지</a></li>
 			   <li><a href="#">|</a></li>
-			   <li><a href="${contextPath}/cart/myCartList.do">장바구니</a></li>
+			   <li><a href="${pageContext.request.contextPath}/cart/myCartList.do">장바구니</a></li>
 			   <li><a href="#">|</a></li>
 			   <li><a href="#">주문배송</a></li>
 			    <li><a href="#">|</a></li>
 			 </c:when>
 			 <c:otherwise>
-			   <li><a href="${contextPath}/member/loginForm.do">로그인</a></li>
+			   <li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
 			   <li><a href="#">|</a></li>
 			        <li><a href="${pageContext.request.contextPath}/member/memberForm.do">회원가입</a></li>
 			   <li><a href="#">|</a></li>
@@ -139,7 +141,7 @@
 			</c:choose>
 			   <li><a href="#">고객센터</a></li>
     <%-- 	  <c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
-	   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
+	   	   <li class="no_line"><a href="${pageContext.request.contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
 	    </c:if>  --%>
 			  
           </ul>
@@ -220,7 +222,7 @@
            <div id = "detailleft">
                <div id="bigimage">
                    <a href="">
-                       <img src="${contextPath}/thumbnails.do?goods_id=${goods.goods_id}&fileName=${goods.goods_fileName}">
+                       <img src="${pageContext.request.contextPath}/thumbnails.do?goods_id=${goods.goods_id}&fileName=${goods.goods_fileName}">
                    </a>
                </div>
                <div id="detailgoods"><span></span>
@@ -233,7 +235,7 @@
                <div id="detail_content">
                    	<c:forEach var="image" items="${imageList }">
 					<img 
-						src="${contextPath}/download.do?goods_id=${goods.goods_id}&fileName=${image.fileName}">
+						src="${pageContext.request.contextPath}/download.do?goods_id=${goods.goods_id}&fileName=${image.fileName}">
 				</c:forEach>
                </div>
            </div>
@@ -307,13 +309,14 @@
                        <tr>
                            <th>수량</th>
                            <td>
-                                <select style="width: 60px;" id="order_goods_qty">
-				                     <option>1</option>
-						        	<option>2</option>
-						        	<option>3</option>
-						          	<option>4</option>
-						        	<option>5</option>
+                                <select style="width: 60px;" id="cart_goods_qty">
+				                     <option value="1">1</option>
+						        	<option value="2">2</option>
+						        	<option value="3">3</option>
+						          	<option value="4">4</option>
+						        	<option value="5">5</option>
 			                   </select>
+			                   <input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}"/>
                            </td>
                        </tr>
                        <tr>
@@ -343,12 +346,15 @@
                </div>
                   <div id="detailbtn">
                         <button id="detailbtn_buy">BUY NOW</button>
-                       	<a id="detailbtn_cart" href="javascript:add_cart('${goods.goods_id }')">CART</a>
+                       	<a id="detailbtn_cart" href="javascript:add_cart('${goods.goods_id}')">CART</a>
                     </div>
             </div>
            </div>
        
        </div>
+        <form   action='${pageContext.request.contextPath}/cart/myCartList.do'>				
+		<input  type="submit" value="장바구니 보기">
+</form> 
       </section>
 
       <!-- footer---------------------------------------------------------- -->
