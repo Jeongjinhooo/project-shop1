@@ -10,6 +10,7 @@ public class GoodsVO {
 	private String goods_des;
 	private Date   goods_date;
 	private String goods_status;
+	private String goods_color;
 	private String goods_fileName;
 	private Date   goods_credate;
 	
@@ -47,6 +48,14 @@ public class GoodsVO {
 
 	public void setGoods_sort(String goods_sort) {
 		this.goods_sort = goods_sort;
+	}
+	
+	public String getGoods_color() {
+		return goods_color;
+	}
+
+	public void setGoods_color(String goods_color) {
+		this.goods_color = goods_color;
 	}
 
 

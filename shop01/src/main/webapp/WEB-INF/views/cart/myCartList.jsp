@@ -203,7 +203,7 @@
 </head>
 <body style="overflow-x: hidden">
     <div id="wrap">
-        <!-- header--------------------------------------------------------- -->
+        <!-- header------------------------------------------------------------- -->
                <header>
         <div id="h_sec01" class="flex_center">
           <div id="top_logo" class="flex_center">

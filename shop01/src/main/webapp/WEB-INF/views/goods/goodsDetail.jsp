@@ -257,10 +257,10 @@
                            <th>색상</th>
                            <td>
                                <ul>
-                                   <li>
-                                       <a href="">
-                                        <span>COLOR</span>
-                                      </a>
+                                   <li class="selectcolor">
+                                      <input type="checkbox" id="selectcolor" name="shop"><label for="selectcolor">${goods.goods_color}</label>
+                                    
+                                   
                                     </li>
                                </ul>
                                <p>
@@ -277,25 +277,25 @@
                            <th>사이즈</th>
                            <td>
                                <ul>
-                                   <li> 
-                                       <a href="">
-                                         <span>S</span>
-                                       </a>
+                                   <li class="select"> 
+                                      
+                                         <input type="radio" id="select" name="shop"><label for="select">S</label>
+                                      
                                     </li>
-                                    <li> 
-                                       <a href="">
-                                         <span>M</span>
-                                       </a>
+                                    <li class="select"> 
+                                     
+                                         <input type="radio" id="select2" name="shop"><label for="select2">M</label>
+                                   
                                     </li>
-                                    <li> 
-                                       <a href="">
-                                         <span>L</span>
-                                       </a>
+                                    <li class="select"> 
+                                   
+                                         <input type="radio" id="select3" name="shop"><label for="select3">L</label>
+                                   
                                     </li>
-                                    <li> 
-                                       <a href="">
-                                         <span>XL</span>
-                                       </a>
+                                    <li class="select"> 
+                                      
+                                         <input type="radio" id="select4" name="shop"><label for="select4">XL</label>
+                                      
                                     </li>
                                </ul>
                                <p>
