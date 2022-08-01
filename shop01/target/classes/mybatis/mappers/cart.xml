@@ -10,6 +10,7 @@
 		<result property="goods_id" column="goods_id" />
 		<result property="userid" column="userid" />
 		<result property="cart_goods_qty" column="cart_goods_qty" />
+		<result property="goods_size" column="goods_size" />
 		<result property="creDate" column="creDate" />
 	</resultMap>
 	
@@ -26,7 +27,7 @@
 
 	<select id="selectCartList"  parameterType="cartVO"  resultMap="cartResult"   >
 	    <![CDATA[
-		select cart_id, goods_id, userid, cart_goods_qty, creDate 
+		select cart_id, goods_id, userid, cart_goods_qty, goods_size, creDate 
 		from shopping_cart 
 		where userid=#{userid} 
 		]]>
@@ -59,11 +60,14 @@
 		    	insert into shopping_cart(cart_id,
 		    	                           goods_id,
 		    	                           userid,
-		    	                           cart_goods_qty)
+		    	                           cart_goods_qty,
+		    	                           goods_size
+		    	                           )
 		        				 values(#{cart_id},
     							        #{goods_id},
     							        #{userid},
-    							        #{cart_goods_qty}
+    							        #{cart_goods_qty},
+    							        #{goods_size}
     							        )
     	]]>
 	</insert>

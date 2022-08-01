@@ -20,7 +20,7 @@ section #detailarea {
 }
 .selectcolor input[type=checkbox]+label{
     display: inline-block;
-    cursor: pointer;
+ /*    cursor: pointer; */
     height: 24px;
     width: 55px;
     line-height: 24px;
@@ -36,10 +36,10 @@ section #detailarea {
     color: #fff;
 }
 
-.select input[type=radio]{
+.selectsize input[type=radio]{
     display: none;
 }
-.select input[type=radio]+label{
+.selectsize input[type=radio]+label{
     display: inline-block;
     cursor: pointer;
     height: 24px;
@@ -48,11 +48,11 @@ section #detailarea {
     text-align: center;
     font-size:12px;
 }
-.select input[type=radio]+label{
+.selectsize input[type=radio]+label{
     background-color: #fff;
     color: #333;
 }
-.select input[type=radio]:checked+label{
+.selectsize input[type=radio]:checked+label{
     background-color: #333;
     color: #fff;
 }

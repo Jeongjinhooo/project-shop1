@@ -32,13 +32,15 @@
  <script type="text/javascript">
 	function add_cart(goods_id) {
 		var cart_goods_qty = $("#cart_goods_qty option:selected").val();
+		var goods_size = $("input:radio[name=size]:checked").val();
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
 			url : "${pageContext.request.contextPath}/cart/addGoodsInCart.do",
 			data : {
 				goods_id:goods_id,
-				cart_goods_qty:cart_goods_qty
+				cart_goods_qty:cart_goods_qty,
+				goods_size:goods_size
 			},
 			success : function(data, textStatus) {
 				//alert(data);
@@ -58,7 +60,24 @@
 			}
 		}); //end ajax	
 	}
+//////////////////select box 변경값될때 값 가져오기
+/* 	function ChangeValue() {
+	var select = document.getElementById('cart_goods_qty');
+	var sum = document.form.sum;
+		if (hm.value < 0) {
+			hm.value = 0;
+		}
+	sum.value = parseInt(hm.value) * sell_price;
+}
 
+	function change () {
+	  		hm = document.form.productAmt;
+	  		sum = document.form.sum;
+	  			if (hm.value < 0) {
+	  				hm.value = 0;
+	  			}
+	  		sum.value = parseInt(hm.value) * sell_price;
+	  	}   */
 	
   /*  function fn_order_each_goods(goods_id,goods_name,goods_price,fileName){
 	var _isLogOn=document.getElementById("isLogOn");
@@ -246,7 +265,7 @@
                </div>
                <div id="detailprice">
                    <span>
-						<fmt:formatNumber  value="${goods.goods_price}" type="number" var="goods_price" />
+						<fmt:formatNumber  value="${goods.goods_price}" type="number" var="goods_price" name="goods_price" />
 		          ${goods.goods_price}원
 					</span>
                </div>
@@ -258,17 +277,17 @@
                            <td>
                                <ul>
                                    <li class="selectcolor">
-                                      <input type="checkbox" id="selectcolor" name="shop"><label for="selectcolor">${goods.goods_color}</label>
+                                      <input type="checkbox" id="selectcolor" name="shop" disabled><label for="selectcolor">${goods.goods_color}</label>
                                     
                                    
                                     </li>
                                </ul>
-                               <p>
+                               <!-- <p>
                                            [필수] 
                                            <span>
                                                색상을 먼저 선택해주세요
                                            </span>
-                                       </p>
+                                       </p> -->
                            </td>
                        </tr>
                    </tbody>
@@ -277,39 +296,39 @@
                            <th>사이즈</th>
                            <td>
                                <ul>
-                                   <li class="select"> 
+                                   <li class="selectsize"> 
                                       
-                                         <input type="radio" id="select" name="shop"><label for="select">S</label>
+                                         <input type="radio" id="select" name="size" value="S"><label for="select">S</label>
                                       
                                     </li>
-                                    <li class="select"> 
+                                    <li class="selectsize"> 
                                      
-                                         <input type="radio" id="select2" name="shop"><label for="select2">M</label>
+                                         <input type="radio" id="select2" name="size" value="M"><label for="select2">M</label>
                                    
                                     </li>
-                                    <li class="select"> 
+                                    <li class="selectsize"> 
                                    
-                                         <input type="radio" id="select3" name="shop"><label for="select3">L</label>
+                                         <input type="radio" id="select3" name="size" value="L"><label for="select3">L</label>
                                    
                                     </li>
-                                    <li class="select"> 
+                                    <li class="selectsize"> 
                                       
-                                         <input type="radio" id="select4" name="shop"><label for="select4">XL</label>
+                                         <input type="radio" id="select4" name="size" value="XL"><label for="select4">XL</label>
                                       
                                     </li>
                                </ul>
-                               <p>
+                              <!--  <p>
                                    [필수]
                                    <span>
                                        색상을 먼저 선택해주세요
                                    </span>
-                               </p>
+                               </p> -->
                            </td>
                        </tr>
                        <tr>
                            <th>수량</th>
                            <td>
-                                <select style="width: 60px;" id="cart_goods_qty">
+                                <select style="width: 60px;" id="cart_goods_qty" onchange="ChangeValue()">
 				                     <option value="1">1</option>
 						        	<option value="2">2</option>
 						        	<option value="3">3</option>
@@ -338,8 +357,7 @@
                     (수량) : 
                     <span>
                         <strong>
-                            <em>KRW 0</em>
-                             (0개)
+                            <em>KRW ${goods.goods_price}</em>
                         </strong>
                     </span>
                  

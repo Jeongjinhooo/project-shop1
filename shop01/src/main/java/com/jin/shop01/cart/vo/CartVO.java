@@ -8,6 +8,7 @@ public class CartVO {
 	private int goods_id;
 	private String userid;
 	private int cart_goods_qty;
+	private String goods_size;
 	private String creDate;
 	
 	
@@ -39,6 +40,14 @@ public class CartVO {
 	public void setCart_goods_qty(int cart_goods_qty) {
 		this.cart_goods_qty = cart_goods_qty;
 	}
+	
+	public String getGoods_size() {
+		return goods_size;
+	}
+	public void setGoods_size(String goods_size) {
+		this.goods_size = goods_size;
+	}
+	
 	public String getCreDate() {
 		return creDate;
 	}

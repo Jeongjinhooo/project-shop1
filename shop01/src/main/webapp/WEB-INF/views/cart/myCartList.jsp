@@ -360,6 +360,7 @@
                		  <c:forEach var="item" items="${myGoodsList}" varStatus="cnt">
 				       <c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cart_goods_qty}" />
 				       <c:set var="cart_id" value="${myCartList[cnt.count-1].cart_id}" />
+				       <c:set var="goods_size" value="${myCartList[cnt.count-1].goods_size}" />
 				        <tr>
                   <td>
                    <input type="checkbox" name="checked_goods"  checked  value="${item.goods_id }"  onClick="calcGoodsPrice(${item.goods_price },this)">
@@ -374,7 +375,9 @@
                     			<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_name}</a>
                     </strong>
                     <ul>
-                      <li>[옵션: BLACK/M]</li>
+                      <li>[색상 : ${item.goods_color}]<br>
+                          [사이즈 : ${goods_size}]
+                      </li>
                     </ul>
                   </td>
                   <td>
