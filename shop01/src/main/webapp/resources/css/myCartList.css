@@ -76,6 +76,8 @@ strong {
   color: #fff;
 }
 
+
+
 .select {
   width: 22px;
   height: 23px;
@@ -141,6 +143,17 @@ section #sectioninner table caption {
   display: none;
 }
 
+
+section #sectioninner table #cart_goods_qty{
+	width: 30px;
+    height: 23px;
+    line-height: 25px;
+    border: 1px solid #d4d8d9;
+    border-radius: 3px 0 0 3px;
+    text-align:center;
+}
+
+
 section #sectioninner table th {
   padding: 20px 0;
   border-left: 0;
@@ -175,6 +188,18 @@ section #sectioninner #totalpricetable > table > tbody > tr > td {
   text-align: center;
   border-bottom: none;
 }
+
+section #sectioninner #totalpricetable > table > tbody > tr > td div{
+	display:flex;
+	justify-content: center;
+    align-items: end;
+}
+
+section #sectioninner #totalpricetable > table > tbody > tr > td div strong{
+	margin-bottom:3px;
+	margin-right:10px;
+}
+
 
 section #sectioninner #totalorder {
   margin: 10px 0 40px;

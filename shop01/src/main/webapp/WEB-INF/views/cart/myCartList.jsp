@@ -26,13 +26,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+        <!-- Montserrat:whgt700 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <script defer src="${pageContext.request.contextPath}/resources/js/script.js"></script>
      <style>
    header #h_sec02 #left_icon_menu ul .menu_btn a{background: url('${pageContext.request.contextPath}/resources/img/header/all_cate_icon.png') no-repeat;}
    </style>
-   
+   	 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <script type="text/javascript">
-   function calcGoodsPrice(bookPrice,obj){
+/*    function calcGoodsPrice(goodsPrice,obj){
 		var totalPrice,final_total_price,totalNum;
 		var goods_qty=document.getElementById("select_goods_qty");
 		//alert("총 상품금액"+goods_qty.value);
@@ -48,7 +55,7 @@
 			
 			totalNum=Number(h_totalNum.value)+Number(goods_qty.value);
 			//alert("totalNum:"+totalNum);
-			totalPrice=Number(h_totalPrice.value)+Number(goods_qty.value*bookPrice);
+			totalPrice=Number(h_totalPrice.value)+Number(goods_qty.value*goodsPrice);
 			//alert("totalPrice:"+totalPrice);
 			final_total_price=totalPrice+Number(h_totalDelivery.value);
 			//alert("final_total_price:"+final_total_price);
@@ -57,7 +64,7 @@
 		//	alert("h_totalNum.value:"+h_totalNum.value);
 			totalNum=Number(h_totalNum.value)-Number(goods_qty.value);
 		//	alert("totalNum:"+ totalNum);
-			totalPrice=Number(h_totalPrice.value)-Number(goods_qty.value)*bookPrice;
+			totalPrice=Number(h_totalPrice.value)-Number(goods_qty.value)*goodsPrice;
 		//	alert("totalPrice="+totalPrice);
 			final_total_price=totalPrice-Number(h_totalDelivery.value);
 		//	alert("final_total_price:"+final_total_price);
@@ -71,11 +78,13 @@
 		p_totalNum.innerHTML=totalNum;
 		p_totalPrice.innerHTML=totalPrice;
 		p_final_totalPrice.innerHTML=final_total_price;
-	}
+	} */
 
-	function modify_cart_qty(goods_id,bookPrice,index){
+   //----------장바구니 수량변경
+	function modify_cart_qty(goods_id,goodsPrice,index){
 		//alert(index);
 	   var length=document.frm_order_all_cart.cart_goods_qty.length;
+	   console.log(length);
 	   var _cart_goods_qty=0;
 		if(length>1){ //카트에 제품이 한개인 경우와 여러개인 경우 나누어서 처리한다.
 			_cart_goods_qty=document.frm_order_all_cart.cart_goods_qty[index].value;		
@@ -98,7 +107,8 @@
 			success : function(data, textStatus) {
 				//alert(data);
 				if(data.trim()=='modify_success'){
-					alert("수량을 변경했습니다!!");	
+					alert("수량을 변경했습니다!!");
+					window.location.reload()
 				}else{
 					alert("다시 시도해 주세요!!");	
 				}
@@ -314,7 +324,7 @@
           <div id="titleArea2">
             <h2>장바구니</h2>
           </div>
-            <form>
+            <form name="frm_order_all_cart">
           <div class="orderListArea">
             <table>
               <colgroup>
@@ -380,17 +390,15 @@
                       </li>
                     </ul>
                   </td>
-                  <td>
-                      <input type="text" id="cart_goods_qty" name="cart_goods_qty" size=3 value="${cart_goods_qty}"><br>
-						<a href="javascript:modify_cart_qty(${item.goods_id },${item.goods_price*0.9 },${cnt.count-1 });" >
-						</a>
-						 <a href="#" class="btnnormal">변경</a>
+                  <td>    
+                      <input type="text" id="cart_goods_qty" name="cart_goods_qty" size=3 value="${cart_goods_qty}"><br>		
+						 <a href="javascript:modify_cart_qty(${item.goods_id},${item.goods_price},${cnt.count-1});" class="btnnormal">변경</a>
                    
                   </td>
                   <td>
                     <div>
-                    <strong>
-					   ${item.goods_price}원
+                    <strong>					  
+					   ${item.goods_price*cart_goods_qty}원
 					</strong>
                     </div>
                   </td>
@@ -414,7 +422,7 @@
                     <a href="javascript:delete_cart_goods('${cart_id}')" class="btnnormal">삭제</a>
                   </td>
                 </tr>
-                <c:set  var="totalGoodsPrice" value="${totalGoodsPrice+item.goods_price*0.9*cart_goods_qty }" />
+                <c:set  var="totalGoodsPrice" value="${totalGoodsPrice+item.goods_price*cart_goods_qty }" />
 				<c:set  var="totalGoodsNum" value="${totalGoodsNum+1 }" />
 			   </c:forEach>
               	 </c:otherwise>
@@ -465,7 +473,7 @@
                         <strong class="txt16">
                           KRW
                               </strong>
-                            <p id="p_totalDeliveryPrice">${totalDeliveryPrice }원  </p>
+                            <p id="p_totalDeliveryPrice" class="txt23">${totalDeliveryPrice }원  </p>
 	   				     <input id="h_totalDeliveryPrice"type="hidden" value="${totalDeliveryPrice}" />
                       </div>
                     </td>
@@ -475,7 +483,7 @@
                         <strong class="txt16">
                           KRW
                         </strong>
-                         <p id="p_final_totalPrice">
+                         <p id="p_final_totalPrice" class="txt23">
 	       		   <fmt:formatNumber  value="${totalGoodsPrice+totalDeliveryPrice-totalDiscountedPrice}" type="number" var="total_price" />
 	       			     ${total_price}원
 	       				   </p>
@@ -491,7 +499,7 @@
                     <span class="gLeft">[기본배송]</span>
                     상품구매금액
                     <strong>
-                      69000
+                        ${total_price}원
                       <span></span>
                     </strong>
                     + 배송비
@@ -499,7 +507,7 @@
                     = 합계 :
                     <strong>
                       KRW
-                      <span class="txt18">69,000</span>
+                      <span class="txt18">  ${total_price}원</span>
                     </strong>
                   </td>
                 </tr>

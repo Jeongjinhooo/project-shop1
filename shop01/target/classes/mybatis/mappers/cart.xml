@@ -43,7 +43,7 @@
 		<foreach item="item" collection="list" open="(" separator="," close=")">
 			#{item.goods_id}
 		</foreach>
-		order by g.goods_Date desc
+		order by g.goods_id asc
 	</select>
 
 	<select id="selectCountInCart" resultType="String" parameterType="cartVO">

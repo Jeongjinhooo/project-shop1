@@ -25,13 +25,72 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans+KR&display=swap"
       rel="stylesheet"
     />
+        <!-- Montserrat:whgt700 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+      rel="stylesheet"
+    />
     
     <script defer src="${pageContext.request.contextPath}/resources/js/script.js"></script>
  	 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
  
  <script type="text/javascript">
+//-------------------------상품 수량 변경  
+ Number.prototype.format = function(){
+   if(this==0) return 0;
+
+   var reg = /(^[+-]?\d+)(\d{3})/;
+   var n = (this + '');
+
+   while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+   return n;
+ };
+  
+
+ String.prototype.format = function(){
+   var num = parseFloat(this);
+   if( isNaN(num) ) return "0";
+
+   return num.format();
+ };
+     
+ var basic_amount = parseInt('${goods.goods_price}');
+
+ function change_qty2(t){
+   //var min_qty = '수량버튼'*1;
+   var min_qty = 1;
+   var this_qty = $("#quantity").val()*1;
+   var max_qty = '200'; // 현재 재고
+   console.log(this_qty);
+   if(t=="m"){
+     this_qty -= 1;
+     if(this_qty<min_qty){
+       //alert("최소구매수량 이상만 구매할 수 있습니다.");
+       alert("수량은 1개 이상 입력해 주십시오.");
+       return;
+       }
+     }
+     else if(t=="p"){
+       this_qty += 1;
+       if(this_qty>max_qty){
+         alert("죄송합니다. 재고가 부족합니다.");
+         return;
+         }
+     }
+
+   var show_total_amount = basic_amount * this_qty;
+   //$("#quantity_txt").text(this_qty); 
+   $("#quantity").val(this_qty);
+   $("#it_pay").val(show_total_amount);
+   $("#total_amount").html(show_total_amount.format());
+ }
+ 
+//--------------------장바구니로 데이터 넘기기
 	function add_cart(goods_id) {
-		var cart_goods_qty = $("#cart_goods_qty option:selected").val();
+		var cart_goods_qty = $("#quantity").val();
 		var goods_size = $("input:radio[name=size]:checked").val();
 		$.ajax({
 			type : "post",
@@ -60,24 +119,8 @@
 			}
 		}); //end ajax	
 	}
-//////////////////select box 변경값될때 값 가져오기
-/* 	function ChangeValue() {
-	var select = document.getElementById('cart_goods_qty');
-	var sum = document.form.sum;
-		if (hm.value < 0) {
-			hm.value = 0;
-		}
-	sum.value = parseInt(hm.value) * sell_price;
-}
 
-	function change () {
-	  		hm = document.form.productAmt;
-	  		sum = document.form.sum;
-	  			if (hm.value < 0) {
-	  				hm.value = 0;
-	  			}
-	  		sum.value = parseInt(hm.value) * sell_price;
-	  	}   */
+//---------------------
 	
   /*  function fn_order_each_goods(goods_id,goods_name,goods_price,fileName){
 	var _isLogOn=document.getElementById("isLogOn");
@@ -265,7 +308,7 @@
                </div>
                <div id="detailprice">
                    <span>
-						<fmt:formatNumber  value="${goods.goods_price}" type="number" var="goods_price" name="goods_price" />
+						<fmt:formatNumber  value="${goods.goods_price}" type="number" var="goods_price" />
 		          ${goods.goods_price}원
 					</span>
                </div>
@@ -328,14 +371,19 @@
                        <tr>
                            <th>수량</th>
                            <td>
-                                <select style="width: 60px;" id="cart_goods_qty" onchange="ChangeValue()">
-				                     <option value="1">1</option>
-						        	<option value="2">2</option>
-						        	<option value="3">3</option>
-						          	<option value="4">4</option>
-						        	<option value="5">5</option>
-			                   </select>
-			                   <input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}"/>
+                           <div id="cart_goods_qty">                 
+                                  <input type="text" name="quantity" id="quantity" value="1" readonly="readonly">
+                               
+                                  <a href="javascript:change_qty2('p')"  >
+                                    <img src="${pageContext.request.contextPath}/resources/img/section/btn_quantity_up.gif" alt="증가" class="quantity_up" >
+                                  </a>
+                              
+                                
+                                  <a href="javascript:change_qty2('m')">
+                                    <img src="${pageContext.request.contextPath}/resources/img/section/btn_quantity_down.gif" alt="감소" class="quantity_down">
+                                  </a>
+                             
+                               </div>
                            </td>
                        </tr>
                        <tr>
@@ -353,12 +401,13 @@
                    </tbody>
                </table>
                <div id="totalprice">
-                    <strong>총 상품금액</strong>
-                    (수량) : 
+                    <strong>총 상품금액</strong>               
                     <span>
-                        <strong>
-                            <em>KRW ${goods.goods_price}</em>
+                    	
+                        <strong>                    
+                            <em id="total_amount">${goods.goods_price}</em>
                         </strong>
+                       원
                     </span>
                  
                </div>

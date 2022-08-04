@@ -184,6 +184,36 @@ section #detailarea #detailright table tbody tr td {
   border-top: 1px solid #e8e8e8;
 }
 
+
+/* section #detailarea #detailright table tbody tr td #cart_goods_qty {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  margin: 0 1px 0 0;
+  text-align: left;
+}
+ */
+section #detailarea #detailright table tbody tr td #cart_goods_qty #quantity {
+  width: 28px;
+  height: 23px;
+  padding: 0 0 0 5px;
+  line-height: 25px;
+  border: 1px solid #d4d8d9;
+  border-radius: 3px 0 0 3px;
+}
+
+.quantity_up {
+  position: absolute;
+/*   left: 27px;
+  top: 0; */
+}
+
+.quantity_down {
+  position: absolute;
+  bottom: 275px;
+}
+
+
 section #detailarea #detailright table tbody tr td ul {
   display: block;
 }
@@ -235,9 +265,19 @@ section #detailarea #detailright #totalprice {
   font-size: 12px;
 }
 
+section #detailarea #detailright #totalprice span{
+	  font-style: normal;
+  font-size: 18px;
+    color: #1a1a1a;
+    margin-right: 10px;
+    font-weight: 900;
+    font-family: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
 section #detailarea #detailright #totalprice span > strong > em {
   font-style: normal;
   font-size: 18px;
+  margin-left:15px;
 }
 
 section #detailarea #detailright #detailbtn {
