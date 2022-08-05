@@ -14,6 +14,7 @@
 		 <typeAlias type="com.jin.shop01.goods.vo.GoodsVO" alias="goodsVO" />
 		<typeAlias type="com.jin.shop01.goods.vo.ImageFileVO" alias="imageFileVO" />
 	    <typeAlias type="com.jin.shop01.cart.vo.CartVO" alias="cartVO" />
+	        <typeAlias type="com.jin.shop01.order.vo.OrderVO" alias="orderVO" />
 	</typeAliases>
 	
 	
