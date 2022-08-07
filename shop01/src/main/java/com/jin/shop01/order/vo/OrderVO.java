@@ -15,7 +15,6 @@ public class OrderVO {
 	private int order_goods_qty; //최종 주문  제품 수
 	private String orderer_name;
 	private String receiver_name;
-	private String receiver_hp;
 	private String receiver_tel;
 
 	private String delivery_address;
@@ -133,12 +132,6 @@ public class OrderVO {
 	
 	
 	
-	public String getReceiver_hp() {
-		return receiver_hp;
-	}
-	public void setReceiver_hp1(String receiver_hp) {
-		this.receiver_hp = receiver_hp;
-	}
 
 	
 	

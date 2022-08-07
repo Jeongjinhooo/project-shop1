@@ -89,12 +89,12 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 				int goods_id = goodsVO.getGoods_id();
 				if(goods_id==Integer.parseInt(cart_goods[0])) {
 					OrderVO _orderVO=new OrderVO();
-					String goods_title=goodsVO.getGoods_title();
-					int goods_sales_price=goodsVO.getGoods_sales_price();
+					String goods_name=goodsVO.getGoods_name();
+					int goods_price=goodsVO.getGoods_price();
 					String goods_fileName=goodsVO.getGoods_fileName();
 					_orderVO.setGoods_id(goods_id);
-					_orderVO.setGoods_title(goods_title);
-					_orderVO.setGoods_sales_price(goods_sales_price);
+					_orderVO.setGoods_name(goods_name);
+					_orderVO.setGoods_price(goods_price);
 					_orderVO.setGoods_fileName(goods_fileName);
 					_orderVO.setOrder_goods_qty(Integer.parseInt(cart_goods[1]));
 					myOrderList.add(_orderVO);
@@ -115,23 +115,19 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		HttpSession session=request.getSession();
 		MemberVO memberVO=(MemberVO)session.getAttribute("orderer");
-		String member_id=memberVO.getMember_id();
-		String orderer_name=memberVO.getMember_name();
-		String orderer_hp = memberVO.getHp1()+"-"+memberVO.getHp2()+"-"+memberVO.getHp3();
+		String userid=memberVO.getUserid();
+		String orderer_name=memberVO.getUsername();
+		int orderer_Tel = memberVO.getTel();
 		List<OrderVO> myOrderList=(List<OrderVO>)session.getAttribute("myOrderList");
 		
 		for(int i=0; i<myOrderList.size();i++){
 			OrderVO orderVO=(OrderVO)myOrderList.get(i);
-			orderVO.setMember_id(member_id);
+			orderVO.setUserid(userid);
 			orderVO.setOrderer_name(orderer_name);
 			orderVO.setReceiver_name(receiverMap.get("receiver_name"));
 			
-			orderVO.setReceiver_hp1(receiverMap.get("receiver_hp1"));
-			orderVO.setReceiver_hp2(receiverMap.get("receiver_hp2"));
-			orderVO.setReceiver_hp3(receiverMap.get("receiver_hp3"));
-			orderVO.setReceiver_tel1(receiverMap.get("receiver_tel1"));
-			orderVO.setReceiver_tel2(receiverMap.get("receiver_tel2"));
-			orderVO.setReceiver_tel3(receiverMap.get("receiver_tel3"));
+			orderVO.setReceiver_tel(receiverMap.get("receiver_tel"));
+
 			
 			orderVO.setDelivery_address(receiverMap.get("delivery_address"));
 			orderVO.setDelivery_message(receiverMap.get("delivery_message"));

@@ -17,10 +17,9 @@
 		
 		<result property="orderer_name" column="orderer_name" />
 		<result property="receiver_name" column="receiver_name" />
-		<result property="receiver_hp" column="receiver_hp" />
 
 		
-		<result property="receiver_tel" column="receiver_tel1" />
+		<result property="receiver_tel" column="receiver_tel" />
 		<result property="delivery_address" column="delivery_address" />
 		<result property="delivery_message" column="delivery_message" />
 		
@@ -61,8 +60,7 @@
 									    order_goods_qty,
 									    goods_sales_price,
 									    orderer_name,
-									    receiver_name,
-									    receiver_hp,					                   
+									    receiver_name,					                   
 					                    receiver_tel,
 					                    delivery_address,
 					                    delivery_message,
@@ -83,7 +81,6 @@
 									    #{goods_sales_price},
 									    #{orderer_name},
 									    #{receiver_name},
-									    #{receiver_hp},
 					                    #{receiver_tel},
 					                    #{delivery_address},
 					                    #{delivery_message},

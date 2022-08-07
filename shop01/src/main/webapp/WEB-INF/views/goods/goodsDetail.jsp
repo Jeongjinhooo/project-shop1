@@ -120,9 +120,9 @@
 		}); //end ajax	
 	}
 
-//---------------------
+//---------------------주문하기
 	
-  /*  function fn_order_each_goods(goods_id,goods_name,goods_price,fileName){
+    function fn_order_each_goods(goods_id,goods_name,goods_price,fileName){
 	var _isLogOn=document.getElementById("isLogOn");
 	var isLogOn=_isLogOn.value;
 	
@@ -132,7 +132,7 @@
 	
 	
 		var total_price,final_total_price;
-		var order_goods_qty=document.getElementById("order_goods_qty");
+		var order_goods_qty=document.getElementById("quantity");
 		
 	var formObj=document.createElement("form");
 	var i_goods_id = document.createElement("input"); 
@@ -164,7 +164,7 @@
     formObj.method="post";
     formObj.action="${pageContext.request.contextPath}/order/orderEachGoods.do"; 
     formObj.submit();
-	}	  */
+	}	  
 </script>
  
    <style>
@@ -412,7 +412,7 @@
                  
                </div>
                   <div id="detailbtn">
-                        <button id="detailbtn_buy">BUY NOW</button>
+                  		<a id="detailbtn_buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_name }','${goods.goods_price}','${goods.goods_fileName}');">BUY NOW</a>
                        	<a id="detailbtn_cart" href="javascript:add_cart('${goods.goods_id}')">CART</a>
                     </div>
             </div>
@@ -496,3 +496,4 @@
     </div>
   </body>
 </html>
+<input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}"/>

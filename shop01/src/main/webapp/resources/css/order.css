@@ -266,8 +266,8 @@ section
   #prdBox
   #thumbnail {
   overflow: hidden;
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 121px;
   margin-right: 20px;
   border: 1px solid #d7d5d5;
   box-sizing: border-box;
@@ -298,6 +298,9 @@ section
   -ms-flex: 1;
   flex: 1;
   margin-top: -3px;
+      display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 section
@@ -308,11 +311,11 @@ section
   #prdBox
   #description
   a {
-  font-size: 13px;
+  font-size: 14px;
   font-family: "Montserrat", "Noto Sans KR", sans-serif;
 }
 
-section
+/* section
   #sectioninner
   #orderinner
   #orderProduct
@@ -321,7 +324,7 @@ section
   #description
   #info {
   margin: 0 0 14px;
-}
+} */
 
 section
   #sectioninner
@@ -550,7 +553,7 @@ section
   height: 25px;
   border: 0;
   cursor: pointer;
-  background: url(/img/section/bg_radio.png) no-repeat 0 0;
+  background: url(${pageContext.request.contextPath}/resources/img/section/bg_radio.png) no-repeat 0 0;
   background-size: 25px 25px;
   -webkit-appearance: none;
 }
@@ -565,7 +568,7 @@ section
   #paymethod_inner
   span
   input:not(:disabled):checked[type="radio"] {
-  background-image: url(/img/section/bg_radio_checked.png);
+  background-image: url(${pageContext.request.contextPath}/resources/img/section/bg_radio_checked.png);
   -webkit-appearance: none;
 }
 
