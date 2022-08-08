@@ -51,7 +51,7 @@
 	    	select order_seq_num.nextval from dual
 	    </selectKey>
 	    <![CDATA[
-			insert into t_shopping_order(order_seq_num,
+			insert into shopping_order(order_seq_num,
 			                            order_id,
 										  userid,
 									    goods_id,

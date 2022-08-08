@@ -235,6 +235,25 @@ section
   height: 75px;
 }
 
+section
+  #sectioninner
+  #orderinner
+  #shippingaddress
+  #shipping_message
+  #omessageInput #delivery_message {
+  width: 100%;
+  max-width: 100%;
+  padding: 7px;
+  font-weight: inherit;
+  border: 1px solid #d7d5d5;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  resize: none;
+  margin-top: 10px;
+  height: 75px;
+}
+
 section #sectioninner #orderinner #orderProduct {
   position: relative;
   margin: 0 0 10px;

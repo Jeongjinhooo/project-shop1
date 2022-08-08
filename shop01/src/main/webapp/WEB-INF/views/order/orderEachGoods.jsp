@@ -9,7 +9,6 @@
 <c:set  var="orderer_hp" value=""/>
 <!-- 최종 결제 금액 -->
 <c:set var="final_total_order_price" value="0" />
-
 <!-- 총주문 금액 -->
 <c:set var="total_order_price" value="0" />
 <!-- 총 상품수 -->
@@ -45,7 +44,6 @@
     />
 
     <!-- font-family: "Montserrat", sans-serif; -->
-    <script defer src="js/script.js"></script>
        <style>
    header #h_sec02 #left_icon_menu ul .menu_btn a{background: url('${pageContext.request.contextPath}/resources/img/header/all_cate_icon.png') no-repeat;}
    section
@@ -83,8 +81,64 @@ section
 }
    </style>
   </head>
+  
+  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+      <script defer src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+ 	 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+   <script type="text/javascript">
+<!--------------------------------주소검색---------------------------->
+     function execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-<script>
+                // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+                // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+                if(fullRoadAddr !== ''){
+                    fullRoadAddr += extraRoadAddr;
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('roadAddress').value = fullRoadAddr;
+                document.getElementById('jibunAddress').value = data.jibunAddress;
+
+                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                if(data.autoRoadAddress) {
+                    //예상되는 도로명 주소에 조합형 주소를 추가한다.
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+
+                } else if(data.autoJibunAddress) {
+                    var expJibunAddr = data.autoJibunAddress;
+                    document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+
+                } else {
+                	  self.close()  
+                }
+            }
+        }).open();
+    }
+     
+    
+    <!--------------------------------주문하기---------------------------->
   window.onload=function()
   {
     init();
@@ -632,36 +686,51 @@ function fn_process_pay_order(){
                     <tr>
                       <th>받는사람</th>
                       <td>
-                        <input type="text" />
+                     <input id="receiver_name" name="receiver_name" type="text" size="40" value="${orderer.username }" />
+					   <input type="hidden" id="h_orderer_name" name="h_orderer_name"  value="${orderer.username }" /> 
+					   <input type="hidden" id="h_receiver_name" name="h_receiver_name"  value="${orderer.username }" /> 
                       </td>
                     </tr>
                     <tr>
                       <th>주소</th>
                       <td>
                         <ul>
-                          <li>
-                            <input type="text" />
-                            <button id="zipcode_searchbtn">주소검색</button>
+                     <li>
+               <input type="text" id="zipcode" name="zipcode" size="5"
+						value="${orderer.zipcode }"> 
+						 <input type="hidden" id="h_zipcode" name="h_zipcode" value="${orderer.zipcode }" /> 
+                           	<a id="zipcode_searchbtn" href="javascript:execDaumPostcode()">주소검색</a>     
+                           	             
                           </li>
                           <li>
-                            <input type="text" />
+                            <input type="text" id="roadAddress" name="roadAddress" size="50" value="${orderer.roadAddress }" />
+                            		 <input type="hidden"  id="h_roadAddress" name="h_roadAddress"  value="${orderer.roadAddress }" /> 
                           </li>
                           <li>
-                            <input type="text" />
-                          </li>
+                            <input type="hidden" id="jibunAddress" name="jibunAddress" size="50"
+								              value="${orderer.jibunAddress }" />
+								              	 <input type="hidden"  id="h_jibunAddress" name="h_jibunAddress" value="${orderer.jibunAddress }" /> 
+								              	         </li>
+								              	         <li>
+							  <input type="text" id="namujiAddress"  name="namujiAddress" size="50"
+								     value="${orderer.namujiAddress }" />                                     											
+						 <input type="hidden"  id="h_namujiAddress" name="h_namujiAddress" value="${orderer.namujiAddress }" /> 
+						 </li> 
                         </ul>
                       </td>
                     </tr>
                     <tr>
                       <th>휴대전화</th>
                       <td>
-                        <input type="text" />
+                  		 <input size="10px" type="text" id="hp" name="hp" value="${orderer.tel }"> 
+                        		  <input type="hidden" id="h_hp" name="h_hp" value="${orderer.tel}" /> 
+                        	  <c:set  var="orderer_hp" value="${orderer.tel}"/>
                       </td>
                     </tr>
                     <tr>
                       <th>이메일</th>
                       <td>
-                        <input type="text" />
+                      	 <input  type="text" value="${orderer.email}" size="15" />
                       </td>
                     </tr>
                   </tbody>
@@ -689,10 +758,14 @@ function fn_process_pay_order(){
                   </option>
                   <option value="oMessage-input" selected="selected">
                     직접입력
+                    
                   </option>
                 </select>
                 <div id="omessageInput">
-                  <textarea name="omessage" id="omessage" cols="70"></textarea>
+  <!--                 <textarea name="omessage" id="omessage" cols="70"></textarea>
+                   -->
+                   			   <input id="delivery_message" name="delivery_message" type="text" size="50"
+						                   placeholder="택배 기사님께 전달할 메시지를 남겨주세요." />
                 </div>
               </div>
             </div>
@@ -714,7 +787,8 @@ function fn_process_pay_order(){
                     <tr>
                       <th>주문상품</th>
                       <td>
-                        <span>KRW 79,000</span>
+                      	<span id="p_totalPrice">KRW ${total_order_price}</span> 
+               <input id="h_totalPrice" type="hidden" value="${total_order_price}" />           
                       </td>
                     </tr>
                     <tr>
@@ -737,7 +811,8 @@ function fn_process_pay_order(){
                   <h3>결제금액</h3>
                   <strong>
                     KRW
-                    <span>79,000</span>
+                    <span>${final_total_order_price}원</span>                   		
+				<input id="h_final_total_Price" type="hidden" value="${final_total_order_price}" />
                   </strong>
                 </div>
               </div>
@@ -802,7 +877,7 @@ function fn_process_pay_order(){
               </div>
             </div>
             <div id="orderbtn">
-              <button>
+              <button onclick="javascript:fn_show_order_detail();">
                 <span>결제하기</span>
               </button>
             </div>

@@ -8,11 +8,14 @@
 		<result property="userid" column="userid" />
         <result property="userpw" column="userpw" />
         <result property="username" column="username" />
-        <result property="useraddress" column="useraddress" />
         <result property="email" column="email" />
         <result property="tel" column="tel" />
         <result property="birthDate" column="birthDate" />
         <result property="regDate" column="regDate" />
+        <result property="zipcode" column="zipcode" />
+		<result property="roadAddress" column="roadAddress" />
+		<result property="jibunAddress" column="jibunAddress" />
+		<result property="namujiAddress" column="namujiAddress" />
        
 	</resultMap> 
 	
@@ -32,21 +35,29 @@
   <![CDATA[
     	insert into member(			 userid,
 				 					 userpw,
-                                     username,
-                                     useraddress,
+                                     username,                               
                                      email,
                                      tel,
                                      birthDate,
-                                     regDate)
+                                     regDate,
+                                     zipcode,
+                                     roadAddress,
+                                     jibunAddress,
+                                     namujiAddress)
+                                     
                                      
 							 values(#{userid},
 									#{userpw},
 									#{username},
-                                 	#{useraddress},
                                     #{email},
                                     #{tel},
-                                    #{birthDate},
-                                    SYSDATE)
+                                    #{birthDate},                                   
+                                    SYSDATE,
+                                    #{zipcode},
+                                    #{roadAddress},
+                                    #{jibunAddress},
+                                    #{namujiAddress}
+                                    )
    ]]>      
   </insert>
   

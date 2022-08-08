@@ -9,11 +9,14 @@ public class MemberVO{
 	private String userid;
 	private String userpw;
 	private String username;
-	private String useraddress;
 	private String email;
 	private int tel;
 	private String birthDate;
 	private String regDate;
+	private String zipcode;
+	private String roadAddress;
+	private String jibunAddress;
+	private String namujiAddress;
 			 
     /* getters and setters */
 	public String getUserid() {
@@ -39,14 +42,9 @@ public class MemberVO{
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
 
-	public String getUseradderss() {
-		return useraddress;
-	}
 
-	public void setUseraddress(String useraddress) {
-		this.useraddress = useraddress;
-	}
 
 	public String getEmail() {
 		return email;
@@ -79,5 +77,35 @@ public class MemberVO{
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
+	
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+	
+	
+	public String getRoadAddress() {
+		return roadAddress;
+	}
+	public void setRoadAddress(String roadAddress) {
+		this.roadAddress = roadAddress;
+	}
+	public String getJibunAddress() {
+		return jibunAddress;
+	}
+	public void setJibunAddress(String jibunAddress) {
+		this.jibunAddress = jibunAddress;
+	}
+    
+	
+	public String getNamujiAddress() {
+		return namujiAddress;
+	}
+	public void setNamujiAddress(String namujiAddress) {
+		this.namujiAddress = namujiAddress;
+	}
+	
 
 }
