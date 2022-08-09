@@ -10,7 +10,7 @@ public class MemberVO{
 	private String userpw;
 	private String username;
 	private String email;
-	private int tel;
+	private String tel;
 	private String birthDate;
 	private String regDate;
 	private String zipcode;
@@ -54,11 +54,11 @@ public class MemberVO{
 		this.email = email;
 	}
 
-	public int getTel() {
+	public String getTel() {
 		return tel;
 	}
 
-	public void setTel(int tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 

@@ -32,6 +32,7 @@ public class OrderVO {
 	private int goods_qty;
 	private String goods_fileName;
 	private String orderer_hp;
+	private String goods_color;
 	
 	
 	
@@ -211,6 +212,13 @@ public class OrderVO {
 		this.orderer_hp = orderer_hp;
 	}
 	
+	public String getGoods_color() {
+		return goods_color;
+	}
+
+	public void setGoods_color(String goods_color) {
+		this.goods_color = goods_color;
+	}
 	
 
 }

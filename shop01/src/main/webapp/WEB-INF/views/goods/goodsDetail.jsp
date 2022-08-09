@@ -122,7 +122,7 @@
 
 //---------------------주문하기
 	
-    function fn_order_each_goods(goods_id,goods_name,goods_price,fileName){
+    function fn_order_each_goods(goods_id,goods_name,goods_price,fileName,goods_color){
 	var _isLogOn=document.getElementById("isLogOn");
 	var isLogOn=_isLogOn.value;
 	
@@ -139,13 +139,15 @@
     var i_goods_name = document.createElement("input");
     var i_goods_price=document.createElement("input");
     var i_fileName=document.createElement("input");
+    var i_goods_color=document.createElement("input");
     var i_order_goods_qty=document.createElement("input");
     
-    
+
     i_goods_id.name="goods_id";
     i_goods_name.name="goods_name";
     i_goods_price.name="goods_price";
     i_fileName.name="goods_fileName";
+    i_goods_color.name ="goods_color";
     i_order_goods_qty.name="order_goods_qty";
     
     i_goods_id.value=goods_id;
@@ -153,11 +155,13 @@
     i_goods_name.value=goods_name;
     i_goods_price.value=goods_price;
     i_fileName.value=fileName;
+    i_goods_color.value=goods_color;
     
     formObj.appendChild(i_goods_id);
     formObj.appendChild(i_goods_name);
     formObj.appendChild(i_goods_price);
     formObj.appendChild(i_fileName);
+	formObj.appendChild(i_goods_color);
     formObj.appendChild(i_order_goods_qty);
 
     document.body.appendChild(formObj); 
@@ -412,7 +416,7 @@
                  
                </div>
                   <div id="detailbtn">
-                  		<a id="detailbtn_buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_name }','${goods.goods_price}','${goods.goods_fileName}');">BUY NOW</a>
+                  		<a id="detailbtn_buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_name }','${goods.goods_price}','${goods.goods_fileName}','${goods.goods_color}');">BUY NOW</a>
                        	<a id="detailbtn_cart" href="javascript:add_cart('${goods.goods_id}')">CART</a>
                     </div>
             </div>

@@ -117,7 +117,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		MemberVO memberVO=(MemberVO)session.getAttribute("orderer");
 		String userid=memberVO.getUserid();
 		String orderer_name=memberVO.getUsername();
-		int orderer_Tel = memberVO.getTel();
+		String orderer_Tel = memberVO.getTel();
 		List<OrderVO> myOrderList=(List<OrderVO>)session.getAttribute("myOrderList");
 		
 		for(int i=0; i<myOrderList.size();i++){

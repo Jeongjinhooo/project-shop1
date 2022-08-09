@@ -644,7 +644,7 @@ function fn_process_pay_order(){
                     </strong>
                     <ul id="info">
                       <li>
-                        <p>[옵션: C/BLUE / S]</p>
+                        <p>[옵션: ${item.goods_color} / S]</p>
                       </li>
                       <li>  수량 : ${item.order_goods_qty }개
 					    <input   type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.order_goods_qty}" />
