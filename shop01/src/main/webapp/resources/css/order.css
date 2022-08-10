@@ -240,7 +240,7 @@ section
   #orderinner
   #shippingaddress
   #shipping_message
-  #omessageInput #delivery_message {
+  #messageinput #directinput {
   width: 100%;
   max-width: 100%;
   padding: 7px;

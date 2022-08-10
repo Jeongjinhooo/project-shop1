@@ -133,7 +133,10 @@
 	
 		var total_price,final_total_price;
 		var order_goods_qty=document.getElementById("quantity");
+		var order_goods_size = $("input:radio[name=size]:checked").val();
 		
+		console.log(order_goods_size);
+
 	var formObj=document.createElement("form");
 	var i_goods_id = document.createElement("input"); 
     var i_goods_name = document.createElement("input");
@@ -141,21 +144,23 @@
     var i_fileName=document.createElement("input");
     var i_goods_color=document.createElement("input");
     var i_order_goods_qty=document.createElement("input");
+    var i_order_goods_size=document.createElement("input");
     
-
     i_goods_id.name="goods_id";
     i_goods_name.name="goods_name";
     i_goods_price.name="goods_price";
     i_fileName.name="goods_fileName";
     i_goods_color.name ="goods_color";
     i_order_goods_qty.name="order_goods_qty";
+    i_order_goods_size.name="order_goods_size";
     
     i_goods_id.value=goods_id;
-    i_order_goods_qty.value=order_goods_qty.value;
     i_goods_name.value=goods_name;
     i_goods_price.value=goods_price;
     i_fileName.value=fileName;
     i_goods_color.value=goods_color;
+    i_order_goods_qty.value=order_goods_qty.value;
+    i_order_goods_size.value = order_goods_size;
     
     formObj.appendChild(i_goods_id);
     formObj.appendChild(i_goods_name);
@@ -163,6 +168,7 @@
     formObj.appendChild(i_fileName);
 	formObj.appendChild(i_goods_color);
     formObj.appendChild(i_order_goods_qty);
+    formObj.appendChild(i_order_goods_size);
 
     document.body.appendChild(formObj); 
     formObj.method="post";

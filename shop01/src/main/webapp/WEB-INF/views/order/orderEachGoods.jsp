@@ -79,6 +79,12 @@ section
   background-image: url(${pageContext.request.contextPath}/resources/img/section/bg_radio_checked.png);
   -webkit-appearance: none;
 }
+
+section #sectioninner #orderinner #shippingaddress #shipping_message select {
+  background: #fff url(${pageContext.request.contextPath}/resources/img/section/ico_select.gif) no-repeat 100% 50%;
+  background-size: auto 40px;
+}
+
    </style>
   </head>
   
@@ -136,6 +142,19 @@ section
             }
         }).open();
     }
+     
+    <!---------배송메세지 직접입력 보이게 ------->
+    function handleOnChange(e) {
+        // 선택된 데이터 가져오기
+        const value = e.value;
+
+        // 데이터 출력
+        if (value == "Messageinput") {
+          document.getElementById("messageinput").classList.replace('disno', 'disbl');
+        } else {
+          document.getElementById("messageinput").classList.replace('disbl', 'disno');
+        }
+      }
      
     
     <!--------------------------------주문하기---------------------------->
@@ -376,9 +395,9 @@ function fn_show_order_detail(){
 	var i_roadAddress=document.getElementById("roadAddress");
 	var i_jibunAddress=document.getElementById("jibunAddress");
 	var i_namujiAddress=document.getElementById("namujiAddress");
-	var i_delivery_message=document.getElementById("delivery_message");
+	var i_delivery_message= $("#delivery_message option:selected").val();
 	var i_pay_method=document.getElementById("pay_method");
-
+console.log(i_delivery_message);
 //	alert("총주문 금액:"+total_order_goods_price);
 	order_goods_qty=h_order_goods_qty.value;
 	//order_total_price=h_order_total_price.value;
@@ -644,7 +663,7 @@ function fn_process_pay_order(){
                     </strong>
                     <ul id="info">
                       <li>
-                        <p>[옵션: ${item.goods_color} / S]</p>
+                        <p>[옵션: ${item.goods_color} / ${item.order_goods_size}]</p>
                       </li>
                       <li>  수량 : ${item.order_goods_qty }개
 					    <input   type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.order_goods_qty}" />
@@ -736,35 +755,33 @@ function fn_process_pay_order(){
                   </tbody>
                 </table>
               </div>
-              <div id="shipping_message">
-                <select name="omessage_select" id="omessage_select">
-                  <option value="oMessage-0" selected="selected">
+            <div id="shipping_message">
+                <select name="delivery_message" id="delivery_message" onchange="handleOnChange(this)">
+                  <option value="Message0" selected="selected">
                     --메시지 선택 (선택사항)--
                   </option>
-                  <option value="oMessage-1" selected="selected">
+                  <option value="Message1">
                     배송 전에 미리 연락바랍니다.
                   </option>
-                  <option value="oMessage-2" selected="selected">
+                  <option value="Message2">
                     부재 시 경비실에 맡겨주세요.
                   </option>
-                  <option value="oMessage-3" selected="selected">
+                  <option value="Message3">
                     부재 시 문 앞에 놓아주세요.
                   </option>
-                  <option value="oMessage-4" selected="selected">
+                  <option value="Message4"">
                     빠른 배송 부탁드립니다.
                   </option>
-                  <option value="oMessage-5" selected="selected">
+                  <option value="Message5">
                     택배함에 보관해 주세요.
                   </option>
-                  <option value="oMessage-input" selected="selected">
+                  <option value="Messageinput">
                     직접입력
                     
                   </option>
                 </select>
-                <div id="omessageInput">
-  <!--                 <textarea name="omessage" id="omessage" cols="70"></textarea>
-                   -->
-                   			   <input id="delivery_message" name="delivery_message" type="text" size="50"
+                <div id="messageinput" class="disno">
+                   			   <input id="directinput" name="directinput" type="text" size="50"
 						                   placeholder="택배 기사님께 전달할 메시지를 남겨주세요." />
                 </div>
               </div>

@@ -37,6 +37,7 @@
 		<result property="orderer_hp" column="orderer_hp" />
 		<result property="goods_fileName" column="goods_fileName" />
 				<result property="goods_color" column="goods_color" />
+				<result property="order_goods_size" column="order_goods_size" />
 	</resultMap>
 	
 	 <select id="selectMyOrderList" resultMap="orderGoodsResult"  parameterType="orderVO"  >
@@ -72,7 +73,8 @@
 						                card_pay_month,
 						                orderer_hp,
 						                pay_orderer_hp_num,
-						                goods_color)
+						                goods_color,
+						                order_goods_size)
 							     values(#{order_seq_num},
 							            #{order_id},
 									    #{userid},
@@ -93,7 +95,8 @@
 						                #{card_pay_month},
 						                #{orderer_hp},
 						                #{pay_orderer_hp_num},
-						                #{goods_color})
+						                #{goods_color},
+						                  #{order_goods_size})
     	]]>
 	</insert>
 

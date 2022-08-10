@@ -33,6 +33,7 @@ public class OrderVO {
 	private String goods_fileName;
 	private String orderer_hp;
 	private String goods_color;
+	private String order_goods_size;
 	
 	
 	
@@ -220,5 +221,12 @@ public class OrderVO {
 		this.goods_color = goods_color;
 	}
 	
+	public String getOrder_goods_size() {
+		return order_goods_size;
+	}
+
+	public void setOrder_goods_size(String order_goods_size) {
+		this.order_goods_size = order_goods_size;
+	}
 
 }
