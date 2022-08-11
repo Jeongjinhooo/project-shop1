@@ -117,7 +117,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		MemberVO memberVO=(MemberVO)session.getAttribute("orderer");
 		String userid=memberVO.getUserid();
 		String orderer_name=memberVO.getUsername();
-		String orderer_Tel = memberVO.getTel();
+		String orderer_hp = memberVO.getTel();
 		List<OrderVO> myOrderList=(List<OrderVO>)session.getAttribute("myOrderList");
 		
 		for(int i=0; i<myOrderList.size();i++){
@@ -132,11 +132,12 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 			orderVO.setDelivery_address(receiverMap.get("delivery_address"));
 			orderVO.setDelivery_message(receiverMap.get("delivery_message"));
 			orderVO.setDelivery_method(receiverMap.get("delivery_method"));
-			orderVO.setGift_wrapping(receiverMap.get("gift_wrapping"));
 			orderVO.setPay_method(receiverMap.get("pay_method"));
-			orderVO.setCard_com_name(receiverMap.get("card_com_name"));
-			orderVO.setCard_pay_month(receiverMap.get("card_pay_month"));
-			orderVO.setPay_orderer_hp_num(receiverMap.get("pay_orderer_hp_num"));	
+			/*
+			 * orderVO.setCard_com_name(receiverMap.get("card_com_name"));
+			 * orderVO.setCard_pay_month(receiverMap.get("card_pay_month"));
+			 * orderVO.setPay_orderer_hp_num(receiverMap.get("pay_orderer_hp_num"));
+			 */	
 //			orderVO.setOrderer_hp(orderer_hp);	
 			myOrderList.set(i, orderVO); //각 orderVO에 주문자 정보를 세팅한 후 다시 myOrderList에 저장한다.
 		}//end for
@@ -144,7 +145,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	    orderService.addNewOrder(myOrderList);
 		mav.addObject("myOrderInfo",receiverMap);//OrderVO로 주문결과 페이지에  주문자 정보를 표시한다.
 		mav.addObject("myOrderList", myOrderList);
-		return mav;
+		return mav; 
 	}
 	
 
