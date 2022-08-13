@@ -61,6 +61,145 @@ section #sectioninner #orderinner {
   background: #e3e4e7;
 }
 
+
+section #sectioninner #orderinner #ordererInfo {
+  position: relative;
+  margin: 0 0 10px;
+  padding: 0;
+  border: 1px solid #d7d5d5;
+  border-width: 1px 1px 1px 0px;
+  background: #fff;
+}
+
+section #sectioninner #orderinner #ordererInfo #ordererInfo_contents {
+  border-top: 1px solid #eaeaea;
+}
+
+section #sectioninner #orderinner #ordererInfo #ordererInfo_contents table {
+  margin: 15px 0 15px 0;
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  line-height: 1.5;
+}
+
+section
+  #sectioninner
+  #orderinner
+  #shippingaddress
+  #shipping_contents
+  table
+  #shipping_select
+  input {
+  width: 13px;
+  height: 13px;
+  margin-right: 6px;
+}
+
+section
+  #sectioninner
+  #orderinner
+  #ordererInfo
+  #ordererInfo_contents
+  table
+  tbody
+  th {
+  padding: 14px 0 14px 14px;
+  font-weight: normal;
+  text-align: left;
+  vertical-align: top;
+  background-color: #fff;
+  font-size: 14px;
+  color: #222;
+  line-height: 24px;
+}
+
+section
+  #sectioninner
+  #orderinner
+  #ordererInfo
+  #ordererInfo_contents
+  table
+  tbody
+  td {
+  padding: 8px 14px 7px 8px;
+  border: 0;
+  background-color: #fff;
+  font-size: 14px;
+  color: #888;
+  line-height: 24px;
+}
+
+section
+  #sectioninner
+  #orderinner
+  #ordererInfo
+  #ordererInfo_contents
+  table
+  tbody
+  td
+  input {
+  height: 40px;
+  width: 40%;
+  padding: 7px;
+  font-weight: inherit;
+  border: 1px solid #d7d5d5;
+  outline-style: none;
+  line-height: 16px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+section #sectioninner #orderinner #ordererInfo #ordererInfo_contents table ul {
+  margin: -5px -14px -5px -8px;
+}
+
+section
+  #sectioninner
+  #orderinner
+  #ordererInfo
+  #ordererInfo_contents
+  table
+  ul
+  li {
+  padding: 5px 14px 5px 8px;
+  line-height: 27px;
+}
+
+section
+  #sectioninner
+  #orderinner
+  #ordererInfo
+  #ordererInfo_contents
+  table
+  ul
+  li:first-child {
+  width: 240px;
+  display: flex;
+  align-items: center;
+}
+
+section
+  #sectioninner
+  #orderinner
+  #ordererInfo
+  #ordererInfo_contents
+  table
+  ul
+  li
+  #zipcode_searchbtn {
+  border: 1px solid #adadad;
+  color: #222;
+  width: 110px;
+  height: 36px;
+  text-align: center;
+  padding: 0;
+  line-height: 34px;
+  font-family: "NanumBarunGothic", sans-serif;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
 section #sectioninner #orderinner #shippingaddress {
   position: relative;
   margin: 0 0 10px;

@@ -157,7 +157,7 @@ section #sectioninner #orderinner #shippingaddress #shipping_message select {
       }
      
     
-    <!--------------------------------주문하기---------------------------->
+    <!--------------------------------기본배송지 새로입력---------------------------->
   window.onload=function()
   {
     init();
@@ -174,6 +174,7 @@ section #sectioninner #orderinner #shippingaddress #shipping_message select {
 	function reset_all() {
 		var e_receiver_name = document.getElementById("receiver_name");
 		var e_tel = document.getElementById("tel");
+		var e_email = document.getElementById("email")
 
 
 		var e_zipcode = document.getElementById("zipcode");
@@ -183,6 +184,7 @@ section #sectioninner #orderinner #shippingaddress #shipping_message select {
 
 		e_receiver_name.value = "";
 		e_tel.value = "";
+		e_email.value = "";
 		e_zipcode.value = "";
 		e_roadAddress.value = "";
 		e_jibunAddress.value = "";
@@ -193,6 +195,7 @@ section #sectioninner #orderinner #shippingaddress #shipping_message select {
 		var e_receiver_name = document.getElementById("receiver_name");
 
 		var e_tel = document.getElementById("tel");
+		var e_email = document.getElementById("email");
 
 
 		var e_zipcode = document.getElementById("zipcode");
@@ -204,17 +207,19 @@ section #sectioninner #orderinner #shippingaddress #shipping_message select {
 
 
 		var h_tel = document.getElementById("h_tel");
+		var h_email = document.getElementById("h_email");
 
 
 		var h_zipcode = document.getElementById("h_zipcode");
 		var h_roadAddress = document.getElementById("h_roadAddress");
 		var h_jibunAddress = document.getElementById("h_jibunAddress");
 		var h_namujiAddress = document.getElementById("h_namujiAddress");
-		//alert(e_receiver_name.value);
+
 		e_receiver_name.value = h_receiver_name.value;
 
 
 		e_tel.value = h_tel.value;
+		e_email.value = h_email.value;
 
 		e_zipcode.value = h_zipcode.value;
 		e_roadAddress.value = h_roadAddress.value;
@@ -223,23 +228,7 @@ section #sectioninner #orderinner #shippingaddress #shipping_message select {
 
 	}
 	
-/*  function fn_pay_phone(){
-	
-	
-	var e_card=document.getElementById("tr_pay_card");
-	var e_phone=document.getElementById("tr_pay_phone");
-	e_card.style.visibility="hidden";
-	e_phone.style.visibility="visible";
-}
-
-function fn_pay_card(){
-	var e_card=document.getElementById("tr_pay_card");
-	var e_phone=document.getElementById("tr_pay_phone");
-	e_card.style.visibility="visible";
-	e_phone.style.visibility="hidden";
-} */
- 
-
+////-------------------------------주문하기
 
 var goods_id="";
 var goods_name="";
@@ -251,18 +240,23 @@ var total_order_goods_price;
 var total_order_goods_qty;
 var orderer_name
 var receiver_name
+var hp1;
+var hp2;
+var hp3;
 
+var tel1;
+var tel2;
+var tel3;
 
-var tel;
-
-
+var receiver_hp_num;
 var receiver_tel_num;
 var delivery_address;
 var delivery_message;
 var delivery_method;
+var gift_wrapping;
 var pay_method;
-/* var card_com_name;
-var card_pay_month; */
+var card_com_name;
+var card_pay_month;
 var pay_orderer_hp_num;
 
 function fn_show_order_detail(){
@@ -321,12 +315,19 @@ function fn_show_order_detail(){
 	  }
 	} 
 		
+	var r_gift_wrapping  =  frm.gift_wrapping;
 	
 	
+	for(var i=0; i<r_gift_wrapping.length;i++){
+	  if(r_gift_wrapping[i].checked==true){
+		  gift_wrapping=r_gift_wrapping[i].value
+		 break;
+	  }
+	} 
 	
 	var r_pay_method  =  frm.pay_method;
 	
-	/* for(var i=0; i<r_pay_method.length;i++){
+	for(var i=0; i<r_pay_method.length;i++){
 	  if(r_pay_method[i].checked==true){
 		  pay_method=r_pay_method[i].value
 		  if(pay_method=="신용카드"){
@@ -340,10 +341,10 @@ function fn_show_order_detail(){
 			pay_orderer_hp_num="해당없음";
 			
 		  }else if(pay_method=="휴대폰결제"){
-			var i_pay_order_tel=document.getElementById("pay_order_tel");
+			var i_pay_order_tel1=document.getElementById("pay_order_tel1");
 			var i_pay_order_tel2=document.getElementById("pay_order_tel2");
 			var i_pay_order_tel3=document.getElementById("pay_order_tel3");
-			pay_orderer_hp_num=i_pay_order_tel.value+"-"+
+			pay_orderer_hp_num=i_pay_order_tel1.value+"-"+
 						   	    i_pay_order_tel2.value+"-"+
 							    i_pay_order_tel3.value;
 			pay_method+="<Br>"+"결제휴대폰번호:"+pay_orderer_hp_num;
@@ -353,17 +354,21 @@ function fn_show_order_detail(){
 		 break;
 	  }// end for
 	}
-	 */
 	
-	var i_tel=document.getElementById("tel");
+	var i_hp1=document.getElementById("hp1");
+	var i_hp2=document.getElementById("hp2");
+	var i_hp3=document.getElementById("hp3");
+	
+	var i_tel1=document.getElementById("tel1");
+	var i_tel2=document.getElementById("tel2");
+	var i_tel3=document.getElementById("tel3");
 	
 	var i_zipcode=document.getElementById("zipcode");
 	var i_roadAddress=document.getElementById("roadAddress");
 	var i_jibunAddress=document.getElementById("jibunAddress");
 	var i_namujiAddress=document.getElementById("namujiAddress");
-	var i_delivery_message= $("#delivery_message option:selected").val();
+	var i_delivery_message=document.getElementById("delivery_message");
 	var i_pay_method=document.getElementById("pay_method");
-console.log(i_delivery_message);
 
 //	alert("총주문 금액:"+total_order_goods_price);
 	order_goods_qty=h_order_goods_qty.value;
@@ -371,12 +376,16 @@ console.log(i_delivery_message);
 	
 	orderer_name=h_orderer_name.value;
 	receiver_name=i_receiver_name.value;
-
+	hp1=i_hp1.value;
+	hp2=i_hp2.value;
+	hp3=i_hp3.value;
 	
-	tel=i_tel.value;
-
+	tel1=i_tel1.value;
+	tel2=i_tel2.value;
+	tel3=i_tel3.value;
 	
-	receiver_tel_num=tel;
+	receiver_hp_num=hp1+"-"+hp2+"-"+hp3;
+	receiver_tel_num=tel1+"-"+tel2+"-"+tel3;
 	
 	delivery_address="우편번호:"+i_zipcode.value+"<br>"+
 						"도로명 주소:"+i_roadAddress.value+"<br>"+
@@ -393,9 +402,11 @@ console.log(i_delivery_message);
 	var p_orderer_name=document.getElementById("p_orderer_name");
 	var p_receiver_name=document.getElementById("p_receiver_name");
 	var p_delivery_method=document.getElementById("p_delivery_method");
+	var p_receiver_hp_num=document.getElementById("p_receiver_hp_num");
 	var p_receiver_tel_num=document.getElementById("p_receiver_tel_num");
 	var p_delivery_address=document.getElementById("p_delivery_address");
 	var p_delivery_message=document.getElementById("p_delivery_message");
+	var p_gift_wrapping=document.getElementById("p_gift_wrapping");	
 	var p_pay_method=document.getElementById("p_pay_method");
 	
 	p_order_goods_id.innerHTML=goods_id;
@@ -405,10 +416,13 @@ console.log(i_delivery_message);
 	p_orderer_name.innerHTML=orderer_name;
 	p_receiver_name.innerHTML=receiver_name;
 	p_delivery_method.innerHTML=delivery_method;
+	p_receiver_hp_num.innerHTML=receiver_hp_num;
 	p_receiver_tel_num.innerHTML=receiver_tel_num;
 	p_delivery_address.innerHTML=delivery_address;
 	p_delivery_message.innerHTML=delivery_message;
+	p_gift_wrapping.innerHTML=gift_wrapping;
 	p_pay_method.innerHTML=pay_method;
+	imagePopup('open');
 }
 
 function fn_process_pay_order(){
@@ -417,53 +431,71 @@ function fn_process_pay_order(){
 	var formObj=document.createElement("form");
     var i_receiver_name=document.createElement("input");
     
-
+    var i_receiver_hp1=document.createElement("input");
+    var i_receiver_hp2=document.createElement("input");
+    var i_receiver_hp3=document.createElement("input");
    
-    var i_receiver_tel=document.createElement("input");
-
+    var i_receiver_tel1=document.createElement("input");
+    var i_receiver_tel2=document.createElement("input");
+    var i_receiver_tel3=document.createElement("input");
     
     var i_delivery_address=document.createElement("input");
     var i_delivery_message=document.createElement("input");
     var i_delivery_method=document.createElement("input");
+    var i_gift_wrapping=document.createElement("input");
     var i_pay_method=document.createElement("input");
     var i_card_com_name=document.createElement("input");
     var i_card_pay_month=document.createElement("input");
     var i_pay_orderer_hp_num=document.createElement("input");
    
     i_receiver_name.name="receiver_name";
-
-    i_receiver_tel.name="receiver_tel";
-
+    i_receiver_hp1.name="receiver_hp1";
+    i_receiver_hp2.name="receiver_hp2";
+    i_receiver_hp3.name="receiver_hp3";
+   
+    i_receiver_tel1.name="receiver_tel1";
+    i_receiver_tel2.name="receiver_tel2";
+    i_receiver_tel3.name="receiver_tel3";
    
     i_delivery_address.name="delivery_address";
     i_delivery_message.name="delivery_message";
     i_delivery_method.name="delivery_method";
+    i_gift_wrapping.name="gift_wrapping";
     i_pay_method.name="pay_method";
     i_card_com_name.name="card_com_name";
     i_card_pay_month.name="card_pay_month";
     i_pay_orderer_hp_num.name="pay_orderer_hp_num";
   
     i_receiver_name.value=receiver_name;
-
-
-    i_receiver_tel.value=tel;
-
+    i_receiver_hp1.value=hp1;
+    i_receiver_hp2.value=hp2;
+    i_receiver_hp3.value=hp3;
+    
+    i_receiver_tel1.value=tel1;
+    i_receiver_tel2.value=tel2;
+    i_receiver_tel3.value=tel3;
     ;
     i_delivery_address.value=delivery_address;
     i_delivery_message.value=delivery_message;
     i_delivery_method.value=delivery_method;
+    i_gift_wrapping.value=gift_wrapping;
     i_pay_method.value=pay_method;
     i_card_com_name.value=card_com_name;
     i_card_pay_month.value=card_pay_month;
     i_pay_orderer_hp_num.value=pay_orderer_hp_num;
     
     formObj.appendChild(i_receiver_name);
-
-    formObj.appendChild(i_receiver_tel);
+    formObj.appendChild(i_receiver_hp1);
+    formObj.appendChild(i_receiver_hp2);
+    formObj.appendChild(i_receiver_hp3);
+    formObj.appendChild(i_receiver_tel1);
+    formObj.appendChild(i_receiver_tel2);
+    formObj.appendChild(i_receiver_tel3);
 
     formObj.appendChild(i_delivery_address);
     formObj.appendChild(i_delivery_message);
     formObj.appendChild(i_delivery_method);
+    formObj.appendChild(i_gift_wrapping);
     
     formObj.appendChild(i_pay_method);
     formObj.appendChild(i_card_com_name);
@@ -640,6 +672,46 @@ function fn_process_pay_order(){
                 </c:forEach>
               </div>
             </div>
+            
+             <div id="ordererInfo">
+              <div class="ordertitle">
+                <h2>주문자 정보</h2>
+              </div>
+              <div id="ordererInfo_contents">
+                <table>
+                  <caption>
+                    주문자 정보
+                  </caption>
+                  <colgroup>
+                    <col style="width: 102px" />
+                    <col style="width: 1000px" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th>주문자</th>
+                      <td>
+                        <input  type="text" value="${orderer.username}" size="15" />
+                      </td>
+                    </tr>  
+                    <tr>               
+                      <th>전화번호</th>
+                      <td>
+                            <input  type="text" value="${orderer.tel}" size="15" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>이메일</th>
+                      <td>
+                             <input  type="text" value="${orderer.email}" size="15" />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+             
+            </div>
+            
+            
             <div id="shippingaddress">
               <div class="ordertitle">
                 <h2>배송지</h2>
@@ -654,6 +726,17 @@ function fn_process_pay_order(){
                     <col style="width: 1000px" />
                   </colgroup>
                   <tbody>
+                   <tr id="shipping_select">
+                      <th>배송지 선택</th>
+                      <td>
+                        <input type="radio" name="delivery_place"
+						onClick="restore_all()" value="기본배송지" checked>
+           기본배송지 &nbsp;&nbsp;&nbsp;
+						<input type="radio" name="delivery_place" value="새로입력" onClick="reset_all()">
+           새로입력 
+
+                      </td>
+                    </tr>
                     <tr>
                       <th>받는사람</th>
                       <td>
@@ -701,7 +784,8 @@ function fn_process_pay_order(){
                     <tr>
                       <th>이메일</th>
                       <td>
-                      	 <input  type="text" value="${orderer.email}" size="15" />
+                      	 <input  type="text" id="email" name="email" value="${orderer.email}" size="15" />
+                      	  <input  type="hidden" id="h_email" name="h_email" value="${orderer.email}"/>
                       </td>
                     </tr>
                   </tbody>
@@ -753,8 +837,16 @@ function fn_process_pay_order(){
                       <col style="width: 122px" />
                       <col style="width: 878px" />
                     </colgroup>
+                                        <tr>
+                      <th>주문상품수</th>
+                      <td>				
+                      	<span id="p_totalNum">${total_order_goods_qty} 개</span> 
+              	<input id="h_total_order_goods_qty" type="hidden" value="${total_order_goods_qty}" />        
+                      </td>
+                    </tr>
+                    
                     <tr>
-                      <th>주문상품</th>
+                      <th>주문상품금액</th>
                       <td>
                       	<span id="p_totalPrice">KRW ${total_order_price}</span> 
                <input id="h_totalPrice" type="hidden" value="${total_order_price}" />           
