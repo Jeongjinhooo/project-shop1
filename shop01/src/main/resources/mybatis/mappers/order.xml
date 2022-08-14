@@ -23,13 +23,8 @@
 		<result property="delivery_address" column="delivery_address" />
 		<result property="delivery_message" column="delivery_message" />
 		
-		<result property="delivery_method" column="delivery_method" />
-		<result property="gift_wrapping" column="gift_wrapping" />
 		<result property="pay_method" column="pay_method" />
-		<result property="card_com_name" column="card_com_name" />
-		<result property="card_pay_month" column="card_pay_month" />
 		
-		<result property="pay_orderer_hp_num" column="pay_orderer_hp_num" />
 		<result property="pay_order_time" column="pay_order_time" />
 		<result property="delivery_state" column="delivery_state" />
 		<result property="final_total_price" column="final_total_price" />
@@ -66,13 +61,8 @@
 					                    receiver_tel,
 					                    delivery_address,
 					                    delivery_message,
-						                delivery_method,
-						                gift_wrapping,
 						                pay_method,
-						                card_com_name,
-						                card_pay_month,
 						                orderer_hp,
-						                pay_orderer_hp_num,
 						                goods_color,
 						                order_goods_size)
 							     values(#{order_seq_num},
@@ -88,13 +78,8 @@
 					                    #{receiver_tel},
 					                    #{delivery_address},
 					                    #{delivery_message},
-						                #{delivery_method},
-						                #{gift_wrapping},
 						                #{pay_method},
-						                #{card_com_name},
-						                #{card_pay_month},
 						                #{orderer_hp},
-						                #{pay_orderer_hp_num},
 						                #{goods_color},
 						                  #{order_goods_size})
     	]]>

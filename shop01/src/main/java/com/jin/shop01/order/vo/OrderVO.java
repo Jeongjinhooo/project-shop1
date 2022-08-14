@@ -19,12 +19,7 @@ public class OrderVO {
 
 	private String delivery_address;
 	private String delivery_message;
-	private String delivery_method;
-	private String gift_wrapping;
 	private String pay_method;
-	private String card_com_name;
-	private String card_pay_month;
-	private String pay_orderer_hp_num; //휴대폰 결제 전화번호
 	private String pay_order_time;
 	private String delivery_state;  //현재 주문 상품 배송 상태
 	
@@ -156,35 +151,11 @@ public class OrderVO {
 	public void setDelivery_message(String delivery_message) {
 		this.delivery_message = delivery_message;
 	}
-	public String getDelivery_method() {
-		return delivery_method;
-	}
-	public void setDelivery_method(String delivery_method) {
-		this.delivery_method = delivery_method;
-	}
-	public String getGift_wrapping() {
-		return gift_wrapping;
-	}
-	public void setGift_wrapping(String gift_wrapping) {
-		this.gift_wrapping = gift_wrapping;
-	}
 	public String getPay_method() {
 		return pay_method;
 	}
 	public void setPay_method(String pay_method) {
 		this.pay_method = pay_method;
-	}
-	public String getCard_com_name() {
-		return card_com_name;
-	}
-	public void setCard_com_name(String card_com_name) {
-		this.card_com_name = card_com_name;
-	}
-	public String getCard_pay_month() {
-		return card_pay_month;
-	}
-	public void setCard_pay_month(String card_pay_month) {
-		this.card_pay_month = card_pay_month;
 	}
 	
 	
@@ -193,12 +164,6 @@ public class OrderVO {
 	}
 	public void setPay_order_time(String pay_order_time) {
 		this.pay_order_time = pay_order_time;
-	}
-	public String getPay_orderer_hp_num() {
-		return pay_orderer_hp_num;
-	}
-	public void setPay_orderer_hp_num(String pay_orderer_hp_num) {
-		this.pay_orderer_hp_num = pay_orderer_hp_num;
 	}
 	public String getDelivery_state() {
 		return delivery_state;

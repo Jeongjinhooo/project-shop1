@@ -234,32 +234,22 @@ var goods_id="";
 var goods_name="";
 var goods_fileName="";
 
-var order_goods_qty
+var order_goods_qty;
 var each_goods_price;
 var total_order_goods_price;
 var total_order_goods_qty;
-var orderer_name
-var receiver_name
-var hp1;
-var hp2;
-var hp3;
-
-var tel1;
-var tel2;
-var tel3;
-
-var receiver_hp_num;
+var orderer_name;
+var receiver_name;
+var tel;
 var receiver_tel_num;
 var delivery_address;
 var delivery_message;
-var delivery_method;
-var gift_wrapping;
 var pay_method;
-var card_com_name;
-var card_pay_month;
-var pay_orderer_hp_num;
 
-function fn_show_order_detail(){
+function fn_process_pay_order(){
+	
+	alert("최종 결제하기");
+	
 	goods_id="";
 	goods_name="";
 	
@@ -267,10 +257,8 @@ function fn_show_order_detail(){
 	var h_goods_id=frm.h_goods_id;
 	var h_goods_name=frm.h_goods_name;
 	var h_goods_fileName=frm.h_goods_fileName;
-	var r_delivery_method  =  frm.delivery_method;
 	var h_order_goods_qty=document.getElementById("h_order_goods_qty");
 	var h_total_order_goods_qty=document.getElementById("h_total_order_goods_qty");
-	var h_total_sales_price=document.getElementById("h_total_sales_price");
 	var h_final_total_Price=document.getElementById("h_final_total_Price");
 	var h_orderer_name=document.getElementById("h_orderer_name");
 	var i_receiver_name=document.getElementById("receiver_name");
@@ -308,60 +296,20 @@ function fn_show_order_detail(){
 	total_order_goods_price=h_final_total_Price.value;
 	total_order_goods_qty=h_total_order_goods_qty.value;
 	
-	for(var i=0; i<r_delivery_method.length;i++){
-	  if(r_delivery_method[i].checked==true){
-		 delivery_method=r_delivery_method[i].value
-		 break;
-	  }
-	} 
 		
-	var r_gift_wrapping  =  frm.gift_wrapping;
-	
-	
-	for(var i=0; i<r_gift_wrapping.length;i++){
-	  if(r_gift_wrapping[i].checked==true){
-		  gift_wrapping=r_gift_wrapping[i].value
-		 break;
-	  }
-	} 
-	
+			
 	var r_pay_method  =  frm.pay_method;
 	
-	for(var i=0; i<r_pay_method.length;i++){
-	  if(r_pay_method[i].checked==true){
-		  pay_method=r_pay_method[i].value
-		  if(pay_method=="신용카드"){
-			var i_card_com_name=document.getElementById("card_com_name");
-			var i_card_pay_month=document.getElementById("card_pay_month");
-			card_com_name=i_card_com_name.value;
-			card_pay_month=i_card_pay_month.value;
-			pay_method+="<Br>"+
-				 		"카드사:"+card_com_name+"<br>"+
-				 		"할부개월수:"+card_pay_month;
-			pay_orderer_hp_num="해당없음";
-			
-		  }else if(pay_method=="휴대폰결제"){
-			var i_pay_order_tel1=document.getElementById("pay_order_tel1");
-			var i_pay_order_tel2=document.getElementById("pay_order_tel2");
-			var i_pay_order_tel3=document.getElementById("pay_order_tel3");
-			pay_orderer_hp_num=i_pay_order_tel1.value+"-"+
-						   	    i_pay_order_tel2.value+"-"+
-							    i_pay_order_tel3.value;
-			pay_method+="<Br>"+"결제휴대폰번호:"+pay_orderer_hp_num;
-			card_com_name="해당없음";
-			card_pay_month="해당없음";
-		  } //end if
-		 break;
-	  }// end for
+	if(r_pay_method.length <2 ||r_pay_method.length==null){
+		pay_method+=r_pay_method.value;
+	}else{
+		for(var i=0; i<r_pay_method.length;i++){
+			pay_method+=r_pay_method[i].value+"<br>";
+		
+		}	
 	}
-	
-	var i_hp1=document.getElementById("hp1");
-	var i_hp2=document.getElementById("hp2");
-	var i_hp3=document.getElementById("hp3");
-	
-	var i_tel1=document.getElementById("tel1");
-	var i_tel2=document.getElementById("tel2");
-	var i_tel3=document.getElementById("tel3");
+		
+	var i_tel1=document.getElementById("tel");
 	
 	var i_zipcode=document.getElementById("zipcode");
 	var i_roadAddress=document.getElementById("roadAddress");
@@ -370,22 +318,15 @@ function fn_show_order_detail(){
 	var i_delivery_message=document.getElementById("delivery_message");
 	var i_pay_method=document.getElementById("pay_method");
 
-//	alert("총주문 금액:"+total_order_goods_price);
 	order_goods_qty=h_order_goods_qty.value;
-	//order_total_price=h_order_total_price.value;
 	
 	orderer_name=h_orderer_name.value;
 	receiver_name=i_receiver_name.value;
-	hp1=i_hp1.value;
-	hp2=i_hp2.value;
-	hp3=i_hp3.value;
+
+	tel=tel.value;
+
 	
-	tel1=i_tel1.value;
-	tel2=i_tel2.value;
-	tel3=i_tel3.value;
-	
-	receiver_hp_num=hp1+"-"+hp2+"-"+hp3;
-	receiver_tel_num=tel1+"-"+tel2+"-"+tel3;
+	receiver_tel=tel;
 	
 	delivery_address="우편번호:"+i_zipcode.value+"<br>"+
 						"도로명 주소:"+i_roadAddress.value+"<br>"+
@@ -394,119 +335,40 @@ function fn_show_order_detail(){
 	
 	delivery_message=i_delivery_message.value;
 	
-	var p_order_goods_id=document.getElementById("p_order_goods_id");
-	var p_order_goods_name=document.getElementById("p_order_goods_name");
-	var p_order_goods_qty=document.getElementById("p_order_goods_qty");
-	var p_total_order_goods_qty=document.getElementById("p_total_order_goods_qty");
-	var p_total_order_goods_price=document.getElementById("p_total_order_goods_price");
-	var p_orderer_name=document.getElementById("p_orderer_name");
-	var p_receiver_name=document.getElementById("p_receiver_name");
-	var p_delivery_method=document.getElementById("p_delivery_method");
-	var p_receiver_hp_num=document.getElementById("p_receiver_hp_num");
-	var p_receiver_tel_num=document.getElementById("p_receiver_tel_num");
-	var p_delivery_address=document.getElementById("p_delivery_address");
-	var p_delivery_message=document.getElementById("p_delivery_message");
-	var p_gift_wrapping=document.getElementById("p_gift_wrapping");	
-	var p_pay_method=document.getElementById("p_pay_method");
-	
-	p_order_goods_id.innerHTML=goods_id;
-	p_order_goods_name.innerHTML=goods_name;
-	p_total_order_goods_qty.innerHTML=total_order_goods_qty+"개";
-	p_total_order_goods_price.innerHTML=total_order_goods_price+"원";
-	p_orderer_name.innerHTML=orderer_name;
-	p_receiver_name.innerHTML=receiver_name;
-	p_delivery_method.innerHTML=delivery_method;
-	p_receiver_hp_num.innerHTML=receiver_hp_num;
-	p_receiver_tel_num.innerHTML=receiver_tel_num;
-	p_delivery_address.innerHTML=delivery_address;
-	p_delivery_message.innerHTML=delivery_message;
-	p_gift_wrapping.innerHTML=gift_wrapping;
-	p_pay_method.innerHTML=pay_method;
-	imagePopup('open');
-}
 
-function fn_process_pay_order(){
-	
-	alert("최종 결제하기");
 	var formObj=document.createElement("form");
     var i_receiver_name=document.createElement("input");
-    
-    var i_receiver_hp1=document.createElement("input");
-    var i_receiver_hp2=document.createElement("input");
-    var i_receiver_hp3=document.createElement("input");
    
-    var i_receiver_tel1=document.createElement("input");
-    var i_receiver_tel2=document.createElement("input");
-    var i_receiver_tel3=document.createElement("input");
-    
+   
+    var i_receiver_tel=document.createElement("input");
+   
     var i_delivery_address=document.createElement("input");
     var i_delivery_message=document.createElement("input");
-    var i_delivery_method=document.createElement("input");
-    var i_gift_wrapping=document.createElement("input");
     var i_pay_method=document.createElement("input");
-    var i_card_com_name=document.createElement("input");
-    var i_card_pay_month=document.createElement("input");
-    var i_pay_orderer_hp_num=document.createElement("input");
    
     i_receiver_name.name="receiver_name";
-    i_receiver_hp1.name="receiver_hp1";
-    i_receiver_hp2.name="receiver_hp2";
-    i_receiver_hp3.name="receiver_hp3";
-   
-    i_receiver_tel1.name="receiver_tel1";
-    i_receiver_tel2.name="receiver_tel2";
-    i_receiver_tel3.name="receiver_tel3";
-   
+    i_receiver_tel.name="receiver_tel"; 
     i_delivery_address.name="delivery_address";
     i_delivery_message.name="delivery_message";
-    i_delivery_method.name="delivery_method";
-    i_gift_wrapping.name="gift_wrapping";
-    i_pay_method.name="pay_method";
-    i_card_com_name.name="card_com_name";
-    i_card_pay_month.name="card_pay_month";
-    i_pay_orderer_hp_num.name="pay_orderer_hp_num";
-  
+    i_pay_method.name="pay_method"; 
     i_receiver_name.value=receiver_name;
-    i_receiver_hp1.value=hp1;
-    i_receiver_hp2.value=hp2;
-    i_receiver_hp3.value=hp3;
-    
-    i_receiver_tel1.value=tel1;
-    i_receiver_tel2.value=tel2;
-    i_receiver_tel3.value=tel3;
-    ;
+    i_receiver_tel.value=tel;
     i_delivery_address.value=delivery_address;
     i_delivery_message.value=delivery_message;
-    i_delivery_method.value=delivery_method;
-    i_gift_wrapping.value=gift_wrapping;
     i_pay_method.value=pay_method;
-    i_card_com_name.value=card_com_name;
-    i_card_pay_month.value=card_pay_month;
-    i_pay_orderer_hp_num.value=pay_orderer_hp_num;
     
     formObj.appendChild(i_receiver_name);
-    formObj.appendChild(i_receiver_hp1);
-    formObj.appendChild(i_receiver_hp2);
-    formObj.appendChild(i_receiver_hp3);
-    formObj.appendChild(i_receiver_tel1);
-    formObj.appendChild(i_receiver_tel2);
-    formObj.appendChild(i_receiver_tel3);
-
+    formObj.appendChild(i_receiver_tel);
     formObj.appendChild(i_delivery_address);
-    formObj.appendChild(i_delivery_message);
-    formObj.appendChild(i_delivery_method);
-    formObj.appendChild(i_gift_wrapping);
-    
+    formObj.appendChild(i_delivery_message);   
     formObj.appendChild(i_pay_method);
-    formObj.appendChild(i_card_com_name);
-    formObj.appendChild(i_card_pay_month);
-    formObj.appendChild(i_pay_orderer_hp_num);
-    
+  
 
     document.body.appendChild(formObj); 
     formObj.method="post";
-    formObj.action="${contextPath}/order/payToOrderGoods.do";
+    formObj.action="${pageContext.request.contextPath}/order/payToOrderGoods.do";
     formObj.submit();
+   
 }
 </script>
 
