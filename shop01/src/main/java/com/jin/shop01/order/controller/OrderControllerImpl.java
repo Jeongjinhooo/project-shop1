@@ -110,6 +110,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	@RequestMapping(value="/payToOrderGoods.do", method = RequestMethod.POST)
 	public ModelAndView payToOrderGoods(@RequestParam Map<String, String> receiverMap,
 			                       HttpServletRequest request, HttpServletResponse response)  throws Exception{
+ 		response.setContentType("text/html;charset=UTF-8");
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		

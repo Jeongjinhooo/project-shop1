@@ -635,7 +635,7 @@ section #sectioninner #orderinner #payment #payment_contents #totalPay strong {
   font-size: 17px;
 }
 
-section #sectioninner #orderinner #paymethod {
+section #sectioninner #orderinner #pay_methodBox {
   position: relative;
   margin: 0 0 10px;
   padding: 0;
@@ -644,7 +644,7 @@ section #sectioninner #orderinner #paymethod {
   background: #fff;
 }
 
-section #sectioninner #orderinner #paymethod #paymethod_contents {
+section #sectioninner #orderinner #pay_methodBox #pay_method_contents {
   border-top: 1px solid #eaeaea;
   overflow: visible;
   opacity: 1;
@@ -655,7 +655,7 @@ section #sectioninner #orderinner #paymethod #paymethod_contents {
   padding: 14px;
 }
 
-section #sectioninner #orderinner #paymethod #paymethod_contents ul li > label {
+section #sectioninner #orderinner #pay_methodBox #pay_method_contents ul li > label {
   color: #333;
   background: #eff1f4;
   display: block;
@@ -670,11 +670,11 @@ section #sectioninner #orderinner #paymethod #paymethod_contents ul li > label {
 section
   #sectioninner
   #orderinner
-  #paymethod
-  #paymethod_contents
+  #pay_methodBox
+  #pay_method_contents
   ul
   li
-  #paymethod_inner {
+  #pay_method_inner {
   overflow: visible;
   opacity: 1;
   height: auto;
@@ -687,11 +687,11 @@ section
 section
   #sectioninner
   #orderinner
-  #paymethod
-  #paymethod_contents
+  #pay_methodBox
+  #pay_method_contents
   ul
   li
-  #paymethod_inner
+  #pay_method_inner
   span {
   margin: 0 20px 7px 0;
 }
@@ -699,11 +699,11 @@ section
 section
   #sectioninner
   #orderinner
-  #paymethod
-  #paymethod_contents
+  #pay_methodBox
+  #pay_method_contents
   ul
   li
-  #paymethod_inner
+  #pay_method_inner
   span
   input[type="radio"] {
   margin: 0;
@@ -719,11 +719,11 @@ section
 section
   #sectioninner
   #orderinner
-  #paymethod
-  #paymethod_contents
+  #pay_methodBox
+  #pay_method_contents
   ul
   li
-  #paymethod_inner
+  #pay_method_inner
   span
   input:not(:disabled):checked[type="radio"] {
   background-image: url(${pageContext.request.contextPath}/resources/img/section/bg_radio_checked.png);
@@ -733,11 +733,11 @@ section
 section
   #sectioninner
   #orderinner
-  #paymethod
-  #paymethod_contents
+  #pay_methodBox
+  #pay_method_contents
   ul
   li
-  #paymethod_inner
+  #pay_method_inner
   span
   label {
   margin: 0 20px 0 7px;
@@ -756,7 +756,7 @@ section #sectioninner #orderinner #orderbtn {
   padding: 10px 0;
 }
 
-section #sectioninner #orderinner #orderbtn button {
+section #sectioninner #orderinner #orderbtn input {
   margin: 0 0 7px;
   height: 48px;
   line-height: 48px;
