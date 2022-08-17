@@ -1,5 +1,5 @@
 .resulttitle {
-  margin: 60px 0 20px 0;
+  margin: 40px 0 20px 0;
 }
 
 .ordertitle {
@@ -273,6 +273,7 @@ section
   line-height: 0;
   white-space: nowrap;
   background: transparent;
+    cursor: pointer;
 }
 
 section

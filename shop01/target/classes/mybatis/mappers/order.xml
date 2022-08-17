@@ -31,8 +31,8 @@
 		<result property="goods_qty" column="goods_qty" />
 		<result property="orderer_hp" column="orderer_hp" />
 		<result property="goods_fileName" column="goods_fileName" />
-				<result property="goods_color" column="goods_color" />
-				<result property="order_goods_size" column="order_goods_size" />
+		<result property="goods_color" column="goods_color" />
+		<result property="order_goods_size" column="order_goods_size" />
 	</resultMap>
 	
 	 <select id="selectMyOrderList" resultMap="orderGoodsResult"  parameterType="orderVO"  >
@@ -43,6 +43,7 @@
         	order by pay_order_time desc
 		]]>
 	</select>
+	
 	<insert id="insertNewOrder" parameterType="orderVO"  >
 	    <selectKey resultType="int" keyProperty="order_seq_num" order="BEFORE">
 	    	select order_seq_num.nextval from dual
@@ -55,7 +56,6 @@
 									    goods_name,
 									    goods_fileName,
 									    order_goods_qty,
-									    goods_sales_price,
 									    orderer_name,
 									    receiver_name,					                   
 					                    receiver_tel,
@@ -72,7 +72,6 @@
 									    #{goods_name},
 									    #{goods_fileName},
 									    #{order_goods_qty},
-									    #{goods_sales_price},
 									    #{orderer_name},
 									    #{receiver_name},
 					                    #{receiver_tel},

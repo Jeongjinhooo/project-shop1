@@ -13,10 +13,6 @@
 <c:set var="total_order_price" value="0" />
 <!-- 총 상품수 -->
 <c:set var="total_order_goods_qty" value="0" />
-<!-- 총할인금액 -->
-<c:set var="total_discount_price" value="0" />
-<!-- 총 배송비 -->
-<c:set var="total_delivery_price" value="0" />
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -79,6 +75,29 @@ section
   background-image: url(${pageContext.request.contextPath}/resources/img/section/bg_radio_checked.png);
   -webkit-appearance: none;
 }
+
+section #sectioninner #orderinner #resultarea::after {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 5px;
+  background: url(${pageContext.request.contextPath}/resources/img/section/bg_resultarea.png) repeat-x 0 bottom;
+  background-size: auto 5px;
+}
+
+section #sectioninner #orderinner #resultarea p {
+  padding: 56px 0 13px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  line-height: 26px;
+  background: url(${pageContext.request.contextPath}/resources/img/section/ico_resultarea_message.png) no-repeat center 0;
+  background-size: 38px 42px;
+}
+
    </style>
   </head>
   
@@ -221,25 +240,13 @@ section
                       <col style="width: auto" />
                     </colgroup>
                     <tbody>
-                      <tr>
-                        <th>주문번호</th>
-                        <td>
-                          <span>000001-10100</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>결제금액</th>
-                        <td>
-                          <span>KRW 89,000</span>
-                        </td>
-                      </tr>
+                      
                       <tr>
                         <th style="line-height: 49px">결제수단</th>
                         <td>
                           <span>무통장입금</span>
                           <br />
-                          <span
-                            >입금자 : 정진호, 계좌번호 : 국민은행 80590104363437
+                          <span>입금자 : 정진호, 계좌번호 : 국민은행 80590104363437
                             ((주)한성에프아이)
                           </span>
                         </td>
@@ -254,30 +261,35 @@ section
                 <h2>주문상품</h2>
               </div>
               <div id="order_contents">
+              		<c:forEach var="item" items="${myOrderList }">
                 <div id="prdBox">
                   <div id="thumbnail">
-                    <a href="">
-                      <img
-                        src="${pageContext.request.contextPath}/resources/img/section/7a9b01c64d317b3c5a76b0093a3e7041.jpg"
-                        alt=""
-                      />
-                    </a>
+                	  <a href="${pageContext.request.contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
+					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
+					    </a>
                   </div>
                   <div id="description">
                     <strong class="prdName">
-                      <a href="">상품명</a>
+             <a class="prdName" href="${pageContext.request.contextPath}/goods/goods.do?command=goods_detail&goods_id=${item.goods_id }">${item.goods_name }</a>
                     </strong>
                     <ul id="info">
                       <li>
-                        <p>[옵션: C/BLUE / S]</p>
+                        <p>[옵션: ${item.goods_color} / ${item.order_goods_size}]</p>
                       </li>
-                      <li>수량 : 1개</li>
-                      <li>상품구매금액: KRW 79,000</li>
+                      <li>수량 : ${item.order_goods_qty }개</li>
+                      <li> 상품구매금액 : KRW ${item.goods_price * item.order_goods_qty}</li>
                       <li>[무료] / 기본배송</li>
                     </ul>
                   </div>
-                  <button id="btn_productdelete"></button>
                 </div>
+                            	<c:set var="final_total_order_price"
+				value="${final_total_order_price+ item.goods_price* item.order_goods_qty}" />
+			<c:set var="total_order_price"
+				value="${total_order_price+ item.goods_price* item.order_goods_qty}" />
+			<c:set var="total_order_goods_qty"
+				value="${total_order_goods_qty+item.order_goods_qty }" />
+				<c:set var="order_id"  value="${item.order_id}"  />
+                		</c:forEach>
               </div>
             </div>
 
@@ -297,19 +309,21 @@ section
                   <tbody>
                     <tr>
                       <th>받는사람</th>
-                      <td>정진호</td>
+                      <td>${myOrderInfo.receiver_name }
+                     </td>
+                      
                     </tr>
                     <tr>
                       <th>주소</th>
-                      <td>대전광역시 서구 탄방동</td>
+                      <td> ${myOrderInfo.delivery_address}</td>
                     </tr>
                     <tr>
                       <th>연락처</th>
-                      <td>010-2336-9320</td>
+                      <td>	  ${myOrderInfo.receiver_tel}</td>
                     </tr>
                     <tr>
                       <th>배송요청</th>
-                      <td>빨리 와주세요</td>
+                      <td>${myOrderInfo.delivery_message}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -330,10 +344,22 @@ section
                       <col style="width: 122px" />
                       <col style="width: 878px" />
                     </colgroup>
+                                <tr>
+                      <th>주문번호</th>
+                      <td>				
+                      	<span>${order_id}</span> 
+                      </td>
+                    </tr>
+                                    <tr>
+                      <th>주문상품수</th>
+                      <td>				
+                      	<span>${total_order_goods_qty} 개</span> 
+                      </td>
+                    </tr>
                     <tr>
                       <th>주문상품</th>
-                      <td>
-                        <span>KRW 79,000</span>
+                       <td>
+                      	<span>KRW ${total_order_price}</span> 
                       </td>
                     </tr>
                     <tr>
@@ -356,7 +382,7 @@ section
                   <h3>결제금액</h3>
                   <strong>
                     KRW
-                    <span>79,000</span>
+                <span>${final_total_order_price}</span>   
                   </strong>
                 </div>
               </div>
@@ -364,7 +390,7 @@ section
 
             <div id="orderresultbtn">
               <button>주문확인하기</button>
-              <button>쇼핑계속하기</button>
+              <button onclick="location.href='${pageContext.request.contextPath}/main.do'">쇼핑계속하기</button>
             </div>
           </div>
         </div>

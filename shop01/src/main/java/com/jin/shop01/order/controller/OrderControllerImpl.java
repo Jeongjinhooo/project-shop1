@@ -67,6 +67,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		session.setAttribute("myOrderList", myOrderList);
 		session.setAttribute("orderer", memberInfo);
+	     mav.setViewName("/order/orderGoodsForm");
 		return mav;
 	}
 	
@@ -126,10 +127,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 			orderVO.setUserid(userid);
 			orderVO.setOrderer_name(orderer_name);
 			orderVO.setReceiver_name(receiverMap.get("receiver_name"));
-			
 			orderVO.setReceiver_tel(receiverMap.get("receiver_tel"));
-
-			
 			orderVO.setDelivery_address(receiverMap.get("delivery_address"));
 			orderVO.setDelivery_message(receiverMap.get("delivery_message"));
 			orderVO.setPay_method(receiverMap.get("pay_method"));
@@ -141,6 +139,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	    orderService.addNewOrder(myOrderList);
 		mav.addObject("myOrderInfo",receiverMap);//OrderVO로 주문결과 페이지에  주문자 정보를 표시한다.
 		mav.addObject("myOrderList", myOrderList);
+	     mav.setViewName("/order/orderResult");
 		return mav; 
 	}
 	

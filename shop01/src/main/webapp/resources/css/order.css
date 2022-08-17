@@ -379,7 +379,7 @@ section
   #orderinner
   #shippingaddress
   #shipping_message
-  #messageinput #directinput {
+  #messageinput input {
   width: 100%;
   max-width: 100%;
   padding: 7px;
@@ -516,6 +516,7 @@ section
   line-height: 0;
   white-space: nowrap;
   background: transparent;
+    cursor: pointer;
 }
 
 section

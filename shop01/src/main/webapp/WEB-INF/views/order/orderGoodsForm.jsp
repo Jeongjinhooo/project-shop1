@@ -147,12 +147,33 @@ section #sectioninner #orderinner #shippingaddress #shipping_message select {
     function handleOnChange(e) {
         // 선택된 데이터 가져오기
         const value = e.value;
+        var langSelect = document.getElementById("delivery_message_select");
+        // select element에서 선택된 option의 value가 저장된다.
+        var selectValue = langSelect.options[langSelect.selectedIndex].value;
+        // select element에서 선택된 option의 text가 저장된다.
+        var selectText = langSelect.options[langSelect.selectedIndex].text;
 
-        // 데이터 출력
+        //  직접입력 보이게
         if (value == "Messageinput") {
-          document.getElementById("messageinput").classList.replace('disno', 'disbl');
+          document
+            .getElementById("messageinput")
+            .classList.replace("disno", "disbl");
         } else {
-          document.getElementById("messageinput").classList.replace('disbl', 'disno');
+          document
+            .getElementById("messageinput")
+            .classList.replace("disbl", "disno");
+        }
+
+      if (value == "Message1") {
+          document.getElementById("delivery_message").value = selectText;
+        } else if (value == "Message2") {
+          document.getElementById("delivery_message").value = selectText;
+        } else if (value == "Message3") {
+          document.getElementById("delivery_message").value = selectText;
+        } else if (value == "Message4") {
+          document.getElementById("delivery_message").value = selectText;
+        } else if (value == "Message5") {
+          document.getElementById("delivery_message").value = selectText;
         }
       }
      
@@ -678,7 +699,7 @@ function fn_process_pay_order(){
                 </table>
               </div>
             <div id="shipping_message">
-                <select name="delivery_message" id="delivery_message" onchange="handleOnChange(this)">
+                <select name="delivery_message_select" id="delivery_message_select" onchange="handleOnChange(this)">
                   <option value="Message0" selected="selected">
                     --메시지 선택 (선택사항)--
                   </option>
@@ -691,7 +712,7 @@ function fn_process_pay_order(){
                   <option value="Message3">
                     부재 시 문 앞에 놓아주세요.
                   </option>
-                  <option value="Message4"">
+                  <option value="Message4">
                     빠른 배송 부탁드립니다.
                   </option>
                   <option value="Message5">
@@ -703,7 +724,7 @@ function fn_process_pay_order(){
                   </option>
                 </select>
                 <div id="messageinput" class="disno">
-                   			   <input id="directinput" name="directinput" type="text" size="50"
+        		   <input id="delivery_message" name="delivery_message" type="text" size="50"
 						                   placeholder="택배 기사님께 전달할 메시지를 남겨주세요." />
                 </div>
               </div>

@@ -39,7 +39,66 @@
    </style>
    	 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <script type="text/javascript">
-/*    function calcGoodsPrice(goodsPrice,obj){
+
+   //----------장바구니 수량변경
+	function modify_cart_qty(goods_id,goodsPrice,index){
+		//alert(index);
+	   var length=document.frm_order_all_cart.cart_goods_qty.length;
+	   console.log(length);
+	   var _cart_goods_qty=0;
+		if(length>1){ //카트에 제품이 한개인 경우와 여러개인 경우 나누어서 처리한다.
+			_cart_goods_qty=document.frm_order_all_cart.cart_goods_qty[index].value;		
+		}else{
+			_cart_goods_qty=document.frm_order_all_cart.cart_goods_qty.value;
+		}
+			
+		var cart_goods_qty=Number(_cart_goods_qty);
+		//alert("cart_goods_qty:"+cart_goods_qty);
+		//console.log(cart_goods_qty);
+		$.ajax({
+			type : "post",
+			async : false, //false인 경우 동기식으로 처리한다.
+			url : "${pageContext.request.contextPath}/cart/modifyCartQty.do",
+			data : {
+				goods_id:goods_id,
+				cart_goods_qty:cart_goods_qty
+			},
+			
+			success : function(data, textStatus) {
+				//alert(data);
+				if(data.trim()=='modify_success'){
+					alert("수량을 변경했습니다!!");
+					window.location.reload()
+				}else{
+					alert("다시 시도해 주세요!!");	
+				}
+				
+			},
+			error : function(data, textStatus) {
+				alert("에러가 발생했습니다."+data);
+			},
+			complete : function(data, textStatus) {
+				//alert("작업을완료 했습니다");
+				
+			}
+		}); //end ajax	
+	}
+// --------------------------장바구니 삭제
+	function delete_cart_goods(cart_id){
+		var cart_id=Number(cart_id);
+		var formObj=document.createElement("form");
+		var i_cart = document.createElement("input");
+		i_cart.name="cart_id";
+		i_cart.value=cart_id;
+		
+		formObj.appendChild(i_cart);
+	    document.body.appendChild(formObj); 
+	    formObj.method="post";
+	    formObj.action="${pageContext.request.contextPath}/cart/removeCartGoods.do";
+	    formObj.submit();
+	}
+//-----------------------
+    function calcGoodsPrice(goodsPrice,obj){
 		var totalPrice,final_total_price,totalNum;
 		var goods_qty=document.getElementById("select_goods_qty");
 		//alert("총 상품금액"+goods_qty.value);
@@ -78,102 +137,47 @@
 		p_totalNum.innerHTML=totalNum;
 		p_totalPrice.innerHTML=totalPrice;
 		p_final_totalPrice.innerHTML=final_total_price;
-	} */
+	} 
 
-   //----------장바구니 수량변경
-	function modify_cart_qty(goods_id,goodsPrice,index){
-		//alert(index);
-	   var length=document.frm_order_all_cart.cart_goods_qty.length;
-	   console.log(length);
-	   var _cart_goods_qty=0;
-		if(length>1){ //카트에 제품이 한개인 경우와 여러개인 경우 나누어서 처리한다.
-			_cart_goods_qty=document.frm_order_all_cart.cart_goods_qty[index].value;		
-		}else{
-			_cart_goods_qty=document.frm_order_all_cart.cart_goods_qty.value;
-		}
-			
-		var cart_goods_qty=Number(_cart_goods_qty);
-		//alert("cart_goods_qty:"+cart_goods_qty);
-		//console.log(cart_goods_qty);
-		$.ajax({
-			type : "post",
-			async : false, //false인 경우 동기식으로 처리한다.
-			url : "${contextPath}/cart/modifyCartQty.do",
-			data : {
-				goods_id:goods_id,
-				cart_goods_qty:cart_goods_qty
-			},
-			
-			success : function(data, textStatus) {
-				//alert(data);
-				if(data.trim()=='modify_success'){
-					alert("수량을 변경했습니다!!");
-					window.location.reload()
-				}else{
-					alert("다시 시도해 주세요!!");	
-				}
-				
-			},
-			error : function(data, textStatus) {
-				alert("에러가 발생했습니다."+data);
-			},
-			complete : function(data, textStatus) {
-				//alert("작업을완료 했습니다");
-				
-			}
-		}); //end ajax	
-	}
-
-	function delete_cart_goods(cart_id){
-		var cart_id=Number(cart_id);
-		var formObj=document.createElement("form");
-		var i_cart = document.createElement("input");
-		i_cart.name="cart_id";
-		i_cart.value=cart_id;
-		
-		formObj.appendChild(i_cart);
-	    document.body.appendChild(formObj); 
-	    formObj.method="post";
-	    formObj.action="${contextPath}/cart/removeCartGoods.do";
-	    formObj.submit();
-	}
-
-	function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
+//선택상품주문
+	function fn_order_each_goods(goods_id,goods_name,goods_price,fileName){
 		var total_price,final_total_price,_goods_qty;
 		var cart_goods_qty=document.getElementById("cart_goods_qty");
 		
 		_order_goods_qty=cart_goods_qty.value; //장바구니에 담긴 개수 만큼 주문한다.
 		var formObj=document.createElement("form");
 		var i_goods_id = document.createElement("input"); 
-	    var i_goods_title = document.createElement("input");
-	    var i_goods_sales_price=document.createElement("input");
+	    var i_goods_name = document.createElement("input");
+	    var i_goods_price=document.createElement("input");
 	    var i_fileName=document.createElement("input");
 	    var i_order_goods_qty=document.createElement("input");
 	    
 	    i_goods_id.name="goods_id";
-	    i_goods_title.name="goods_title";
-	    i_goods_sales_price.name="goods_sales_price";
+	    i_goods_name.name="goods_name";
+	    i_goods_price.name="goods_price";
 	    i_fileName.name="goods_fileName";
 	    i_order_goods_qty.name="order_goods_qty";
 	    
 	    i_goods_id.value=goods_id;
 	    i_order_goods_qty.value=_order_goods_qty;
-	    i_goods_title.value=goods_title;
-	    i_goods_sales_price.value=goods_sales_price;
+	    i_goods_name.value=goods_name;
+	    i_goods_price.value=goods_price;
 	    i_fileName.value=fileName;
 	    
 	    formObj.appendChild(i_goods_id);
-	    formObj.appendChild(i_goods_title);
-	    formObj.appendChild(i_goods_sales_price);
+	    formObj.appendChild(i_goods_name);
+	    formObj.appendChild(i_goods_price);
 	    formObj.appendChild(i_fileName);
 	    formObj.appendChild(i_order_goods_qty);
 
 	    document.body.appendChild(formObj); 
 	    formObj.method="post";
-	    formObj.action="${contextPath}/order/orderEachGoods.do";
+	    formObj.action="${pageContext.request.contextPath}/order/orderEachGoods.do";
 	    formObj.submit();
 	}
 
+	
+	//전체상품주문
 	function fn_order_all_cart_goods(){
 //		alert("모두 주문하기");
 		var order_goods_qty;
@@ -205,7 +209,7 @@
 		}
 			
 	 	objForm.method="post";
-	 	objForm.action="${contextPath}/order/orderAllCartGoods.do";
+	 	objForm.action="${pageContext.request.contextPath}/order/orderAllCartGoods.do";
 		objForm.submit();
 	}
 
@@ -514,9 +518,9 @@
               </tfoot>
               </table>
               <div id="totalorder">
-                <a href="" class="btnSubmit">전체상품주문</a>
+                <a href="javascript:fn_order_all_cart_goods()" class="btnSubmit">전체상품주문</a>
                 <a href="" class="btnSubmit">선택상품주문</a>
-                <span><a href="" class="btnnormal">쇼핑계속하기</a></span>
+                <span><a href="location.href='${pageContext.request.contextPath}/main.do'" class="btnnormal">쇼핑계속하기</a></span>
               </div>
          
             </div>
