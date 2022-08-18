@@ -140,41 +140,57 @@
 	} 
 
 //선택상품주문
-	function fn_order_each_goods(goods_id,goods_name,goods_price,fileName){
-		var total_price,final_total_price,_goods_qty;
-		var cart_goods_qty=document.getElementById("cart_goods_qty");
+	
+    function fn_order_each_goods(goods_id,goods_name,goods_price,fileName,goods_color){
+    	
+		var _isLogOn=document.getElementById("isLogOn");
+    	var isLogOn=_isLogOn.value;
+    	
+    	 if(isLogOn=="false" || isLogOn=='' ){
+    		alert("로그인 후 주문이 가능합니다!!!");
+    	} 
+    	
+	
+		var total_price,final_total_price;
+		var order_goods_qty=document.getElementById("cart_goods_qty");
+		var order_goods_size = document.getElementById("goods_size");
 		
-		_order_goods_qty=cart_goods_qty.value; //장바구니에 담긴 개수 만큼 주문한다.
-		var formObj=document.createElement("form");
-		var i_goods_id = document.createElement("input"); 
-	    var i_goods_name = document.createElement("input");
-	    var i_goods_price=document.createElement("input");
-	    var i_fileName=document.createElement("input");
-	    var i_order_goods_qty=document.createElement("input");
-	    
-	    i_goods_id.name="goods_id";
-	    i_goods_name.name="goods_name";
-	    i_goods_price.name="goods_price";
-	    i_fileName.name="goods_fileName";
-	    i_order_goods_qty.name="order_goods_qty";
-	    
-	    i_goods_id.value=goods_id;
-	    i_order_goods_qty.value=_order_goods_qty;
-	    i_goods_name.value=goods_name;
-	    i_goods_price.value=goods_price;
-	    i_fileName.value=fileName;
-	    
-	    formObj.appendChild(i_goods_id);
-	    formObj.appendChild(i_goods_name);
-	    formObj.appendChild(i_goods_price);
-	    formObj.appendChild(i_fileName);
-	    formObj.appendChild(i_order_goods_qty);
-
-	    document.body.appendChild(formObj); 
-	    formObj.method="post";
-	    formObj.action="${pageContext.request.contextPath}/order/orderEachGoods.do";
-	    formObj.submit();
-	}
+		console.log(order_goods_size);
+	var formObj=document.createElement("form");
+	var i_goods_id = document.createElement("input"); 
+    var i_goods_name = document.createElement("input");
+    var i_goods_price=document.createElement("input");
+    var i_fileName=document.createElement("input");
+    var i_goods_color=document.createElement("input");
+    var i_order_goods_qty=document.createElement("input");
+    var i_order_goods_size=document.createElement("input");
+    i_goods_id.name="goods_id";
+    i_goods_name.name="goods_name";
+    i_goods_price.name="goods_price";
+    i_fileName.name="goods_fileName";
+    i_goods_color.name ="goods_color";
+    i_order_goods_qty.name="order_goods_qty";
+    i_order_goods_size.name="order_goods_size";
+    i_goods_id.value=goods_id;
+    i_goods_name.value=goods_name;
+    i_goods_price.value=goods_price;
+    i_fileName.value=fileName;
+    i_goods_color.value=goods_color;
+    i_order_goods_qty.value=order_goods_qty.value;
+    i_order_goods_size.value = order_goods_size.value;
+    formObj.appendChild(i_goods_id);
+    formObj.appendChild(i_goods_name);
+    formObj.appendChild(i_goods_price);
+    formObj.appendChild(i_fileName);
+	formObj.appendChild(i_goods_color);
+    formObj.appendChild(i_order_goods_qty);
+    formObj.appendChild(i_order_goods_size);
+    document.body.appendChild(formObj); 
+    formObj.method="post";
+    formObj.action="${pageContext.request.contextPath}/order/orderEachGoods.do"; 
+    formObj.submit();
+    alert("00000000000000000000");
+	}	  
 
 	
 	//전체상품주문
@@ -391,6 +407,8 @@
                     <ul>
                       <li>[색상 : ${item.goods_color}]<br>
                           [사이즈 : ${goods_size}]
+                          <input type="hidden" name="goods_size" id="goods_size" value="${goods_size}"/>
+                          
                       </li>
                     </ul>
                   </td>
@@ -407,7 +425,7 @@
                     </div>
                   </td>
                   <td>
-                    <span>-</span>
+                    <span>-</span> 
                   </td>
                   <td>
                     <span>-</span>
@@ -421,7 +439,7 @@
                   <td>무료</td>
                   <td class="button">
                   
-                    <a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_name }','${item.goods_fileName}')" class="btnnormal">주문하기</a>
+                    <a href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_name }','${goods.goods_price}','${goods.goods_fileName}','${goods.goods_color}');" class="btnnormal">주문하기</a>
                     <a href="#" class="btnnormal">관심상품등록</a>
                     <a href="javascript:delete_cart_goods('${cart_id}')" class="btnnormal">삭제</a>
                   </td>
@@ -518,8 +536,7 @@
               </tfoot>
               </table>
               <div id="totalorder">
-                <a href="javascript:fn_order_all_cart_goods()" class="btnSubmit">전체상품주문</a>
-                <a href="" class="btnSubmit">선택상품주문</a>
+                <a href="javascript:fn_order_all_cart_goods()" class="btnSubmit">주문하기</a>
                 <span><a href="location.href='${pageContext.request.contextPath}/main.do'" class="btnnormal">쇼핑계속하기</a></span>
               </div>
          
@@ -600,3 +617,4 @@
     </div>
   </body>
 </html>
+<input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}"/>

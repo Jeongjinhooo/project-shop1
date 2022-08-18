@@ -566,7 +566,7 @@ function fn_process_pay_order(){
                       <li>[무료] / 기본배송</li>
                     </ul>
                   </div>
-                  <button id="btn_productdelete"></button>
+<!--                   <button id="btn_productdelete"></button> -->
                 </div>
                 	<c:set var="final_total_order_price"
 				value="${final_total_order_price+ item.goods_price* item.order_goods_qty}" />

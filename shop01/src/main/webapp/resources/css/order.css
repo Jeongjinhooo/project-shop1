@@ -405,7 +405,7 @@ section #sectioninner #orderinner #orderProduct {
 section #sectioninner #orderinner #orderProduct #order_contents {
   position: relative;
   margin: 0 0 7px;
-  padding: 20px 14px 15px;
+  padding: 20px 14px 5px;
   box-sizing: border-box;
   background: #fff;
   border-top: 1px solid #eaeaea;
@@ -414,6 +414,7 @@ section #sectioninner #orderinner #orderProduct #order_contents {
 section #sectioninner #orderinner #orderProduct #order_contents #prdBox {
   display: flex;
   min-height: 104px;
+  margin-bottom:15px;
 }
 
 section

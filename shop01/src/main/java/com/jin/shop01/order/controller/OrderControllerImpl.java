@@ -105,6 +105,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		}
 		session.setAttribute("myOrderList", myOrderList);
 		session.setAttribute("orderer", memberVO);
+	     mav.setViewName("/order/orderGoodsForm");
 		return mav;
 	}	
 	

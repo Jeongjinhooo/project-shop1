@@ -12,7 +12,7 @@
     <title>회원가입창</title>
     
     <link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet" type="text/css">
-    <link href="${pageContext.request.contextPath}/resources/css/insert.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/css/memberForm.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet" type="text/css">
     <!-- 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
