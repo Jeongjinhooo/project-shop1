@@ -187,65 +187,92 @@ function execDaumPostcode() {
       <section>
         <div id="sectioninner">
           <div id="titleArea2">
-            <h2>회원 정보 수정</h2>
+            <h2>MY PAGE</h2>
+          </div>
+          <div id="myPagecommon">
+            <div>
+              <h2>회원이름</h2>
+              <p>마이페이지</p>
+            </div>
+            <ul>
+              <li>
+                <strong class="mptitle">적립금</strong>
+                <strong class="mpdata">0</strong>
+              </li>
+              <li>
+                <strong class="mptitle">포인트</strong>
+                <strong class="mpdata">0</strong>
+              </li>
+              <li>
+                <strong class="mptitle">쿠폰</strong>
+                <strong class="mpdata">0</strong>
+              </li>
+              <li>
+                <strong class="mptitle">총주문</strong>
+                <strong class="mpdata">0</strong>
+              </li>
+            </ul>
           </div>
 
-          <h3>기본정보</h3>
-          <p>
-            <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" /> 필수입력사항
-          </p>
-          
-          <form action="${pageContext.request.contextPath}/member/addMember.do" method="post">
-          <table>
-            <tbody>
-              <tr>
-                <th>
-                  아이디
-                  <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
-                </th>
-                <td>
-                  <input type="text" name="_userid" id="_userid" size="20"/>
-                  <input type="hidden" name="userid" id="userid"/>
-                  (영문소문자/숫자, 4~16자)
-                  	<input type="button"  id="idCheck" value="ID 중복체크" onClick="fn_overlapped()" />
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  비밀번호
-                  <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
-                </th>
-                <td>
-                  <input type="password" name="userpw"/>
-                  (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  비밀번호 확인
-                  <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
-                </th>
-                <td>
-                  <input type="password" />
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  이름
-                  <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
-                </th>
-                <td>
-                  <input type="text" name="username" />
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  주소
-                  <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
-                </th>
-                <td>
-   <!--                <input class="input2" type="text" name="useraddress" /> -->
-   <ul>
+          <div id="myPageMain">
+            <!-- 네비게이션 -->
+            <nav>
+              <div>
+                <h3>MY PAGE</h3>
+                <a href="">주문 내역 조회</a>
+                <a href="">반품/교환 신청 및 조회</a>
+                <a href="">취소 주문 내역</a>
+                <a href="">회원정보관리</a>
+              </div>
+            </nav>
+
+            <div id="myDetailInfo">
+              <h3>기본 회원정보</h3>
+
+              <form action="">
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>아이디</th>
+                      <td>
+                        <input
+                          name="userid"
+                          type="text"
+                          value="${userInfo.userid}"
+                          readonly
+                        />
+                        <!-- (영문소문자/숫자, 4~16자) -->
+                        <div></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>비밀번호</th>
+                      <td>
+                        <input
+                          name="userpw"
+                          type="password"
+                          value="${userInfo.userpw}"
+                          readonly
+                        />
+                        <button class="modifybutton">수정하기</button>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th>이름</th>
+                      <td>
+                        <input
+                          name="username"
+                          type="text"
+                          value="${userInfo.username}"
+                          readonly
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>주소</th>
+                      <td>
+                         <ul>
 					   <li>
                            <input type="text" id="zipcode" name="zipcode" size="5"
 						value="${orderer.zipcode }"> 
@@ -267,54 +294,55 @@ function execDaumPostcode() {
 								     value="${orderer.namujiAddress }" />                                     											
 						 <input type="hidden"  id="h_namujiAddress" name="h_namujiAddress" value="${orderer.namujiAddress }" /> 
 						 </ul>
-                </td>
-                
-              </tr>
-              <tr>
-                <th>
-                  이메일
-                  <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
-                </th>
-                <td>
-                  <input class="input2" type="email" name="email"/>
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  전화번호
-                  <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
-                </th>
-                <td>
-                  <input class="input2" type="tel" name="tel"/>
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  생년월일
-                  <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
-                </th>
-                <td>
-                  <input class="input2" type="date" name="birthDate"/>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div id="titleArea3">약관동의</div>
-          <div id="AllCheckbox">
-            <p>
-              <span><input type="checkbox" /></span>
-              <label for=""
-                >이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두
-                동의합니다.
-              </label>
-            </p>
-          </div>
-     
-       
-          <div id="joinbtn">
-                   <button type="submit">회원정보수정</button>
+                        <button class="modifybutton">수정하기</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>이메일</th>
+                      <td>
+                        <input
+                          name="email"
+                          class="input2"
+                          type="email"
+                          value="${userInfo.email}"
+                          readonly
+                        />
+                        <button class="modifybutton">수정하기</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>전화번호</th>
+                      <td>
+                        <input
+                          name="tel"
+                          class="input2"
+                          type="tel"
+                          value="${userInfo.tel}"
+                          readonly
+                        />
+                        <button class="modifybutton">수정하기</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>생년월일</th>
+                      <td>
+                        <input
+                          name="birthDate"
+                          class="input2"
+                          type="date"
+                          value="${userInfo.birth}"
+                          readonly
+                        />
+                        <button class="modifybutton">수정하기</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+          
+              </form>
             </div>
-          </form>
+          </div>
+        </div>
       </section>
 
       <!-- footer---------------------------------------------------------- -->

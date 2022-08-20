@@ -1,16 +1,20 @@
-.modifybutton {
-  padding: 8px;
+.btnnormal {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 2px 8px;
   border: 1px solid #d1d1d1;
   border-radius: 2px;
   font-size: 12px;
+  line-height: 18px;
   font-weight: normal;
   text-decoration: none;
+  vertical-align: middle;
+  word-spacing: -0.5px;
+  letter-spacing: 0;
   text-align: center;
   white-space: nowrap;
   color: #222;
   background-color: #fff;
-  margin-left: 10px;
-  cursor: pointer;
 }
 
 caption {
@@ -134,112 +138,39 @@ section #sectioninner #myPageMain nav div a {
 }
 /* 마이페이지 내상세정보  */
 
-section #sectioninner #myPageMain #myDetailInfo {
+section #sectioninner #myPageMain #myorderInfo {
   width: 85%;
 }
 
-section #sectioninner #myPageMain #myDetailInfo h3 {
+section #sectioninner #myPageMain #myorderInfo h3 {
   padding: 50px 0 15px;
   font-size: 24px;
   color: #2e2e2e;
   font-family: "Montserrat", "Noto Sans KR", sans-serif;
-   border-bottom: 3px solid #1a1a1a;
+  border-bottom: 3px solid #1a1a1a;
 }
 
-section #sectioninner #myPageMain #myDetailInfo p {
-  margin: -25px 0 10px;
-  color: #353535;
-  text-align: right;
+section #sectioninner table th {
+  padding: 20px 0;
+  border-left: 0;
+  border-bottom: 1px solid #e3e3e3;
+  color: #333;
   font-size: 13px;
-  font-family: "Montserrat", "Noto Sans KR", sans-serif;
-}
-
-section #sectioninner #myPageMain #myDetailInfo img {
+  font-weight: 400;
   vertical-align: middle;
+  background: #fff;
 }
 
-section #sectioninner #myPageMain #myDetailInfo table {
-  border: 0;
-  margin: 0;
-  padding: 0;
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  /* height: 100%; */
-}
-
-section #sectioninner #myPageMain #myDetailInfo table tbody {
-  display: table-row-group;
-  vertical-align: middle;
-  border-color: inherit;
-}
-
-section #sectioninner #myPageMain #myDetailInfo table tbody th {
-  border: 0;
-  border-bottom: 1px solid #eee;
-  padding: 12px 0 12px 18px;
-  background-color: #fafafa;
-  font-size: 14px;
-  color: #222;
-  line-height: 34px;
-  text-align: left;
-  font-weight: normal;
-  vertical-align: middle;
-  width: 12%;
-  font-family: "Montserrat", "Noto Sans KR", sans-serif;
-}
-
-section #sectioninner #myPageMain #myDetailInfo table tbody td {
-  border: 0;
-  border-bottom: 1px solid #eee;
-  padding: 12px 0 12px 18px;
+section #sectioninner table td {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 13px;
+  color: #333;
+  font-weight: 400;
   background-color: #fff;
-  font-size: 14px;
-  color: #888;
-  line-height: 34px;
-  font-family: "Montserrat", "Noto Sans KR", sans-serif;
+  border-bottom: 1px solid #e3e3e3;
 }
 
-section #sectioninner #myPageMain #myDetailInfo table tbody td input {
-  padding: 0 10px;
-  height: 34px;
-  line-height: 34px;
-  border: 1px solid #e3e3e3;
-  margin-right: 8px;
-}
-section #sectioninner #myPageMain #myDetailInfo table tbody td .input2 {
-  width: 480px;
-}
-
-section #sectioninner #myPageMain #myDetailInfo #titleArea3 {
-  font-size: 26px;
-  color: rgb(51, 51, 51);
-  font-weight: 700;
-  text-align: left;
-  margin-bottom: 26px;
-  padding-top: 60px;
-  font-family: "Montserrat", "Noto Sans KR", sans-serif;
-}
-
-section #sectioninner #myPageMain #myDetailInfo #joinbtn {
-  padding: 30px 0 10px;
-}
-
-section #sectioninner #myPageMain #myDetailInfo #joinbtn button {
-  width: 200px;
-  height: 49px;
-  line-height: 49px;
-  background-color: #333;
-  color: #fff;
-  font-size: 15px;
-  display: block;
-  font-weight: 700;
-  padding: 0;
-  margin: 20px auto;
-  font-family: "Montserrat", "Noto Sans KR", sans-serif;
-  cursor: pointer;
-}
-
-section #sectioninner #myPageMain #myDetailInfo #joinbtn button:hover {
-  background-color: #666;
+section #sectioninner table tfoot tr {
+  text-align: right;
 }
