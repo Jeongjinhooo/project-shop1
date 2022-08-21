@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.mypage">
+<!-- 리절트 맵 정의 -->
+	<resultMap id="orderGoodsResult" type="orderVO">
+		<result property="order_id" column="order_id" />
+		<result property="userid" column="userid" />
+		<result property="goods_id" column="goods_id" />
+		<result property="goods_name" column="goods_name" />
+		<result property="goods_price" column="goods_price" />
+		<result property="order_total_price" column="order_total_price" />
+		<result property="order_goods_qty" column="order_goods_qty" />
+		
+		<result property="orderer_name" column="orderer_name" />
+		<result property="receiver_name" column="receiver_name" />
+		<result property="receiver_tel" column="receiver_tel" />
+
+		
+		
+		<result property="delivery_address" column="delivery_address" />
+		<result property="delivery_message" column="delivery_message" />
+		<result property="delivery_method" column="delivery_method" />
+		<result property="pay_method" column="pay_method" />
+
+		<result property="pay_order_time" column="pay_order_time" />
+		<result property="delivery_state" column="delivery_state" />
+		<result property="final_total_price" column="final_total_price" />
+		<result property="goods_qty" column="goods_qty" />
+		
+		<result property="goods_fileName" column="goods_fileName" />
+	</resultMap> 
+
+	
+	 <select id="selectMyOrderGoodsList" resultMap="orderGoodsResult"  parameterType="String"  >
+	    <![CDATA[
+			select * from shopping_order
+            where userid=#{userid}
+            order by pay_order_time desc
+		]]>
+	</select>
+	
+
+	<select id="selectMyOrderInfo" resultMap="orderGoodsResult"   parameterType="String"  >
+	    <![CDATA[
+		    select * from shopping_order
+            where order_id=#{order_id}
+    	]]>
+	</select>
+		<select id="selectMyOrderHistoryList" resultMap="orderGoodsResult"   parameterType="java.util.Map"  >
+	    <![CDATA[
+		  select * from shopping_order
+          where userid=#{userid}
+          and  to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
+          order by pay_order_time desc
+    	]]>
+	</select>	
+	
+	<update id="updateMyInfo" parameterType="java.util.HashMap">
+	   update shopping_member
+			   <set>
+			      <if test=" userpw!='' and userpw!=null">
+			        userpw=#{userpw},
+			      </if>
+			    
+			       <if test=" birthdate!='' and birthdate!=null">
+			         birthdate=#{birthdate},
+			      </if>
+			  
+			      <if test=" tel1!='' and tel1!=null">
+			         tel=#{tel},
+			      </if>
+			     
+			      <if test=" smssts_yn!='' and smssts_yn!=null">
+			         smssts_yn=#{smssts_yn},
+			      </if>
+			      <if test=" email1!='' and email1!=null">
+			         email=#{email},
+			      </if>
+			    
+			      <if test=" zipcode!='' and zipcode!=null">
+			         zipcode=#{zipcode},
+			      </if>
+			      <if test=" roadAddress!='' and roadAddress!=null">
+			         roadAddress=#{roadAddress},
+			      </if>			     
+			      <if test=" jibunAddress!='' and jibunAddress!=null">
+			         jibunAddress=#{jibunAddress},
+			      </if>
+			      <if test=" namujiAddress!='' and namujiAddress!=null">
+			         namujiAddress=#{namujiAddress}
+			      </if>
+			   </set>
+		where 
+		userid=#{userid}
+	</update>
+	
+	<select id="selectMyDetailInfo" resultType="memberVO"   parameterType="String"  >
+	    <![CDATA[
+			select * from shopping_member 
+			where userid=#{userid}
+    	]]>
+	</select>	
+	
+	<update id="updateMyOrderCancel" parameterType="String">
+	   update shopping_order
+	 	  set delivery_state='cancel_order'
+	   where order_id=#{order_id}
+	</update>
+		
+		
+</mapper>

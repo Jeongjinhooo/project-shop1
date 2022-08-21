@@ -14,6 +14,7 @@
     <link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath}/resources/css/myDetailInfo.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet" type="text/css">
+    
     <!-- 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,8 +29,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
       rel="stylesheet"
     />
-    
-    
+       
     <script defer src="${pageContext.request.contextPath}/resources/js/script.js"></script>
  
    <style>
@@ -91,12 +91,76 @@ function execDaumPostcode() {
   }).open();
 }
 
+<!-- 회원정보수정------------------------------>
+
+function fn_modify_member_info(attribute){
+	var value;
+		var frm_mod_member=document.frm_mod_member;
+		if(attribute=='userpw'){
+			value=frm_mod_member.userpw.value;
+			alert("userpw:"+value);
+		}
+			
+		else if(attribute=='member_birth'){
+			var member_birth_y=frm_mod_member.member_birthdate;
+				
+			value=frm_mod_member.birthdate.value;
+			
+		}else if(attribute=='tel'){
+			var tel1=frm_mod_member.tel;
+			
+			value=frm_mod_member.tel.value;
+			
+		
+		}else if(attribute=='email'){
+			var email1=frm_mod_member.email;
+			
+			value=frm_mod_member.email.value;
+			//alert(value);
+		}else if(attribute=='address'){
+			var zipcode=frm_mod_member.zipcode;
+			var roadAddress=frm_mod_member.roadAddress;
+			var jibunAddress=frm_mod_member.jibunAddress;
+			var namujiAddress=frm_mod_member.namujiAddress;
+			
+			value_zipcode=zipcode.value;
+			value_roadAddress=roadAddress.value;
+			value_jibunAddress=jibunAddress.value;
+			value_namujiAddress=namujiAddress.value;
+			value=value_zipcode+","+value_roadAddress+","+value_jibunAddress+","+value_namujiAddress;
+		}
+
+		$.ajax({
+			type : "post",
+			async : false, //false인 경우 동기식으로 처리한다.
+			url : "${pageContext.request.contextPath}/mypage/modifyMyInfo.do",
+			data : {
+				attribute:attribute,
+				value:value,
+			},
+			success : function(data, textStatus) {
+				if(data.trim()=='mod_success'){
+					alert("회원 정보를 수정했습니다.");
+				}else if(data.trim()=='failed'){
+					alert("다시 시도해 주세요.");	
+				}
+				
+			},
+			error : function(data, textStatus) {
+				alert("에러가 발생했습니다."+data);
+			},
+			complete : function(data, textStatus) {
+				//alert("작업을완료 했습니다");
+				
+			}
+		}); //end ajax
+}
 </script>
 </head>
   <body style="overflow-x: hidden">
     <div id="wrap">
       <!-- header--------------------------------------------------------------- -->
-      <header>
+                      <header>
         <div id="h_sec01" class="flex_center">
           <div id="top_logo" class="flex_center">
             <a href="${pageContext.request.contextPath}/main.do">
@@ -104,13 +168,29 @@ function execDaumPostcode() {
             </a>
           </div>
           <ul>
-          			   <li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
-            <li><a href="#">|</a></li>
-        <li><a href="${pageContext.request.contextPath}/member/memberForm.do">회원가입</a></li>
-            <li><a href="#">|</a></li>
-            <li><a href="#">고객센터</a></li>
-  <!--           <li><a href="#">|</a></li>
-            <li><a href="#">FAQ</a></li> -->
+           <c:choose>
+		     <c:when test="${isLogOn==true and not empty memberInfo }">
+			   <li><a href="${contextPath}/member/logout.do">로그아웃</a></li>
+			   <li><a href="#">|</a></li>
+			   <li><a href="${pageContext.request.contextPath}/mypage/myPageMain.do">마이페이지</a></li>
+			   <li><a href="#">|</a></li>
+			   <li><a href="${contextPath}/cart/myCartList.do">장바구니</a></li>
+			   <li><a href="#">|</a></li>
+			   <li><a href="#">주문배송</a></li>
+			    <li><a href="#">|</a></li>
+			 </c:when>
+			 <c:otherwise>
+			   <li><a href="${contextPath}/member/loginForm.do">로그인</a></li>
+			   <li><a href="#">|</a></li>
+			        <li><a href="${pageContext.request.contextPath}/member/memberForm.do">회원가입</a></li>
+			   <li><a href="#">|</a></li>
+			 </c:otherwise>
+			</c:choose>
+			   <li><a href="#">고객센터</a></li>
+    <%-- 	  <c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
+	   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
+	    </c:if>  --%>
+			  
           </ul>
         </div>
         <div id="h_sec02">
@@ -191,7 +271,7 @@ function execDaumPostcode() {
           </div>
           <div id="myPagecommon">
             <div>
-              <h2>회원이름</h2>
+              <h2>${memberInfo.userid }</h2>
               <p>마이페이지</p>
             </div>
             <ul>
@@ -219,54 +299,41 @@ function execDaumPostcode() {
             <nav>
               <div>
                 <h3>MY PAGE</h3>
-                <a href="">주문 내역 조회</a>
+                <a href="${pageContext.request.contextPath}/mypage/myPageMain.do">주문 내역 조회</a>
                 <a href="">반품/교환 신청 및 조회</a>
                 <a href="">취소 주문 내역</a>
-                <a href="">회원정보관리</a>
+                <a href="${pageContext.request.contextPath}/mypage/myDetailInfo.do">회원정보관리</a>
               </div>
             </nav>
 
             <div id="myDetailInfo">
               <h3>기본 회원정보</h3>
 
-              <form action="">
+              <form name="frm_mod_member">
                 <table>
                   <tbody>
                     <tr>
                       <th>아이디</th>
                       <td>
-                        <input
-                          name="userid"
-                          type="text"
-                          value="${userInfo.userid}"
-                          readonly
-                        />
-                        <!-- (영문소문자/숫자, 4~16자) -->
-                        <div></div>
+                     <input name="userid" type="text" size="20" value="${memberInfo.userid}"  disabled/>
+                       
                       </td>
                     </tr>
                     <tr>
                       <th>비밀번호</th>
                       <td>
-                        <input
-                          name="userpw"
-                          type="password"
-                          value="${userInfo.userpw}"
-                          readonly
-                        />
-                        <button class="modifybutton">수정하기</button>
+                       <input name="userpw" type="password" size="20" value="${memberInfo.userpw}" />
+           
+                       <input type="button" value="수정하기" onClick="fn_modify_member_info('userpw')" class="modifybutton"/>
+            
+             
                       </td>
                     </tr>
 
                     <tr>
                       <th>이름</th>
                       <td>
-                        <input
-                          name="username"
-                          type="text"
-                          value="${userInfo.username}"
-                          readonly
-                        />
+                         <input name="username" type="text" size="20" value="${memberInfo.username }"  disabled />
                       </td>
                     </tr>
                     <tr>
@@ -274,40 +341,33 @@ function execDaumPostcode() {
                       <td>
                          <ul>
 					   <li>
-                           <input type="text" id="zipcode" name="zipcode" size="5"
-						value="${orderer.zipcode }"> 
-						 <input type="hidden" id="h_zipcode" name="h_zipcode" value="${orderer.zipcode }" /> 
-                           	<a id="zipcode_searchbtn" href="javascript:execDaumPostcode()">주소검색</a>     
-                           	             
+                          <input type="text" id="zipcode" name="zipcode" size=5 value="${memberInfo.zipcode }" >
+                            	<a id="zipcode_searchbtn" href="javascript:execDaumPostcode()">주소검색</a>     
+                           	                 <input type="button" value="수정하기" onClick="fn_modify_member_info('address')" class="modifybutton"/>
                           </li>
                           <li>
-                            <input type="text" id="roadAddress" name="roadAddress" size="50" value="${orderer.roadAddress }" />
-                            		 <input type="hidden"  id="h_roadAddress" name="h_roadAddress"  value="${orderer.roadAddress }" /> 
-                          </li>
+                            <input class="input2" type="text" id="roadAddress" name="roadAddress" size="50" value="${memberInfo.roadAddress }" />
+                                  </li>
                           <li>
                             <input type="hidden" id="jibunAddress" name="jibunAddress" size="50"
 								              value="${orderer.jibunAddress }" />
-								              	 <input type="hidden"  id="h_jibunAddress" name="h_jibunAddress" value="${orderer.jibunAddress }" /> 
+								                	 
 								              	         </li>
 								              	         <li>
-							  <input type="text" id="namujiAddress"  name="namujiAddress" size="50"
-								     value="${orderer.namujiAddress }" />                                     											
-						 <input type="hidden"  id="h_namujiAddress" name="h_namujiAddress" value="${orderer.namujiAddress }" /> 
+							  <input class="input2" type="text" id="namujiAddress"  name="namujiAddress" size="50"
+								     value="${memberInfo.namujiAddress }" />                                     											
+						
+						 
 						 </ul>
-                        <button class="modifybutton">수정하기</button>
+                   
                       </td>
                     </tr>
                     <tr>
                       <th>이메일</th>
                       <td>
-                        <input
-                          name="email"
-                          class="input2"
-                          type="email"
-                          value="${userInfo.email}"
-                          readonly
-                        />
-                        <button class="modifybutton">수정하기</button>
+                       <input type="text" name="email" class="input2" value="${memberInfo.email}" />
+                  
+                      <input type="button" value="수정하기" onClick="fn_modify_member_info('email')" class="modifybutton"/>
                       </td>
                     </tr>
                     <tr>
@@ -317,24 +377,21 @@ function execDaumPostcode() {
                           name="tel"
                           class="input2"
                           type="tel"
-                          value="${userInfo.tel}"
-                          readonly
+                          value="${memberInfo.tel}"
+                       
                         />
-                        <button class="modifybutton">수정하기</button>
+                      <input type="button" value="수정하기" onClick="fn_modify_member_info('tel')" class="modifybutton"/>
                       </td>
                     </tr>
                     <tr>
-                      <th>생년월일</th>
-                      <td>
-                        <input
-                          name="birthDate"
-                          class="input2"
-                          type="date"
-                          value="${userInfo.birth}"
-                          readonly
-                        />
-                        <button class="modifybutton">수정하기</button>
-                      </td>
+                     <th>
+                  생년월일
+                  <img src="${pageContext.request.contextPath}/resources/img/section/ico_required.gif" alt="필수" />
+                </th>
+                <td>
+                  <input class="input2" type="date" name="birthDate" value="${memberInfo.birthDate}"/>
+             <input type="button" value="수정하기" onClick="fn_modify_member_info('birthDate')" class="modifybutton"/>
+                </td>                                                         
                     </tr>
                   </tbody>
                 </table>

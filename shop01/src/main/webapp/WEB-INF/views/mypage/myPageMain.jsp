@@ -38,198 +38,39 @@
    header #h_sec02 #left_icon_menu ul .menu_btn a{background: url('${pageContext.request.contextPath}/resources/img/header/all_cate_icon.png') no-repeat;}
    </style>
    	 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-   <script type="text/javascript">
-
-   //----------장바구니 수량변경
-	function modify_cart_qty(goods_id,goodsPrice,index){
-		//alert(index);
-	   var length=document.frm_order_all_cart.cart_goods_qty.length;
-	   console.log(length);
-	   var _cart_goods_qty=0;
-		if(length>1){ //카트에 제품이 한개인 경우와 여러개인 경우 나누어서 처리한다.
-			_cart_goods_qty=document.frm_order_all_cart.cart_goods_qty[index].value;		
-		}else{
-			_cart_goods_qty=document.frm_order_all_cart.cart_goods_qty.value;
-		}
-			
-		var cart_goods_qty=Number(_cart_goods_qty);
-		//alert("cart_goods_qty:"+cart_goods_qty);
-		//console.log(cart_goods_qty);
-		$.ajax({
-			type : "post",
-			async : false, //false인 경우 동기식으로 처리한다.
-			url : "${pageContext.request.contextPath}/cart/modifyCartQty.do",
-			data : {
-				goods_id:goods_id,
-				cart_goods_qty:cart_goods_qty
-			},
-			
-			success : function(data, textStatus) {
-				//alert(data);
-				if(data.trim()=='modify_success'){
-					alert("수량을 변경했습니다!!");
-					window.location.reload()
-				}else{
-					alert("다시 시도해 주세요!!");	
-				}
-				
-			},
-			error : function(data, textStatus) {
-				alert("에러가 발생했습니다."+data);
-			},
-			complete : function(data, textStatus) {
-				//alert("작업을완료 했습니다");
-				
-			}
-		}); //end ajax	
+   	 
+ <!-- 주문취소메세지--------------------- -->
+  <c:if test="${message=='cancel_order'}">
+	<script>
+	window.onload=function()
+	{
+	  init();
 	}
-// --------------------------장바구니 삭제
-	function delete_cart_goods(cart_id){
-		var cart_id=Number(cart_id);
+	
+	function init(){
+		alert("주문을 취소했습니다.");
+	}
+	</script>
+</c:if>
+ <script type="text/javascript">
+<!-- 주문취소--------------------- -->
+function fn_cancel_order(order_id){
+	var answer=confirm("주문을 취소하시겠습니까?");
+	if(answer==true){
 		var formObj=document.createElement("form");
-		var i_cart = document.createElement("input");
-		i_cart.name="cart_id";
-		i_cart.value=cart_id;
+		var i_order_id = document.createElement("input"); 
+	    
+	    i_order_id.name="order_id";
+	    i_order_id.value=order_id;
 		
-		formObj.appendChild(i_cart);
+	    formObj.appendChild(i_order_id);
 	    document.body.appendChild(formObj); 
 	    formObj.method="post";
-	    formObj.action="${pageContext.request.contextPath}/cart/removeCartGoods.do";
-	    formObj.submit();
+	    formObj.action="${pageContext.request.contextPath}/mypage/cancelMyOrder.do";
+	    formObj.submit();	
 	}
-//-----------------------
-    function calcGoodsPrice(goodsPrice,obj){
-		var totalPrice,final_total_price,totalNum;
-		var goods_qty=document.getElementById("select_goods_qty");
-		//alert("총 상품금액"+goods_qty.value);
-		var p_totalNum=document.getElementById("p_totalNum");
-		var p_totalPrice=document.getElementById("p_totalPrice");
-		var p_final_totalPrice=document.getElementById("p_final_totalPrice");
-		var h_totalNum=document.getElementById("h_totalNum");
-		var h_totalPrice=document.getElementById("h_totalPrice");
-		var h_totalDelivery=document.getElementById("h_totalDelivery");
-		var h_final_total_price=document.getElementById("h_final_totalPrice");
-		if(obj.checked==true){
-		//	alert("체크 했음")
-			
-			totalNum=Number(h_totalNum.value)+Number(goods_qty.value);
-			//alert("totalNum:"+totalNum);
-			totalPrice=Number(h_totalPrice.value)+Number(goods_qty.value*goodsPrice);
-			//alert("totalPrice:"+totalPrice);
-			final_total_price=totalPrice+Number(h_totalDelivery.value);
-			//alert("final_total_price:"+final_total_price);
-
-		}else{
-		//	alert("h_totalNum.value:"+h_totalNum.value);
-			totalNum=Number(h_totalNum.value)-Number(goods_qty.value);
-		//	alert("totalNum:"+ totalNum);
-			totalPrice=Number(h_totalPrice.value)-Number(goods_qty.value)*goodsPrice;
-		//	alert("totalPrice="+totalPrice);
-			final_total_price=totalPrice-Number(h_totalDelivery.value);
-		//	alert("final_total_price:"+final_total_price);
-		}
-		
-		h_totalNum.value=totalNum;
-		
-		h_totalPrice.value=totalPrice;
-		h_final_total_price.value=final_total_price;
-		
-		p_totalNum.innerHTML=totalNum;
-		p_totalPrice.innerHTML=totalPrice;
-		p_final_totalPrice.innerHTML=final_total_price;
-	} 
-
-//선택상품주문
-	
-    function fn_order_each_goods(goods_id,goods_name,goods_price,fileName,goods_color){
-    	
-		var _isLogOn=document.getElementById("isLogOn");
-    	var isLogOn=_isLogOn.value;
-    	
-    	 if(isLogOn=="false" || isLogOn=='' ){
-    		alert("로그인 후 주문이 가능합니다!!!");
-    	} 
-    	
-	
-		var total_price,final_total_price;
-		var order_goods_qty=document.getElementById("cart_goods_qty");
-		var order_goods_size = document.getElementById("goods_size");
-		
-		console.log(order_goods_size);
-	var formObj=document.createElement("form");
-	var i_goods_id = document.createElement("input"); 
-    var i_goods_name = document.createElement("input");
-    var i_goods_price=document.createElement("input");
-    var i_fileName=document.createElement("input");
-    var i_goods_color=document.createElement("input");
-    var i_order_goods_qty=document.createElement("input");
-    var i_order_goods_size=document.createElement("input");
-    i_goods_id.name="goods_id";
-    i_goods_name.name="goods_name";
-    i_goods_price.name="goods_price";
-    i_fileName.name="goods_fileName";
-    i_goods_color.name ="goods_color";
-    i_order_goods_qty.name="order_goods_qty";
-    i_order_goods_size.name="order_goods_size";
-    i_goods_id.value=goods_id;
-    i_goods_name.value=goods_name;
-    i_goods_price.value=goods_price;
-    i_fileName.value=fileName;
-    i_goods_color.value=goods_color;
-    i_order_goods_qty.value=order_goods_qty.value;
-    i_order_goods_size.value = order_goods_size.value;
-    formObj.appendChild(i_goods_id);
-    formObj.appendChild(i_goods_name);
-    formObj.appendChild(i_goods_price);
-    formObj.appendChild(i_fileName);
-	formObj.appendChild(i_goods_color);
-    formObj.appendChild(i_order_goods_qty);
-    formObj.appendChild(i_order_goods_size);
-    document.body.appendChild(formObj); 
-    formObj.method="post";
-    formObj.action="${pageContext.request.contextPath}/order/orderEachGoods.do"; 
-    formObj.submit();
-    alert("00000000000000000000");
-	}	  
-
-	
-	//전체상품주문
-	function fn_order_all_cart_goods(){
-//		alert("모두 주문하기");
-		var order_goods_qty;
-		var order_goods_id;
-		var objForm=document.frm_order_all_cart;
-		var cart_goods_qty=objForm.cart_goods_qty;
-		var h_order_each_goods_qty=objForm.h_order_each_goods_qty;
-		var checked_goods=objForm.checked_goods;
-		var length=checked_goods.length;
-		
-		
-		//alert(length);
-		if(length>1){
-			for(var i=0; i<length;i++){
-				if(checked_goods[i].checked==true){
-					order_goods_id=checked_goods[i].value;
-					order_goods_qty=cart_goods_qty[i].value;
-					cart_goods_qty[i].value="";
-					cart_goods_qty[i].value=order_goods_id+":"+order_goods_qty;
-					//alert(select_goods_qty[i].value);
-					console.log(cart_goods_qty[i].value);
-				}
-			}	
-		}else{
-			order_goods_id=checked_goods.value;
-			order_goods_qty=cart_goods_qty.value;
-			cart_goods_qty.value=order_goods_id+":"+order_goods_qty;
-			//alert(select_goods_qty.value);
-		}
-			
-	 	objForm.method="post";
-	 	objForm.action="${pageContext.request.contextPath}/order/orderAllCartGoods.do";
-		objForm.submit();
-	}
-
-</script> 
+}
+</script>
 </head>
 <body style="overflow-x: hidden">
     <div id="wrap">
@@ -246,7 +87,7 @@
 		     <c:when test="${isLogOn==true and not empty memberInfo }">
 			   <li><a href="${contextPath}/member/logout.do">로그아웃</a></li>
 			   <li><a href="#">|</a></li>
-			   <li><a href="${contextPath}/member/mypage.do">마이페이지</a></li>
+			   <li><a href="${pageContext.request.contextPath}/mypage/myPageMain.do">마이페이지</a></li>
 			   <li><a href="#">|</a></li>
 			   <li><a href="${contextPath}/cart/myCartList.do">장바구니</a></li>
 			   <li><a href="#">|</a></li>
@@ -346,7 +187,7 @@
           </div>
           <div id="myPagecommon">
             <div>
-              <h2>회원이름</h2>
+              <h2>${memberInfo.userid }</h2>
               <p>마이페이지</p>
             </div>
             <ul>
@@ -373,13 +214,13 @@
             <nav>
               <div>
                 <h3>MY PAGE</h3>
-                <a href="">주문 내역 조회</a>
+                <a href="${pageContext.request.contextPath}/mypage/myPageMain.do">주문 내역 조회</a>
                 <a href="">반품/교환 신청 및 조회</a>
                 <a href="">취소 주문 내역</a>
-                <a href="">회원정보관리</a>
+                <a href="${pageContext.request.contextPath}/mypage/myDetailInfo.do">회원정보관리</a>
               </div>
             </nav>
-
+   <!-- 주문내역*--------- -->
             <div id="myorderInfo">
               <h3>주문내역조회</h3>
                <table>
@@ -404,72 +245,109 @@
                   <th scope="col">수량</th>
                   <th scope="col">상품구매금액</th>             
                   <th scope="col">주문처리상태</th>
-                  <th scope="col">주문취소</th>
-           
-                </tr>
+                  <th scope="col">주문취소</th>          
+                </tr>                
               </thead>
-             
               <tbody class="textcenter">
-              <%-- 	 <c:choose> --%>
-				    <!-- <c:when test="${empty myCartList}">
-				    <tr>
-				       <td colspan=8 class="fixed">
-				         <strong>장바구니에 상품이 없습니다.</strong>
-				       </td>
-				     </tr>
-				    </c:when> -->
-			<%--         <c:otherwise>
-               
-               		  <c:forEach var="item" items="${myGoodsList}" varStatus="cnt">
-				       <c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cart_goods_qty}" />
-				       <c:set var="cart_id" value="${myCartList[cnt.count-1].cart_id}" />
-				       <c:set var="goods_size" value="${myCartList[cnt.count-1].goods_size}" /> --%>
-				        <tr>
-              <td>
-                30001
-                <p>2002.03.05</p>
+               <c:choose>
+         <c:when test="${ empty myOrderList  }">
+		  <tr>
+		    <td colspan=5 class="fixed">
+				  <strong>주문한 상품이 없습니다.</strong>
+		    </td>
+		  </tr>
+		     
+        </c:when>
+        	<c:otherwise>
+	    	  <c:forEach var="item" items="${myOrderList }"  varStatus="i">
+	     	  <c:choose> 
+              <c:when test="${ pre_order_id != item.order_id}">
+                <c:choose>
+	              <c:when test="${item.delivery_state=='delivery_prepared' }">
+	                <tr  bgcolor="lightgreen">    
+	              </c:when>
+	              <c:when test="${item.delivery_state=='finished_delivering' }">
+	                <tr  bgcolor="lightgray">    
+	              </c:when>
+	              <c:otherwise>
+	                <tr  bgcolor="orange">   
+	              </c:otherwise>
+	          </c:choose> 
+           
+           
+			  <tr>
+              	<td>
+                <a href="${pageContext.request.contextPath}/mypage/myOrderDetail.do?order_id=${item.order_id}"><span>${item.order_id}</span>  </a>
+                <p>${item.pay_order_time}</p>
               </td>
                   <td>
-                   <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-						<!-- <img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}"  /> -->
-            		<img width="75" alt="" src="img/section/7a9b01c64d317b3c5a76b0093a3e7041.jpg"  />
+                    <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
+						<img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}"  />
                     </a>
                   </td>
                   <td class="textleft pdleft10">
                     <strong>
-                    			<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_name}</a>
-                    </strong>
+                    			
+			    
+			            <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_name }</a><br>
+			        
+			
+				    </strong>
                     <ul>
                       <li>[색상 : ${item.goods_color}]<br>
-                          [사이즈 : ${goods_size}]
+                          [사이즈 : ${item.order_goods_size}]
                           <input type="hidden" name="goods_size" id="goods_size" value="${goods_size}"/>
                           
                       </li>
                     </ul>
                   </td>
                   <td>    
-                     11
+                     ${item.order_goods_qty}개
                   </td>
                   <td>
                     <div>
                     <strong>					  
-                      110000원
+                      ${item.goods_price*item.order_goods_qty}원
 					</strong>
                     </div>
                   </td>
               
                   <td>
-                    <span>배송준비중</span>
+                      <c:choose>
+			    <c:when test="${item.delivery_state=='delivery_prepared' }">
+			       배송준비중
+			    </c:when>
+			    <c:when test="${item.delivery_state=='delivering' }">
+			       배송중
+			    </c:when>
+			    <c:when test="${item.delivery_state=='finished_delivering' }">
+			       배송완료
+			    </c:when>
+			    <c:when test="${item.delivery_state=='cancel_order' }">
+			       주문취소
+			    </c:when>
+			    <c:when test="${item.delivery_state=='returning_goods' }">
+			       반품완료
+			    </c:when>
+			  </c:choose>
                   </td>
-            
-            
-                  <td class="button">
-                  
-          
-                    <a href="#" class="btnnormal">주문취소</a>
-          
+                  <td>
+             <c:choose>
+			   <c:when test="${item.delivery_state=='delivery_prepared'}">
+			       <input  type="button" class="btnnormal" onClick="fn_cancel_order('${item.order_id}')" value="주문취소"  />
+			   </c:when>
+			   <c:otherwise>
+			      <input  class="btnnormal"type="button" onClick="fn_cancel_order('${item.order_id}')" value="주문취소" disabled />
+			   </c:otherwise>
+			  </c:choose>                                
                   </td>
                 </tr>
+                   <c:set  var="pre_order_id" value="${item.order_id}" />
+           </c:when>
+      </c:choose>
+	   </c:forEach>
+	  </c:otherwise>
+    </c:choose> 	    
               </tbody>
             </table>
             </div>

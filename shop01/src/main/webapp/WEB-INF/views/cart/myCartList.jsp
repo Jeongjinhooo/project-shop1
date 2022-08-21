@@ -189,7 +189,6 @@
     formObj.method="post";
     formObj.action="${pageContext.request.contextPath}/order/orderEachGoods.do"; 
     formObj.submit();
-    alert("00000000000000000000");
 	}	  
 
 	
@@ -244,11 +243,11 @@
           <ul>
            <c:choose>
 		     <c:when test="${isLogOn==true and not empty memberInfo }">
-			   <li><a href="${contextPath}/member/logout.do">로그아웃</a></li>
+			   <li><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 			   <li><a href="#">|</a></li>
-			   <li><a href="${contextPath}/member/mypage.do">마이페이지</a></li>
+			   <li><a href="${pageContext.request.contextPath}/mypage/myPageMain.do">마이페이지</a></li>
 			   <li><a href="#">|</a></li>
-			   <li><a href="${contextPath}/cart/myCartList.do">장바구니</a></li>
+			   <li><a href="${pageContext.request.contextPath}/cart/myCartList.do">장바구니</a></li>
 			   <li><a href="#">|</a></li>
 			   <li><a href="#">주문배송</a></li>
 			    <li><a href="#">|</a></li>
@@ -439,7 +438,7 @@
                   <td>무료</td>
                   <td class="button">
                   
-                    <a href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_name }','${goods.goods_price}','${goods.goods_fileName}','${goods.goods_color}');" class="btnnormal">주문하기</a>
+                    <a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_name }','${item.goods_price}','${item.goods_fileName}','${item.goods_color}');" class="btnnormal">주문하기</a>
                     <a href="#" class="btnnormal">관심상품등록</a>
                     <a href="javascript:delete_cart_goods('${cart_id}')" class="btnnormal">삭제</a>
                   </td>
