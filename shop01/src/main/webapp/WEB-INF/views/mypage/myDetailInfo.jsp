@@ -101,22 +101,22 @@ function fn_modify_member_info(attribute){
 			alert("userpw:"+value);
 		}
 			
-		else if(attribute=='member_birth'){
-			var member_birth_y=frm_mod_member.member_birthdate;
+		else if(attribute=='birthDate'){
+			var birtdate=frm_mod_member.birthDate;
 				
-			value=frm_mod_member.birthdate.value;
-			
+			value=frm_mod_member.birthDate.value;
+			alert("birthDate:"+value);
 		}else if(attribute=='tel'){
-			var tel1=frm_mod_member.tel;
+			var tel=frm_mod_member.tel;
 			
 			value=frm_mod_member.tel.value;
 			
-		
+			alert("tel:"+value);
 		}else if(attribute=='email'){
-			var email1=frm_mod_member.email;
+			var email=frm_mod_member.email;
 			
 			value=frm_mod_member.email.value;
-			//alert(value);
+			alert("email:"+value);
 		}else if(attribute=='address'){
 			var zipcode=frm_mod_member.zipcode;
 			var roadAddress=frm_mod_member.roadAddress;
@@ -128,6 +128,7 @@ function fn_modify_member_info(attribute){
 			value_jibunAddress=jibunAddress.value;
 			value_namujiAddress=namujiAddress.value;
 			value=value_zipcode+","+value_roadAddress+","+value_jibunAddress+","+value_namujiAddress;
+			alert("address:"+value);
 		}
 
 		$.ajax({
@@ -153,14 +154,15 @@ function fn_modify_member_info(attribute){
 				//alert("작업을완료 했습니다");
 				
 			}
-		}); //end ajax
+			}); //end ajax
 }
+
 </script>
 </head>
   <body style="overflow-x: hidden">
     <div id="wrap">
       <!-- header--------------------------------------------------------------- -->
-                      <header>
+         <header>
         <div id="h_sec01" class="flex_center">
           <div id="top_logo" class="flex_center">
             <a href="${pageContext.request.contextPath}/main.do">
@@ -324,7 +326,7 @@ function fn_modify_member_info(attribute){
                       <td>
                        <input name="userpw" type="password" size="20" value="${memberInfo.userpw}" />
            
-                       <input type="button" value="수정하기" onClick="fn_modify_member_info('userpw')" class="modifybutton"/>
+                       <input type="button" value="수정하기" onclick="fn_modify_member_info('userpw')" class="modifybutton"/>
             
              
                       </td>
@@ -343,7 +345,7 @@ function fn_modify_member_info(attribute){
 					   <li>
                           <input type="text" id="zipcode" name="zipcode" size=5 value="${memberInfo.zipcode }" >
                             	<a id="zipcode_searchbtn" href="javascript:execDaumPostcode()">주소검색</a>     
-                           	                 <input type="button" value="수정하기" onClick="fn_modify_member_info('address')" class="modifybutton"/>
+                           	                 <input type="button" value="수정하기" onclick="fn_modify_member_info('address')" class="modifybutton"/>
                           </li>
                           <li>
                             <input class="input2" type="text" id="roadAddress" name="roadAddress" size="50" value="${memberInfo.roadAddress }" />
@@ -367,7 +369,7 @@ function fn_modify_member_info(attribute){
                       <td>
                        <input type="text" name="email" class="input2" value="${memberInfo.email}" />
                   
-                      <input type="button" value="수정하기" onClick="fn_modify_member_info('email')" class="modifybutton"/>
+                      <input type="button" value="수정하기" onclick="fn_modify_member_info('email')" class="modifybutton"/>
                       </td>
                     </tr>
                     <tr>
@@ -380,7 +382,7 @@ function fn_modify_member_info(attribute){
                           value="${memberInfo.tel}"
                        
                         />
-                      <input type="button" value="수정하기" onClick="fn_modify_member_info('tel')" class="modifybutton"/>
+                      <input type="button" value="수정하기" onclick="fn_modify_member_info('tel')" class="modifybutton"/>
                       </td>
                     </tr>
                     <tr>
@@ -390,7 +392,7 @@ function fn_modify_member_info(attribute){
                 </th>
                 <td>
                   <input class="input2" type="date" name="birthDate" value="${memberInfo.birthDate}"/>
-             <input type="button" value="수정하기" onClick="fn_modify_member_info('birthDate')" class="modifybutton"/>
+             <input type="button" value="수정하기" onclick="fn_modify_member_info('birthDate')" class="modifybutton"/>
                 </td>                                                         
                     </tr>
                   </tbody>

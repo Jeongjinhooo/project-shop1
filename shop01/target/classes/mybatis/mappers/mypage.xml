@@ -36,9 +36,13 @@
 	
 	 <select id="selectMyOrderGoodsList" resultMap="orderGoodsResult"  parameterType="String"  >
 	    <![CDATA[
-			select * from shopping_order
-            where userid=#{userid}
-            order by pay_order_time desc
+			      select
+       order_seq_num, order_id, userid, goods_id, orderer_name, goods_name, order_goods_qty, goods_price, goods_filename, receiver_name,
+      receiver_tel, delivery_address, delivery_message, pay_method, orderer_hp, delivery_state, goods_color,order_goods_size,
+      to_char(pay_order_time,'yyyy-mm-dd') as pay_order_time
+      from shopping_order
+       where userid=#{userid}
+      order by pay_order_time desc
 		]]>
 	</select>
 	

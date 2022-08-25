@@ -277,8 +277,9 @@ function fn_cancel_order(order_id){
            
 			  <tr>
               	<td>
-                <a href="${pageContext.request.contextPath}/mypage/myOrderDetail.do?order_id=${item.order_id}"><span>${item.order_id}</span>  </a>
+             
                 <p>${item.pay_order_time}</p>
+                   <a href="${pageContext.request.contextPath}/mypage/myOrderDetail.do?order_id=${item.order_id}"><span>[${item.order_id}]</span>  </a>
               </td>
                   <td>
                     <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">

@@ -108,7 +108,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	     mav.setViewName("/order/orderGoodsForm");
 		return mav;
 	}	
-	
+	//-------------------------------결제하기 
 	@RequestMapping(value="/payToOrderGoods.do", method = RequestMethod.POST)
 	public ModelAndView payToOrderGoods(@RequestParam Map<String, String> receiverMap,
 			                       HttpServletRequest request, HttpServletResponse response)  throws Exception{
@@ -131,6 +131,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 			orderVO.setReceiver_tel(receiverMap.get("receiver_tel"));
 			orderVO.setDelivery_address(receiverMap.get("delivery_address"));
 			orderVO.setDelivery_message(receiverMap.get("delivery_message"));
+	
 			orderVO.setPay_method(receiverMap.get("pay_method"));
 	
 			orderVO.setOrderer_hp(orderer_hp);	

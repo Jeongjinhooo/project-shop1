@@ -130,28 +130,19 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String  userid=memberVO.getUserid();
-		if(attribute.equals("member_birth")){
+		if(attribute.equals("birthDate")){
 			val=value.split(",");
-			memberMap.put("member_birth_y",val[0]);
-			memberMap.put("member_birth_m",val[1]);
-			memberMap.put("member_birth_d",val[2]);
-			memberMap.put("member_birth_gn",val[3]);
+			memberMap.put("birthDate",val[0]);
+
 		}else if(attribute.equals("tel")){
 			val=value.split(",");
-			memberMap.put("tel1",val[0]);
-			memberMap.put("tel2",val[1]);
-			memberMap.put("tel3",val[2]);
-		}else if(attribute.equals("hp")){
-			val=value.split(",");
-			memberMap.put("hp1",val[0]);
-			memberMap.put("hp2",val[1]);
-			memberMap.put("hp3",val[2]);
-			memberMap.put("smssts_yn", val[3]);
+			memberMap.put("tel",val[0]);
+
+
 		}else if(attribute.equals("email")){
 			val=value.split(",");
-			memberMap.put("email1",val[0]);
-			memberMap.put("email2",val[1]);
-			memberMap.put("emailsts_yn", val[2]);
+			memberMap.put("email",val[0]);
+
 		}else if(attribute.equals("address")){
 			val=value.split(",");
 			memberMap.put("zipcode",val[0]);

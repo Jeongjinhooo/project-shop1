@@ -80,7 +80,7 @@
 						                #{pay_method},
 						                #{orderer_hp},
 						                #{goods_color},
-						                  #{order_goods_size})
+						                #{order_goods_size})
     	]]>
 	</insert>
 
@@ -93,9 +93,10 @@
 	<select id="selectMyOrder" resultMap="orderGoodsResult"   parameterType="String"  >
 	    <![CDATA[
 		    select * from shopping_order
-            where to_char(pay_order_time,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd') 
+            where to_char(pay_order_time,'yyyy-mm-')=to_char(sysdate,'yyyy-mm-dd') 
             and order_id=#{order_id}
             order by pay_order_time desc
+            
     	]]>
 	</select>
 	
