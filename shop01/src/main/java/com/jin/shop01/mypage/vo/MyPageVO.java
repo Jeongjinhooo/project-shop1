@@ -9,7 +9,7 @@ public class MyPageVO {
 	public String getUserid() {
 		return userid;
 	}
-	public void setuserid(String userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 	public String getBeginDate() {

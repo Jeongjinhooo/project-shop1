@@ -129,7 +129,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		String val[]=null;
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
-		String  userid=memberVO.getUserid();
+		String userid=memberVO.getUserid();
 		if(attribute.equals("birthDate")){
 			val=value.split(",");
 			memberMap.put("birthDate",val[0]);

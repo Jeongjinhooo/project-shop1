@@ -63,38 +63,35 @@
 	</select>	
 	
 	<update id="updateMyInfo" parameterType="java.util.HashMap">
-	   update shopping_member
+	   update member
 			   <set>
-			      <if test=" userpw!='' and userpw!=null">
+			      <if test="userpw != '' and userpw != null">
 			        userpw=#{userpw},
 			      </if>
 			    
-			       <if test=" birthdate!='' and birthdate!=null">
+			       <if test="birthdate != '' and birthdate != null">
 			         birthdate=#{birthdate},
 			      </if>
 			  
-			      <if test=" tel1!='' and tel1!=null">
+			      <if test="tel != '' and tel != null">
 			         tel=#{tel},
 			      </if>
-			     
-			      <if test=" smssts_yn!='' and smssts_yn!=null">
-			         smssts_yn=#{smssts_yn},
-			      </if>
-			      <if test=" email1!='' and email1!=null">
+			     			   
+			      <if test="email != '' and email != null">
 			         email=#{email},
 			      </if>
 			    
-			      <if test=" zipcode!='' and zipcode!=null">
+			      <if test="zipcode != '' and zipcode != null">
 			         zipcode=#{zipcode},
 			      </if>
-			      <if test=" roadAddress!='' and roadAddress!=null">
+			      <if test="roadAddress != '' and roadAddress != null">
 			         roadAddress=#{roadAddress},
 			      </if>			     
-			      <if test=" jibunAddress!='' and jibunAddress!=null">
+			      <if test="jibunAddress != '' and jibunAddress != null">
 			         jibunAddress=#{jibunAddress},
 			      </if>
-			      <if test=" namujiAddress!='' and namujiAddress!=null">
-			         namujiAddress=#{namujiAddress}
+			      <if test="namujiAddress != '' and namujiAddress != null">
+			         namujiAddress=#{namujiAddress},
 			      </if>
 			   </set>
 		where 
@@ -103,7 +100,7 @@
 	
 	<select id="selectMyDetailInfo" resultType="memberVO"   parameterType="String"  >
 	    <![CDATA[
-			select * from shopping_member 
+			select * from member 
 			where userid=#{userid}
     	]]>
 	</select>	
